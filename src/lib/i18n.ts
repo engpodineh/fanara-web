@@ -1,0 +1,51 @@
+export const locales = ['fa', 'ar', 'en'] as const
+export type Locale = (typeof locales)[number]
+export const isLocale = (v: string): v is Locale => (locales as readonly string[]).includes(v)
+export const dir = (l: Locale) => (l === 'en' ? 'ltr' : 'rtl')
+
+const ui = {
+  fa: { brandSub: 'دفتر مهندسی', navAbout: 'رزومه', navProjects: 'پروژه‌ها', navServices: 'سفارش طراحی', navAcademy: 'آکادمی', navContact: 'تماس',
+    ctaOrder: 'سفارش طراحی', ctaCv: 'رزومه‌ی مؤسس', fKicker: 'مؤسس فن‌آرا', cvFull: 'رزومه‌ی کامل', cvPdf: 'دانلود PDF',
+    pKicker: 'پروژه‌ها', pTitle: 'کارهایی که تحویل داده‌ایم و در حال اجراست', pLead: 'هر پروژه با نقش دقیق ما، حجم کار و سیستم‌های اجراشده.',
+    delivered: 'تحویل‌شده', inProgress: 'در حال اجرا', client: 'کارفرما',
+    sKicker: 'دفتر مهندسی فن‌آرا', sTitle: 'سفارش طراحی', sLead: 'تیم چندرشته‌ای فن‌آرا نقشه‌ی هر رشته را انجام می‌دهد. نقشه را بفرستید؛ پیش‌فاکتور و زمان‌بندی دریافت کنید.', ctaOrder2: 'ثبت سفارش و آپلود نقشه',
+    hKicker: 'هایلایت‌ها', hTitle: 'از کارگاه، هر روز', cKicker: 'تماس', cTitle: 'پروژه‌تان را برایمان بفرستید',
+    whatsapp: 'واتساپ', phoneIq: 'تلفن عراق', email: 'ایمیل', instagram: 'اینستاگرام',
+    experience: 'سوابق کاری', education: 'تحصیلات', certificates: 'گواهی‌نامه‌ها', awards: 'تقدیرنامه‌ها', languages: 'زبان‌ها', skills: 'مهارت‌ها', present: 'تا کنون', hours: 'ساعت',
+    orderTitle: 'سفارش طراحی', orderLead: 'اطلاعات پروژه و نقشه‌ها را بفرستید. پس از بررسی، پیش‌فاکتور و زمان‌بندی برایتان ارسال می‌شود.',
+    name: 'نام و نام خانوادگی', phone: 'تلفن / واتساپ', country: 'کشور', city: 'شهر', projectType: 'نوع پروژه', area: 'متراژ (m²)', floors: 'تعداد طبقات یا واحد',
+    services: 'خدمات موردنیاز', files: 'نقشه‌ها و مدارک (PDF، DWG، تصویر، ZIP)', deadline: 'زمان‌بندی موردنظر', notes: 'توضیحات', submit: 'ثبت سفارش', sending: 'در حال ارسال…',
+    sent: 'سفارش ثبت شد. به‌زودی از طریق تلفن یا واتساپ با شما تماس می‌گیریم.', failed: 'ارسال انجام نشد. اتصال اینترنت را بررسی کنید و دوباره تلاش کنید، یا از واتساپ پیام بدهید.',
+    types: { residential: 'مسکونی', commercial: 'تجاری', industrial: 'صنعتی', hotel: 'هتل', petrochemical: 'پتروشیمی', other: 'سایر' },
+    foot: '© فن‌آرا پارسیان کهن · مشهد، ایران' },
+  ar: { brandSub: 'مكتب هندسي', navAbout: 'السيرة الذاتية', navProjects: 'المشاريع', navServices: 'طلب تصميم', navAcademy: 'الأكاديمية', navContact: 'اتصل بنا',
+    ctaOrder: 'طلب تصميم', ctaCv: 'سيرة المؤسس', fKicker: 'مؤسس فن‌آرا', cvFull: 'السيرة الكاملة', cvPdf: 'تحميل PDF',
+    pKicker: 'المشاريع', pTitle: 'مشاريع سلّمناها وأخرى قيد التنفيذ', pLead: 'لكل مشروع: دورنا بالتحديد، وحجم العمل، والأنظمة المنفّذة.',
+    delivered: 'تم التسليم', inProgress: 'قيد التنفيذ', client: 'صاحب العمل',
+    sKicker: 'مكتب فن‌آرا الهندسي', sTitle: 'طلب تصميم', sLead: 'ينجز فريق فن‌آرا متعدد التخصصات مخططات كل اختصاص. أرسل مخططك واحصل على عرض سعر وجدول زمني.', ctaOrder2: 'سجّل طلبك وارفع المخطط',
+    hKicker: 'المقتطفات', hTitle: 'من الموقع، كل يوم', cKicker: 'اتصل بنا', cTitle: 'أرسل لنا مشروعك',
+    whatsapp: 'واتساب', phoneIq: 'هاتف العراق', email: 'البريد الإلكتروني', instagram: 'إنستغرام',
+    experience: 'الخبرات العملية', education: 'التعليم', certificates: 'الشهادات', awards: 'شهادات التقدير', languages: 'اللغات', skills: 'المهارات', present: 'حتى الآن', hours: 'ساعة',
+    orderTitle: 'طلب تصميم', orderLead: 'أرسل معلومات المشروع والمخططات. بعد المراجعة نرسل لك عرض السعر والجدول الزمني.',
+    name: 'الاسم الكامل', phone: 'الهاتف / واتساب', country: 'الدولة', city: 'المدينة', projectType: 'نوع المشروع', area: 'المساحة (م²)', floors: 'عدد الطوابق أو الوحدات',
+    services: 'الخدمات المطلوبة', files: 'المخططات والمستندات (PDF، DWG، صور، ZIP)', deadline: 'المدة المطلوبة', notes: 'ملاحظات', submit: 'إرسال الطلب', sending: 'جارٍ الإرسال…',
+    sent: 'تم تسجيل الطلب. سنتواصل معك قريبًا عبر الهاتف أو واتساب.', failed: 'تعذّر الإرسال. تحقق من الاتصال وحاول مرة أخرى، أو راسلنا عبر واتساب.',
+    types: { residential: 'سكني', commercial: 'تجاري', industrial: 'صناعي', hotel: 'فندق', petrochemical: 'بتروكيماويات', other: 'أخرى' },
+    foot: '© فن‌آرا پارسیان کهن · مشهد، إيران' },
+  en: { brandSub: 'Engineering Office', navAbout: 'Resume', navProjects: 'Projects', navServices: 'Design orders', navAcademy: 'Academy', navContact: 'Contact',
+    ctaOrder: 'Order a design', ctaCv: "Founder's resume", fKicker: 'Founder', cvFull: 'Full resume', cvPdf: 'Download PDF',
+    pKicker: 'Projects', pTitle: 'Delivered and in progress', pLead: 'Each project with our exact role, scope and the systems installed.',
+    delivered: 'Delivered', inProgress: 'In progress', client: 'Client',
+    sKicker: 'Fanara Engineering Office', sTitle: 'Design orders', sLead: "Fanara's multidisciplinary team produces drawings for every discipline. Send your plans; get a quote and a schedule.", ctaOrder2: 'Place an order and upload plans',
+    hKicker: 'Highlights', hTitle: 'From site, every day', cKicker: 'Contact', cTitle: 'Send us your project',
+    whatsapp: 'WhatsApp', phoneIq: 'Iraq phone', email: 'Email', instagram: 'Instagram',
+    experience: 'Experience', education: 'Education', certificates: 'Certificates', awards: 'Awards', languages: 'Languages', skills: 'Skills', present: 'Present', hours: 'h',
+    orderTitle: 'Design order', orderLead: 'Send your project details and drawings. After review we send a quote and a schedule.',
+    name: 'Full name', phone: 'Phone / WhatsApp', country: 'Country', city: 'City', projectType: 'Project type', area: 'Area (m²)', floors: 'Floors or units',
+    services: 'Services needed', files: 'Drawings and documents (PDF, DWG, images, ZIP)', deadline: 'Desired timeline', notes: 'Notes', submit: 'Submit order', sending: 'Sending…',
+    sent: 'Order received. We will contact you by phone or WhatsApp shortly.', failed: 'Could not send. Check your connection and try again, or message us on WhatsApp.',
+    types: { residential: 'Residential', commercial: 'Commercial', industrial: 'Industrial', hotel: 'Hotel', petrochemical: 'Petrochemical', other: 'Other' },
+    foot: '© Fan Ara Parsian Kohan · Mashhad, Iran' },
+}
+export const t = (l: Locale) => ui[l]
+export type UI = (typeof ui)['fa']
