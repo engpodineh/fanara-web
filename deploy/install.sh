@@ -4,7 +4,7 @@
 set -euo pipefail
 DOMAIN="${DOMAIN:-engfanara.com}"
 EMAIL="${EMAIL:-fanarateb@gmail.com}"
-REPO="${REPO:-https://github.com/engpodineh/fanara-web.git}"
+REPO="${REPO:-git@github.com:engpodineh/fanara-web.git}"
 APP=/opt/fanara
 
 echo "==> System packages"
@@ -15,6 +15,21 @@ echo "==> Node.js 22"
 if ! command -v node >/dev/null || [[ "$(node -v)" != v22* ]]; then
   curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
   apt-get install -y nodejs
+fi
+
+echo "==> GitHub deploy key (repo is private)"
+mkdir -p /root/.ssh && chmod 700 /root/.ssh
+[ -f /root/.ssh/fanara_deploy ] || ssh-keygen -t ed25519 -N "" -C "fanara-server" -f /root/.ssh/fanara_deploy >/dev/null
+grep -q "github.com" /root/.ssh/config 2>/dev/null || printf 'Host github.com\n  IdentityFile /root/.ssh/fanara_deploy\n  IdentitiesOnly yes\n' >> /root/.ssh/config
+ssh-keyscan -t ed25519 github.com >> /root/.ssh/known_hosts 2>/dev/null
+if ! git ls-remote "$REPO" >/dev/null 2>&1; then
+  echo
+  echo "Add this key in GitHub: repo fanara-web > Settings > Deploy keys > Add deploy key (leave 'Allow write access' OFF):"
+  echo
+  cat /root/.ssh/fanara_deploy.pub
+  echo
+  echo "Then run this script again."
+  exit 0
 fi
 
 echo "==> App user and code"
