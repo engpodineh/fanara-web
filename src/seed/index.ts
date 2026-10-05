@@ -1,11 +1,12 @@
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import path from 'path'
-import crypto from 'crypto'
+import { fileURLToPath } from 'url'
 
 type L3 = { fa: string; ar: string; en: string }
 const L = (fa: string, ar: string, en: string): L3 => ({ fa, ar, en })
-const M = '/home/claude/fanara-media'
+// Photos used by the seed live in the repo (resized copies) so the server can run it.
+const M = process.env.SEED_MEDIA || path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../seed-media')
 
 const payload = await getPayload({ config })
 
@@ -23,13 +24,13 @@ async function upload(file: string, alt?: L3) {
   return doc.id
 }
 
-// ---- admin user
-const tempPassword = crypto.randomBytes(9).toString('base64url')
-await payload.create({ collection: 'users', data: { email: 'fanarateb@gmail.com', password: tempPassword, name: 'Omid Podineh', role: 'admin' } as any })
+// ---- guard: run once. The admin account is created by the owner at /admin (never here).
+const existing = await payload.count({ collection: 'services' })
+if (existing.totalDocs > 0) { console.log('SEED SKIPPED: content already exists'); process.exit(0) }
 
 // ---- media
 const hero = await upload('02-hero/aerial-team-site-masterplan-BEST.jpg', L('تیم مهندسی فن‌آرا با نقشه‌ی سایت', 'فريق فن‌آرا الهندسي مع مخطط الموقع', 'Fanara engineering team with the site plan'))
-const portrait = await upload('../fanara-preview/img/portrait.webp', L('مهندس امید پودینه', 'المهندس أميد پودينه', 'Eng. Omid Podineh'))
+const portrait = await upload('portrait.webp', L('مهندس امید پودینه', 'المهندس أميد پودينه', 'Eng. Omid Podineh'))
 const negin = await upload('26-negin-residential-chabahar/facade-completed-1-BEST.jpg')
 const aldhaman = await upload('02-hero/hero-concrete-pump-villas.jpg')
 const sewer = await upload('22-site-sewer-network/manhole-S185-lowering.jpg')
@@ -168,5 +169,5 @@ for (const [i, [kind, year, hours, title, issuer]] of cr.entries()) await make('
 // ---- highlights
 for (const [file, caption] of hls) { const m = await upload(file); await make('highlights', { media: m, album: 'site' }, { caption }) }
 
-console.log('\nSEED OK. Admin: fanarateb@gmail.com  temp password:', tempPassword)
+console.log('\nSEED OK')
 process.exit(0)
