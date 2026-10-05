@@ -34,6 +34,7 @@ fi
 
 echo "==> App user and code"
 id fanara >/dev/null 2>&1 || useradd -r -m -d /home/fanara -s /bin/bash fanara
+git config --global --add safe.directory "$APP"
 if [ -d "$APP/.git" ]; then git -C "$APP" pull --ff-only; else git clone "$REPO" "$APP"; fi
 chown -R fanara:fanara "$APP"
 

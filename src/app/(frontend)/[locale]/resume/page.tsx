@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import { payload, img } from '@/lib/payload'
 import { isLocale, t, type Locale } from '@/lib/i18n'
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 const fmt = (d?: string | null, l: Locale = 'en') =>
   d ? new Intl.DateTimeFormat(l === 'en' ? 'en-GB' : l === 'ar' ? 'ar-IQ' : 'fa-IR-u-ca-gregory', { month: 'short', year: 'numeric' }).format(new Date(d)) : ''
 

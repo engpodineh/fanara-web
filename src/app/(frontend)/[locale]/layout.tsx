@@ -8,7 +8,6 @@ export const metadata: Metadata = {
   title: 'Eng.Fanara · فن‌آرا',
   description: 'Fanara Engineering — MEP design and execution. Omid Podineh, Mechanical Engineer.',
 }
-export function generateStaticParams() { return locales.map((locale) => ({ locale })) }
 
 export default async function LocaleLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params

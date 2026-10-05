@@ -1,4 +1,4 @@
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 import { notFound } from 'next/navigation'
 import { payload } from '@/lib/payload'
 import { isLocale, t, type Locale } from '@/lib/i18n'

@@ -18,6 +18,7 @@ import { Services } from './collections/Services'
 import { DesignOrders, OrderFiles } from './collections/DesignOrders'
 import { Standards, StandardFiles } from './collections/Standards'
 import { Profile } from './globals/Profile'
+import { migrations } from './migrations'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -39,6 +40,10 @@ export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: { outputFile: path.resolve(dirname, 'payload-types.ts') },
   // Dev: SQLite. Production: swap to @payloadcms/db-postgres with the same config.
-  db: sqliteAdapter({ client: { url: process.env.DATABASE_URI || 'file:./fanara.db' } }),
+  db: sqliteAdapter({
+    client: { url: process.env.DATABASE_URI || 'file:./fanara.db' },
+    // Production: apply schema migrations automatically on startup (fresh server DB).
+    prodMigrations: migrations,
+  }),
   sharp,
 })
