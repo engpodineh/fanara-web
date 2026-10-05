@@ -38,7 +38,7 @@ export function pageMeta(l: Locale, page: PageKey): Metadata {
     description: c.description,
     alternates: {
       canonical: `/${l}${p}`,
-      languages: { 'ar-IQ': `/ar${p}`, 'fa-IR': `/fa${p}`, en: `/en${p}`, 'x-default': `/ar${p}` },
+      languages: { 'ar-IQ': `/ar${p}`, 'fa-IR': `/fa${p}`, en: `/en${p}`, 'x-default': p ? `/ar${p}` : '/' },
     },
     openGraph: {
       type: page === 'resume' ? 'profile' : 'website', siteName: 'Eng.Fanara · فن‌آرا', url: `/${l}${p}`,

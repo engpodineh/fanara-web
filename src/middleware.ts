@@ -1,11 +1,25 @@
 import { NextResponse, type NextRequest } from 'next/server'
 
-// "/" → best language from the browser. Unknown languages (e.g. Kurdish) go to Arabic: Iraq is the main market.
+const LANGS = ['ar', 'fa', 'en']
+const COOKIE = 'lang'
+
+// "/" → first visit shows the language picker; later visits go straight to the remembered language.
+// Any visit to /{lang}/… remembers that language for a year.
 export function middleware(req: NextRequest) {
-  const al = (req.headers.get('accept-language') || '').toLowerCase()
-  const first = al.split(',').map((s) => s.trim().slice(0, 2)).find((s) => ['ar', 'fa', 'en'].includes(s))
-  const url = req.nextUrl.clone()
-  url.pathname = `/${first || 'ar'}`
-  return NextResponse.redirect(url, 307)
+  const { pathname } = req.nextUrl
+  if (pathname === '/') {
+    const saved = req.cookies.get(COOKIE)?.value
+    if (saved && LANGS.includes(saved)) {
+      const url = req.nextUrl.clone(); url.pathname = `/${saved}`
+      return NextResponse.redirect(url, 307)
+    }
+    return NextResponse.next()
+  }
+  const lang = pathname.split('/')[1]
+  const res = NextResponse.next()
+  if (LANGS.includes(lang) && req.cookies.get(COOKIE)?.value !== lang) {
+    res.cookies.set(COOKIE, lang, { path: '/', maxAge: 60 * 60 * 24 * 365, sameSite: 'lax' })
+  }
+  return res
 }
-export const config = { matcher: ['/'] }
+export const config = { matcher: ['/', '/ar/:path*', '/fa/:path*', '/en/:path*'] }

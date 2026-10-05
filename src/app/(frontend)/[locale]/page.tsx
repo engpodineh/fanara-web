@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { pageMeta } from '@/lib/seo'
+import InstaBadge from '@/components/InstaBadge'
 import Link from 'next/link'
 import { payload, img } from '@/lib/payload'
 import { isLocale, t, type Locale } from '@/lib/i18n'
@@ -22,6 +23,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     p.find({ collection: 'services', locale: l, sort: 'order', limit: 12 }),
     p.find({ collection: 'highlights', locale: l, sort: '-createdAt', limit: 12 }),
   ])
+  const igPhoto = img(profile.portrait, 'thumb')
   return (
     <main>
       <div className="hero" id="top">
@@ -51,7 +53,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             )}
             <div className="ctas">
               <Link className="btn btn-green" href={`/${l}/resume`}>{u.cvFull}</Link>
-              {profile.instagramPersonal && <a className="btn" style={{ borderColor: 'var(--rule)', direction: 'ltr' }} href={`https://www.instagram.com/${profile.instagramPersonal}`} target="_blank" rel="noopener">@{profile.instagramPersonal}</a>}
+              {profile.instagramPersonal && <InstaBadge handle={profile.instagramPersonal} photo={igPhoto} label={u.igLabel} cta={u.igCta} />}
             </div>
           </div>
         </div>
@@ -98,7 +100,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       {!!highlights.docs.length && (
         <section><div className="wrap">
           <div className="sec-head"><div><span className="kicker">{u.hKicker}</span><h2>{u.hTitle}</h2></div>
-            {profile.instagramOffice && <a className="btn btn-green" href={`https://www.instagram.com/${profile.instagramOffice}`} target="_blank" rel="noopener">@{profile.instagramOffice}</a>}
+            {profile.instagramOffice && <InstaBadge handle={profile.instagramOffice} photo={igPhoto} label={u.igLabel} cta={u.igCta} />}
           </div>
           <div className="hl">
             {highlights.docs.map((h) => (
@@ -115,8 +117,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           {profile.whatsapp && <div className="c-item"><div className="k">{u.whatsapp}</div><div className="v"><a href={`https://wa.me/${profile.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener">{profile.whatsapp}</a></div></div>}
           {profile.phoneIraq && <div className="c-item"><div className="k">{u.phoneIq}</div><div className="v"><span>{profile.phoneIraq}</span></div></div>}
           {profile.email && <div className="c-item"><div className="k">{u.email}</div><div className="v"><span>{profile.email}</span></div></div>}
-          {profile.instagramOffice && <div className="c-item"><div className="k">{u.instagram}</div><div className="v"><a href={`https://www.instagram.com/${profile.instagramOffice}`} target="_blank" rel="noopener">@{profile.instagramOffice}</a></div></div>}
         </div>
+        {profile.instagramOffice && <div style={{ marginTop: 22 }}><InstaBadge handle={profile.instagramOffice} photo={igPhoto} label={u.igLabel} cta={u.igCta} variant="dark" /></div>}
       </div></section>
     </main>
   )
