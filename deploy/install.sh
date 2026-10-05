@@ -73,7 +73,9 @@ rm -f /etc/nginx/sites-enabled/default
 nginx -t && systemctl reload nginx
 
 echo "==> Firewall"
-ufw allow OpenSSH; ufw allow 'Nginx Full'; ufw --force enable
+# Keep every port sshd listens on open (this host uses 22, 3031 or 3131) so we never lock ourselves out.
+for p in 22 3031 3131 $(ss -tlnp 2>/dev/null | awk '/sshd/ {n=split($4,a,":"); print a[n]}' | sort -u); do ufw allow "$p"/tcp; done
+ufw allow 'Nginx Full'; ufw --force enable
 
 echo "==> HTTPS (needs DNS already pointing here)"
 certbot --nginx -d "$DOMAIN" -d "www.$DOMAIN" -m "$EMAIL" --agree-tos -n --redirect \
