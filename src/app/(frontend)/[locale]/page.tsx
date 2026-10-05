@@ -1,9 +1,16 @@
+import type { Metadata } from 'next'
+import { pageMeta } from '@/lib/seo'
 import Link from 'next/link'
 import { payload, img } from '@/lib/payload'
 import { isLocale, t, type Locale } from '@/lib/i18n'
 import { notFound } from 'next/navigation'
 
 export const dynamic = 'force-dynamic'
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
+  return isLocale(locale) ? pageMeta(locale, 'home') : {}
+}
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -44,7 +51,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             )}
             <div className="ctas">
               <Link className="btn btn-green" href={`/${l}/resume`}>{u.cvFull}</Link>
-              {profile.instagramPersonal && <a className="btn" style={{ borderColor: 'var(--rule)', direction: 'ltr' }} href={`https://instagram.com/${profile.instagramPersonal}`} target="_blank" rel="noopener">@{profile.instagramPersonal}</a>}
+              {profile.instagramPersonal && <a className="btn" style={{ borderColor: 'var(--rule)', direction: 'ltr' }} href={`https://www.instagram.com/${profile.instagramPersonal}`} target="_blank" rel="noopener">@{profile.instagramPersonal}</a>}
             </div>
           </div>
         </div>
@@ -91,7 +98,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       {!!highlights.docs.length && (
         <section><div className="wrap">
           <div className="sec-head"><div><span className="kicker">{u.hKicker}</span><h2>{u.hTitle}</h2></div>
-            {profile.instagramOffice && <a className="btn btn-green" href={`https://instagram.com/${profile.instagramOffice}`} target="_blank" rel="noopener">@{profile.instagramOffice}</a>}
+            {profile.instagramOffice && <a className="btn btn-green" href={`https://www.instagram.com/${profile.instagramOffice}`} target="_blank" rel="noopener">@{profile.instagramOffice}</a>}
           </div>
           <div className="hl">
             {highlights.docs.map((h) => (
@@ -108,7 +115,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           {profile.whatsapp && <div className="c-item"><div className="k">{u.whatsapp}</div><div className="v"><a href={`https://wa.me/${profile.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener">{profile.whatsapp}</a></div></div>}
           {profile.phoneIraq && <div className="c-item"><div className="k">{u.phoneIq}</div><div className="v"><span>{profile.phoneIraq}</span></div></div>}
           {profile.email && <div className="c-item"><div className="k">{u.email}</div><div className="v"><span>{profile.email}</span></div></div>}
-          {profile.instagramOffice && <div className="c-item"><div className="k">{u.instagram}</div><div className="v"><a href={`https://instagram.com/${profile.instagramOffice}`} target="_blank" rel="noopener">@{profile.instagramOffice}</a></div></div>}
+          {profile.instagramOffice && <div className="c-item"><div className="k">{u.instagram}</div><div className="v"><a href={`https://www.instagram.com/${profile.instagramOffice}`} target="_blank" rel="noopener">@{profile.instagramOffice}</a></div></div>}
         </div>
       </div></section>
     </main>

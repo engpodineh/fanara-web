@@ -1,4 +1,11 @@
+import type { Metadata } from 'next'
+import { pageMeta } from '@/lib/seo'
 export const dynamic = 'force-dynamic'
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
+  return isLocale(locale) ? pageMeta(locale, 'order') : {}
+}
 import { notFound } from 'next/navigation'
 import { payload } from '@/lib/payload'
 import { isLocale, t, type Locale } from '@/lib/i18n'

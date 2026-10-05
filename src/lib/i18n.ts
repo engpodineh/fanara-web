@@ -4,7 +4,7 @@ export const isLocale = (v: string): v is Locale => (locales as readonly string[
 export const dir = (l: Locale) => (l === 'en' ? 'ltr' : 'rtl')
 
 const ui = {
-  fa: { brandSub: 'دفتر مهندسی', navAbout: 'رزومه', navProjects: 'پروژه‌ها', navServices: 'سفارش طراحی', navAcademy: 'آکادمی', navContact: 'تماس',
+  fa: { navGallery: 'گالری', gKicker: 'گالری تصاویر', gTitle: 'از کارگاه تا نقشه', gLead: 'تصاویر واقعی از پروژه‌های اجراشده در عراق و ایران: کارگاه، تأسیسات، نقشه‌ها و تیم.', gAll: 'همه', gCats: { site: 'کارگاه و اجرا', mep: 'تأسیسات', design: 'طراحی و نقشه', team: 'تیم', management: 'مدیریت و تقدیر' }, brandSub: 'دفتر مهندسی', navAbout: 'رزومه', navProjects: 'پروژه‌ها', navServices: 'سفارش طراحی', navAcademy: 'آکادمی', navContact: 'تماس',
     ctaOrder: 'سفارش طراحی', ctaCv: 'رزومه‌ی مؤسس', fKicker: 'مؤسس فن‌آرا', cvFull: 'رزومه‌ی کامل', cvPdf: 'دانلود PDF',
     pKicker: 'پروژه‌ها', pTitle: 'کارهایی که تحویل داده‌ایم و در حال اجراست', pLead: 'هر پروژه با نقش دقیق ما، حجم کار و سیستم‌های اجراشده.',
     delivered: 'تحویل‌شده', inProgress: 'در حال اجرا', client: 'کارفرما',
@@ -18,7 +18,7 @@ const ui = {
     sent: 'سفارش ثبت شد. به‌زودی از طریق تلفن یا واتساپ با شما تماس می‌گیریم.', failed: 'ارسال انجام نشد. اتصال اینترنت را بررسی کنید و دوباره تلاش کنید، یا از واتساپ پیام بدهید.',
     types: { residential: 'مسکونی', commercial: 'تجاری', industrial: 'صنعتی', hotel: 'هتل', petrochemical: 'پتروشیمی', other: 'سایر' },
     foot: '© فن‌آرا پارسیان کهن · مشهد، ایران' },
-  ar: { brandSub: 'مكتب هندسي', navAbout: 'السيرة الذاتية', navProjects: 'المشاريع', navServices: 'طلب تصميم', navAcademy: 'الأكاديمية', navContact: 'اتصل بنا',
+  ar: { navGallery: 'المعرض', gKicker: 'معرض الصور', gTitle: 'من الموقع إلى المخطط', gLead: 'صور حقيقية من مشاريع منفّذة في العراق وإيران: الموقع، التأسيسات، المخططات والفريق.', gAll: 'الكل', gCats: { site: 'الموقع والتنفيذ', mep: 'التأسيسات', design: 'التصميم والمخططات', team: 'الفريق', management: 'الإدارة والتقدير' }, brandSub: 'مكتب هندسي', navAbout: 'السيرة الذاتية', navProjects: 'المشاريع', navServices: 'طلب تصميم', navAcademy: 'الأكاديمية', navContact: 'اتصل بنا',
     ctaOrder: 'طلب تصميم', ctaCv: 'سيرة المؤسس', fKicker: 'مؤسس فن‌آرا', cvFull: 'السيرة الكاملة', cvPdf: 'تحميل PDF',
     pKicker: 'المشاريع', pTitle: 'مشاريع سلّمناها وأخرى قيد التنفيذ', pLead: 'لكل مشروع: دورنا بالتحديد، وحجم العمل، والأنظمة المنفّذة.',
     delivered: 'تم التسليم', inProgress: 'قيد التنفيذ', client: 'صاحب العمل',
@@ -32,7 +32,7 @@ const ui = {
     sent: 'تم تسجيل الطلب. سنتواصل معك قريبًا عبر الهاتف أو واتساب.', failed: 'تعذّر الإرسال. تحقق من الاتصال وحاول مرة أخرى، أو راسلنا عبر واتساب.',
     types: { residential: 'سكني', commercial: 'تجاري', industrial: 'صناعي', hotel: 'فندق', petrochemical: 'بتروكيماويات', other: 'أخرى' },
     foot: '© فن‌آرا پارسیان کهن · مشهد، إيران' },
-  en: { brandSub: 'Engineering Office', navAbout: 'Resume', navProjects: 'Projects', navServices: 'Design orders', navAcademy: 'Academy', navContact: 'Contact',
+  en: { navGallery: 'Gallery', gKicker: 'Photo gallery', gTitle: 'From site to drawing', gLead: 'Real photos from delivered projects in Iraq and Iran: sites, MEP systems, drawings and the team.', gAll: 'All', gCats: { site: 'Site & execution', mep: 'MEP systems', design: 'Design & drawings', team: 'Team', management: 'Management & awards' }, brandSub: 'Engineering Office', navAbout: 'Resume', navProjects: 'Projects', navServices: 'Design orders', navAcademy: 'Academy', navContact: 'Contact',
     ctaOrder: 'Order a design', ctaCv: "Founder's resume", fKicker: 'Founder', cvFull: 'Full resume', cvPdf: 'Download PDF',
     pKicker: 'Projects', pTitle: 'Delivered and in progress', pLead: 'Each project with our exact role, scope and the systems installed.',
     delivered: 'Delivered', inProgress: 'In progress', client: 'Client',

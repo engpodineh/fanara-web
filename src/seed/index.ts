@@ -60,7 +60,7 @@ await payload.updateGlobal({ slug: 'profile', locale: 'fa', data: {
     { group: 'برق', items: 'نقشه‌کشی تک‌خطی و پلان قدرت و روشنایی\nمحاسبه‌ی بار و انتخاب کابل و کلید\nاجرا، تست و راه‌اندازی تابلو' },
     { group: 'نرم‌افزار', items: 'AutoCAD (پیشرفته)\nRevit MEP (پیشرفته)\nWord و Excel' },
   ],
-  whatsapp: '+98 990 160 0905', phoneIraq: '+964 780 770 5104', email: 'fanarateb@gmail.com', instagramOffice: 'fanara.eng', instagramPersonal: 'pudineh.eng',
+  whatsapp: '+98 990 160 0905', phoneIraq: '+964 780 770 5104', email: 'fanarateb@gmail.com', instagramOffice: 'pudineh.eng', instagramPersonal: 'pudineh.eng',
 } as any })
 const prof = await payload.findGlobal({ slug: 'profile', locale: 'fa' })
 const ids = (arr: any[] | null | undefined) => (arr ?? []).map((x) => x.id)

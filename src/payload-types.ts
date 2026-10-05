@@ -217,6 +217,10 @@ export interface Project {
 export interface Media {
   id: number;
   alt?: string | null;
+  inGallery?: boolean | null;
+  category?: ('site' | 'mep' | 'design' | 'team' | 'management') | null;
+  sourceFile?: string | null;
+  order?: number | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -696,6 +700,10 @@ export interface OrderFilesSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  inGallery?: T;
+  category?: T;
+  sourceFile?: T;
+  order?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;

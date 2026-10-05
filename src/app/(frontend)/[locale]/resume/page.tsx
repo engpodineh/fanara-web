@@ -1,8 +1,15 @@
+import type { Metadata } from 'next'
+import { pageMeta } from '@/lib/seo'
 import { notFound } from 'next/navigation'
 import { payload, img } from '@/lib/payload'
 import { isLocale, t, type Locale } from '@/lib/i18n'
 
 export const dynamic = 'force-dynamic'
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
+  return isLocale(locale) ? pageMeta(locale, 'resume') : {}
+}
 const fmt = (d?: string | null, l: Locale = 'en') =>
   d ? new Intl.DateTimeFormat(l === 'en' ? 'en-GB' : l === 'ar' ? 'ar-IQ' : 'fa-IR-u-ca-gregory', { month: 'short', year: 'numeric' }).format(new Date(d)) : ''
 
