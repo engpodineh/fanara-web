@@ -10,6 +10,6 @@ fi
 if [ "$L" = "daily" ]; then
   tar -C $APP -czf $B/files-$T.tgz media private 2>/dev/null || true
 fi
-ls -1t $B/db-*.db 2>/dev/null | tail -n +15 | xargs -r rm -f
-ls -1t $B/files-*.tgz 2>/dev/null | tail -n +8 | xargs -r rm -f
+{ ls -1t $B/db-*.db 2>/dev/null || true; } | tail -n +15 | xargs -r rm -f
+{ ls -1t $B/files-*.tgz 2>/dev/null || true; } | tail -n +8 | xargs -r rm -f
 echo "BACKUP-OK $L $T"
