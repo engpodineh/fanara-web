@@ -10,8 +10,8 @@ export function middleware(req: NextRequest) {
   if (pathname === '/') {
     const saved = req.cookies.get(COOKIE)?.value
     if (saved && LANGS.includes(saved)) {
-      const url = req.nextUrl.clone(); url.pathname = `/${saved}`
-      return NextResponse.redirect(url, 307)
+      // Relative Location: behind nginx, req.nextUrl carries the internal host (localhost:3000).
+      return new NextResponse(null, { status: 307, headers: { Location: `/${saved}` } })
     }
     return NextResponse.next()
   }
