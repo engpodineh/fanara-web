@@ -10,8 +10,11 @@ export function middleware(req: NextRequest) {
   if (pathname === '/') {
     const saved = req.cookies.get(COOKIE)?.value
     if (saved && LANGS.includes(saved)) {
-      // Relative Location: behind nginx, req.nextUrl carries the internal host (localhost:3000).
-      return new NextResponse(null, { status: 307, headers: { Location: `/${saved}` } })
+      // Behind nginx, req.nextUrl carries the internal host (localhost:3000): rebuild from the public Host header.
+      const h = (req.headers.get('x-forwarded-host') || req.headers.get('host') || '').toLowerCase()
+      const host = ['engfanara.com', 'www.engfanara.com'].includes(h) ? h : 'engfanara.com'
+      const proto = host.startsWith('localhost') ? 'http' : 'https'
+      return NextResponse.redirect(new URL(`/${saved}`, `${proto}://${host}`), 307)
     }
     return NextResponse.next()
   }
