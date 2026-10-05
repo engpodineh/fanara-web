@@ -7,6 +7,7 @@ import { fa } from '@payloadcms/translations/languages/fa'
 import { ar } from '@payloadcms/translations/languages/ar'
 import { en } from '@payloadcms/translations/languages/en'
 import sharp from 'sharp'
+import os from 'os'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
@@ -38,10 +39,19 @@ export default buildConfig({
   globals: [Profile],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
+  serverURL: process.env.NEXT_PUBLIC_SITE_URL || '',
+  // Only accept cookie-authenticated requests coming from our own origins.
+  csrf: [process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000', 'https://engfanara.com', 'https://www.engfanara.com'],
+  // Uploads: stream to disk (not RAM), 50 MB per file (nginx allows 60 MB).
+  upload: { limits: { fileSize: 50 * 1024 * 1024 }, useTempFiles: true, tempFileDir: os.tmpdir() },
   typescript: { outputFile: path.resolve(dirname, 'payload-types.ts') },
   // Dev: SQLite. Production: swap to @payloadcms/db-postgres with the same config.
   db: sqliteAdapter({
     client: { url: process.env.DATABASE_URI || 'file:./fanara.db' },
+    // Never auto-push schema: production uses migrations only (a dev push would make prod hang on a prompt).
+    push: false,
+    busyTimeout: 5000,
+    wal: true,
     // Production: apply schema migrations automatically on startup (fresh server DB).
     prodMigrations: migrations,
   }),

@@ -12,8 +12,9 @@ export function middleware(req: NextRequest) {
     if (saved && LANGS.includes(saved)) {
       // Behind nginx, req.nextUrl carries the internal host (localhost:3000): rebuild from the public Host header.
       const h = (req.headers.get('x-forwarded-host') || req.headers.get('host') || '').toLowerCase()
-      const host = ['engfanara.com', 'www.engfanara.com'].includes(h) ? h : 'engfanara.com'
-      const proto = host.startsWith('localhost') ? 'http' : 'https'
+      const local = /^(localhost|127\.0\.0\.1)(:\d+)?$/.test(h)
+      const host = local || ['engfanara.com', 'www.engfanara.com'].includes(h) ? h : 'engfanara.com'
+      const proto = local ? 'http' : 'https'
       return NextResponse.redirect(new URL(`/${saved}`, `${proto}://${host}`), 307)
     }
     return NextResponse.next()

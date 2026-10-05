@@ -54,6 +54,16 @@ for (const folder of Object.keys(F).sort()) {
     for (const k of ['ar', 'en'] as const) await payload.update({ collection: 'media', id, locale: k, data: { alt: alt[k] } as any })
   }
 }
+// Remove gallery photos whose source file was deleted or renamed in gallery-media/.
+const keep = new Set<string>()
+for (const folder of Object.keys(F)) {
+  const dir = path.join(ROOT, folder)
+  if (fs.existsSync(dir)) for (const f of fs.readdirSync(dir)) keep.add(`${folder}/${f}`)
+}
+const stale = await payload.find({ collection: 'media', where: { sourceFile: { exists: true } }, limit: 1000, depth: 0 })
+let removed = 0
+for (const m of stale.docs) if (m.sourceFile && !keep.has(m.sourceFile)) { await payload.delete({ collection: 'media', id: m.id }); removed++ }
+console.log(`removed=${removed}`)
 // Instagram: one account everywhere (owner's request).
 await payload.updateGlobal({ slug: 'profile', data: { instagramOffice: 'pudineh.eng', instagramPersonal: 'pudineh.eng' } as any })
 console.log(`GALLERY OK created=${created} updated=${updated}`)

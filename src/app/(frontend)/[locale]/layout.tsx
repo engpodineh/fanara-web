@@ -28,7 +28,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&family=Montserrat:wght@700&display=swap" />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld).replace(/</g, '\\u003c') }} />
       </head>
       <body>
         <header className="top">

@@ -2,13 +2,16 @@
 import { useState } from 'react'
 import type { UI } from '@/lib/i18n'
 
+const MAX_MB = 50
+
 export default function OrderForm({ u, services }: { u: UI; services: { id: number | string; title: string }[] }) {
-  const [state, setState] = useState<'idle' | 'sending' | 'sent' | 'failed'>('idle')
+  const [state, setState] = useState<'idle' | 'sending' | 'sent' | 'failed' | 'tooBig'>('idle')
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setState('sending')
     const f = new FormData(e.currentTarget)
+    if ((f.getAll('files') as File[]).some((x) => x.size > MAX_MB * 1024 * 1024)) { setState('tooBig'); return }
     try {
       const fileIds: (number | string)[] = []
       for (const file of f.getAll('files') as File[]) {
@@ -57,10 +60,11 @@ export default function OrderForm({ u, services }: { u: UI; services: { id: numb
       <fieldset><legend>{u.services}</legend>
         {services.map((s) => <label key={s.id}><input type="checkbox" name="services" value={s.id} />{s.title}</label>)}
       </fieldset>
-      <label>{u.files}<input id="files" name="files" type="file" multiple /></label>
+      <label>{u.files}<input id="files" name="files" type="file" multiple accept=".pdf,.dwg,.zip,image/*" /></label>
       <label>{u.deadline}<input id="deadline" name="deadline" /></label>
       <label>{u.notes}<textarea id="notes" name="notes" rows={4} /></label>
       {state === 'failed' && <p className="err">{u.failed}</p>}
+      {state === 'tooBig' && <p className="err">{u.tooBig}</p>}
       <div><button className="btn btn-maroon" type="submit" disabled={state === 'sending'}>{state === 'sending' ? u.sending : u.submit}</button></div>
     </form>
   )

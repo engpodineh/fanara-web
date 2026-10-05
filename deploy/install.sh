@@ -34,7 +34,7 @@ fi
 
 echo "==> App user and code"
 id fanara >/dev/null 2>&1 || useradd -r -m -d /home/fanara -s /bin/bash fanara
-git config --global --add safe.directory "$APP"
+git config --global --get-all safe.directory | grep -qx "$APP" || git config --global --add safe.directory "$APP"
 if [ -d "$APP/.git" ]; then git -C "$APP" pull --ff-only; else git clone "$REPO" "$APP"; fi
 chown -R fanara:fanara "$APP"
 
@@ -74,7 +74,7 @@ cat > /etc/nginx/sites-available/fanara <<NGX
 server {
   listen 80;
   server_name $DOMAIN www.$DOMAIN;
-  client_max_body_size 200M;
+  client_max_body_size 60M;
   location / {
     proxy_pass http://127.0.0.1:3000;
     proxy_set_header Host \$host;
@@ -92,6 +92,9 @@ echo "==> Firewall"
 # Keep every port sshd listens on open (this host uses 22, 3031 or 3131) so we never lock ourselves out.
 for p in 22 3031 3131 $(ss -tlnp 2>/dev/null | awk '/sshd/ {n=split($4,a,":"); print a[n]}' | sort -u); do ufw allow "$p"/tcp; done
 ufw allow 'Nginx Full'; ufw --force enable
+
+echo "==> Hardening (headers, rate limits, backups, fail2ban)"
+bash $APP/deploy/harden.sh
 
 echo "==> HTTPS (needs DNS already pointing here)"
 certbot --nginx -d "$DOMAIN" -d "www.$DOMAIN" -m "$EMAIL" --agree-tos -n --redirect \
