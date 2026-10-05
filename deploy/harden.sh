@@ -6,7 +6,6 @@ apt-get install -y sqlite3 fail2ban unattended-upgrades >/dev/null
 
 # nginx: security headers, hide version, rate-limit login + public upload/order endpoints (http-level, survives certbot edits)
 cat > /etc/nginx/conf.d/fanara-security.conf <<'NGX'
-server_tokens off;
 map $request_uri $fanara_limit_key {
   ~^/api/(order-files|design-orders|users/login|users/forgot-password)  $binary_remote_addr;
   default "";
@@ -21,7 +20,11 @@ add_header Content-Security-Policy "frame-ancestors 'self'" always;
 add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
 NGX
 sed -i 's/client_max_body_size 200M;/client_max_body_size 60M;/' /etc/nginx/sites-available/fanara
-nginx -t && systemctl reload nginx
+# hide nginx version (set in the main config; Ubuntu ships the line commented or already on)
+sed -i -E 's/^\s*#?\s*server_tokens\s+\w+;/\tserver_tokens off;/' /etc/nginx/nginx.conf
+grep -q 'server_tokens off' /etc/nginx/nginx.conf || sed -i 's/^http {/http {\n\tserver_tokens off;/' /etc/nginx/nginx.conf
+nginx -t
+systemctl reload nginx
 
 # systemd: private file mode for new files, no privilege escalation
 mkdir -p /etc/systemd/system/fanara.service.d
