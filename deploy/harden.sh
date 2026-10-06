@@ -45,6 +45,9 @@ find $APP/data $APP/private -type f -exec chmod 640 {} +
 # backups: daily consistent snapshot (replaces old cp-based job)
 echo '20 3 * * * root bash /opt/fanara/deploy/backup.sh daily >> /root/backup.log 2>&1' > /etc/cron.d/fanara-backup
 
+# auto-deploy from GitHub every 5 minutes (only acts when main has new commits)
+echo '*/5 * * * * root bash /opt/fanara/deploy/autodeploy.sh >> /root/autodeploy.log 2>&1' > /etc/cron.d/fanara-autodeploy
+
 # fail2ban for SSH; automatic security updates
 cat > /etc/fail2ban/jail.d/sshd.local <<'F2B'
 [sshd]
