@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { pageMeta } from '@/lib/seo'
 import InstaBadge from '@/components/InstaBadge'
+import { CITY_PAGES } from '@/lib/cities-content'
 import Link from 'next/link'
 import { payload, img } from '@/lib/payload'
 import { isLocale, t, type Locale } from '@/lib/i18n'
@@ -94,7 +95,13 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             <div className="svc" key={s.id}><span className="code">{s.code}</span><h3>{s.title}</h3>{s.description && <p>{s.description}</p>}</div>
           ))}
         </div>
-        <div style={{ marginTop: 28 }}><Link className="btn btn-maroon" href={`/${l}/order`}>{u.ctaOrder2}</Link></div>
+        <div className="ctas" style={{ marginTop: 28 }}>
+          <Link className="btn btn-maroon" href={`/${l}/order`}>{u.ctaOrder2}</Link>
+          <Link className="btn btn-ghost" href={`/${l}/services`}>{u.svcIndexTitle}</Link>
+        </div>
+        <div className="city-chips home-cities">
+          {CITY_PAGES.map((c) => <Link key={c.slug} href={`/${l}/iraq/${c.slug}`}>📍 {c[l].name}</Link>)}
+        </div>
       </div></section>
 
       {!!highlights.docs.length && (

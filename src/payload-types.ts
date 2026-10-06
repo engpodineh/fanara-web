@@ -74,6 +74,7 @@ export interface Config {
     services: Service;
     'design-orders': DesignOrder;
     'order-files': OrderFile;
+    feedback: Feedback;
     media: Media;
     standards: Standard;
     'standard-files': StandardFile;
@@ -92,6 +93,7 @@ export interface Config {
     services: ServicesSelect<false> | ServicesSelect<true>;
     'design-orders': DesignOrdersSelect<false> | DesignOrdersSelect<true>;
     'order-files': OrderFilesSelect<false> | OrderFilesSelect<true>;
+    feedback: FeedbackSelect<false> | FeedbackSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     standards: StandardsSelect<false> | StandardsSelect<true>;
     'standard-files': StandardFilesSelect<false> | StandardFilesSelect<true>;
@@ -377,6 +379,18 @@ export interface OrderFile {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "feedback".
+ */
+export interface Feedback {
+  id: number;
+  message: string;
+  locale?: string | null;
+  page?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "standards".
  */
 export interface Standard {
@@ -499,6 +513,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'order-files';
         value: number | OrderFile;
+      } | null)
+    | ({
+        relationTo: 'feedback';
+        value: number | Feedback;
       } | null)
     | ({
         relationTo: 'media';
@@ -693,6 +711,17 @@ export interface OrderFilesSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "feedback_select".
+ */
+export interface FeedbackSelect<T extends boolean = true> {
+  message?: T;
+  locale?: T;
+  page?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

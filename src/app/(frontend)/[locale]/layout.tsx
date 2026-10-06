@@ -5,6 +5,9 @@ import './site.css'
 import { dir, isLocale, locales, t } from '@/lib/i18n'
 import { SITE, jsonLd } from '@/lib/seo'
 import { payload } from '@/lib/payload'
+import { SERVICE_PAGES } from '@/lib/services-content'
+import { CITY_PAGES } from '@/lib/cities-content'
+import ExitFeedback from '@/components/ExitFeedback'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
@@ -38,6 +41,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
               <span className="wm"><b><span>Eng.</span>Fanara</b><small>Professional Engineering &amp; Construction</small></span>
             </Link>
             <nav className="nav" aria-label="Main">
+              <Link href={`/${locale}/services`}>{u.svcNav}</Link>
               <Link href={`/${locale}/resume`}>{u.navAbout}</Link>
               <Link href={`/${locale}#projects`}>{u.navProjects}</Link>
               <Link href={`/${locale}/gallery`}>{u.navGallery}</Link>
@@ -54,7 +58,14 @@ export default async function LocaleLayout({ children, params }: { children: Rea
           </div>
         </header>
         {children}
-        <footer><div className="wrap"><span>{u.foot}</span><span className="en">engfanara.com</span></div></footer>
+        <ExitFeedback locale={locale} u={{ fbTitle: u.fbTitle, fbPlaceholder: u.fbPlaceholder, fbSend: u.fbSend, fbLater: u.fbLater, fbThanks: u.fbThanks }} />
+        <footer>
+          <div className="wrap foot-svc" aria-label={u.svcNav}>
+            {SERVICE_PAGES.map((s) => <Link key={s.slug} href={`/${locale}/services/${s.slug}`}>{s[locale].h1}</Link>)}
+            {CITY_PAGES.map((c) => <Link key={c.slug} href={`/${locale}/iraq/${c.slug}`}>📍 {c[locale].name}</Link>)}
+          </div>
+          <div className="wrap"><span>{u.foot}</span><span className="en">engfanara.com</span></div>
+        </footer>
       </body>
     </html>
   )

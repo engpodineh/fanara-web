@@ -8,9 +8,9 @@ const PATH: Record<PageKey, string> = { home: '', resume: '/resume', order: '/or
 // Arabic copy targets Iraq first (main market); Persian for Iran; English for international clients.
 const COPY: Record<PageKey, Record<Locale, { title: string; description: string }>> = {
   home: {
-    ar: { title: 'فن‌آرا | تصميم وتنفيذ التأسيسات الميكانيكية والكهربائية في العراق', description: 'مكتب فن‌آرا الهندسي: تصميم وتنفيذ أنظمة MEP — التكييف والتهوية، شبكات الماء والمجاري، الكهرباء والإنارة — للمشاريع السكنية والتجارية والصناعية في العراق، بإشراف المهندس أميد پودينه وخبرة تزيد على 15 عامًا.' },
+    ar: { title: 'تصميم وتنفيذ التأسيسات الصحية والكهربائية والميكانيكية في العراق | مكتب فن آرا الهندسي', description: 'مكتب هندسي في العراق لتصميم وتنفيذ التأسيسات: تأسيس ماء ومجاري (صحيات)، تأسيس كهربائيات واللوحات، التكييف والتهوية، غرف المراجل والمضخات، تأسيسات المسابح، والتصميم المعماري والإنشائي — بإشراف المهندس أميد پودينه وخبرة تزيد على 15 عامًا.' },
     fa: { title: 'دفتر مهندسی فن آرا | طراحی و اجرای تأسیسات مکانیکی و برقی — مهندس امید پودینه', description: 'فن آرا (فن‌آرا پارسیان کهن) دفتر مهندسی طراحی و اجرای تأسیسات ساختمان در مشهد، ایران و عراق: تهویه مطبوع، موتورخانه، آب و فاضلاب، برق و روشنایی، و نقشه‌های معماری و سازه؛ زیر نظر مهندس امید پودینه با بیش از ۱۵ سال تجربه.' },
-    en: { title: 'Fanara Engineering | MEP Design & Installation in Iraq and Iran', description: 'Fanara Engineering designs and installs MEP systems — HVAC, water and drainage, power and lighting — for residential, commercial and industrial projects in Iraq and Iran, led by Mechanical Engineer Omid Podineh (15+ years).' },
+    en: { title: 'MEP, Plumbing, Electrical & HVAC Design and Installation in Iraq | Fanara Engineering', description: 'Fanara Engineering designs and installs MEP systems — HVAC, water and drainage, power and lighting — for residential, commercial and industrial projects in Iraq and Iran, led by Mechanical Engineer Omid Podineh (15+ years).' },
   },
   resume: {
     ar: { title: 'المهندس أميد پودينه | مدير قسم الميكانيك ومهندس MEP في العراق', description: 'السيرة الذاتية للمهندس أميد پودينه: مدير الميكانيك في شركة الضمان، خبرة أكثر من 15 عامًا في تأسيسات المشاريع السكنية والصناعية والفندقية في العراق وإيران.' },
@@ -63,7 +63,7 @@ export function jsonLd(l: Locale, contact?: { phoneIraq?: string | null; whatsap
         alternateName: ['Eng.Fanara', 'Fanara Engineering', 'Fan Ara', 'فن‌آرا', 'فن آرا', 'فنارا', 'دفتر مهندسی فن آرا', 'فن آرا پارسیان کهن', 'فن‌آرا پارسیان کهن', 'Fan Ara Parsian Kohan', 'مكتب فن آرا الهندسي'], url: `${SITE}/${l}`,
         logo: `${SITE}/logo-mark.png`, image: `${SITE}/og.jpg`,
         email: contact?.email || 'fanarateb@gmail.com', telephone: contact?.phoneIraq || undefined,
-        areaServed: [{ '@type': 'Country', name: 'Iraq' }, { '@type': 'Country', name: 'Iran' }],
+        areaServed: [{ '@type': 'Country', name: 'Iraq' }, { '@type': 'City', name: 'Baghdad' }, { '@type': 'City', name: 'Basra' }, { '@type': 'City', name: 'Najaf' }, { '@type': 'City', name: 'Karbala' }, { '@type': 'Country', name: 'Iran' }],
         address: { '@type': 'PostalAddress', addressLocality: 'Mashhad', addressCountry: 'IR' },
         founder: { '@id': `${SITE}/#omid` },
         knowsAbout: ['MEP design', 'HVAC', 'Plumbing and drainage', 'Electrical design', 'Building services installation', 'Architectural design', 'Structural design'],

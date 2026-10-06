@@ -19,6 +19,7 @@ import { Services } from './collections/Services'
 import { DesignOrders, OrderFiles } from './collections/DesignOrders'
 import { Standards, StandardFiles } from './collections/Standards'
 import { Profile } from './globals/Profile'
+import { Feedback } from './collections/Feedback'
 import { migrations } from './migrations'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -35,7 +36,7 @@ export default buildConfig({
     defaultLocale: 'fa',
     fallback: true,
   },
-  collections: [Projects, Experience, Credentials, Highlights, Services, DesignOrders, OrderFiles, Media, Standards, StandardFiles, Users],
+  collections: [Projects, Experience, Credentials, Highlights, Services, DesignOrders, OrderFiles, Feedback, Media, Standards, StandardFiles, Users],
   globals: [Profile],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
