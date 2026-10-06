@@ -24,7 +24,7 @@ export default async function TeamPage({ params }: { params: Promise<{ locale: s
           <div><span className="kicker">{u.tKicker}</span><h1 className="h2">{u.tTitle}</h1></div>
           <p className="lead">{u.tLead}</p>
         </div>
-        <TeamGrid members={res.docs} disc={u.tDisc} />
+        <TeamGrid members={res.docs} disc={u.tDisc} labels={{ resume: u.tResume }} />
       </div></section>
     </main>
   )

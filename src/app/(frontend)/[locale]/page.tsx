@@ -5,6 +5,7 @@ import Stories from '@/components/Stories'
 import { CITY_PAGES } from '@/lib/cities-content'
 import Link from 'next/link'
 import TeamGrid from '@/components/TeamGrid'
+import TeamRotator from '@/components/TeamRotator'
 import { payload, img } from '@/lib/payload'
 import { isLocale, t, type Locale } from '@/lib/i18n'
 import { notFound } from 'next/navigation'
@@ -25,7 +26,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     p.find({ collection: 'projects', locale: l, where: { featured: { equals: true }, published: { equals: true } }, sort: ['-status', 'order'], limit: 3 }),
     p.find({ collection: 'services', locale: l, sort: 'order', limit: 12 }),
     p.find({ collection: 'highlights', locale: l, sort: ['source', '-createdAt'], limit: 16 }),
-    p.find({ collection: 'team', locale: l, where: { published: { equals: true } }, sort: 'order', limit: 4 }),
+    p.find({ collection: 'team', locale: l, where: { published: { equals: true } }, sort: 'order', limit: 50 }),
   ])
   const igPhoto = img(profile.portrait, 'thumb')
   return (
@@ -37,6 +38,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           {profile.heroEyebrow && <span className="eyebrow">{profile.heroEyebrow}</span>}
           <h1>{profile.heroTitle}</h1>
           {profile.heroText && <p>{profile.heroText}</p>}
+          <TeamRotator href={`/${l}/team`} label={u.tKicker} members={team.docs.map((m) => ({ id: m.id, photo: img(m.photo, 'thumb'), name: m.name, position: m.position }))} />
           <div className="ctas">
             <Link className="btn btn-gold" href={`/${l}/order`}>{u.ctaOrder}</Link>
             <Link className="btn btn-ghost" href={`/${l}/resume`}>{u.ctaCv}</Link>
@@ -95,7 +97,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             <div><span className="kicker">{u.tKicker}</span><h2>{u.tTitle}</h2></div>
             <p className="lead">{u.tLead}</p>
           </div>
-          <TeamGrid members={team.docs} disc={u.tDisc} />
+          <TeamGrid members={team.docs.slice(0, 4)} disc={u.tDisc} />
           <div style={{ marginTop: 18 }}><Link className="btn btn-green" href={`/${l}/team`}>{u.tAll}</Link></div>
         </div></section>
       )}

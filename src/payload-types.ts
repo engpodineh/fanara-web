@@ -279,6 +279,15 @@ export interface Team {
   discipline: 'mechanical' | 'electrical' | 'design' | 'management';
   photo: number | Media;
   bio?: string | null;
+  resume?: string | null;
+  /**
+   * مثلاً +964...
+   */
+  whatsapp?: string | null;
+  phone?: string | null;
+  email?: string | null;
+  instagram?: string | null;
+  linkedin?: string | null;
   published?: boolean | null;
   order?: number | null;
   updatedAt: string;
@@ -665,6 +674,12 @@ export interface TeamSelect<T extends boolean = true> {
   discipline?: T;
   photo?: T;
   bio?: T;
+  resume?: T;
+  whatsapp?: T;
+  phone?: T;
+  email?: T;
+  instagram?: T;
+  linkedin?: T;
   published?: T;
   order?: T;
   updatedAt?: T;
