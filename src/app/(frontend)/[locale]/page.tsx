@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { pageMeta } from '@/lib/seo'
 import InstaBadge from '@/components/InstaBadge'
+import Stories from '@/components/Stories'
 import { CITY_PAGES } from '@/lib/cities-content'
 import Link from 'next/link'
 import { payload, img } from '@/lib/payload'
@@ -109,16 +110,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <div className="sec-head"><div><span className="kicker">{u.hKicker}</span><h2>{u.hTitle}</h2></div>
             {profile.instagramOffice && <InstaBadge handle={profile.instagramOffice} photo={igPhoto} label={u.igLabel} cta={u.igCta} />}
           </div>
-          <div className="hl">
-            {highlights.docs.map((h) => (
-              <figure key={h.id}>
-                {h.link
-                  ? <a href={h.link} target="_blank" rel="noopener" aria-label={h.caption ?? ''}><div className="ring"><img src={img(h.media, 'thumb')} alt="" loading="lazy" /></div></a>
-                  : <div className="ring"><img src={img(h.media, 'thumb')} alt="" loading="lazy" /></div>}
-                <figcaption>{h.caption}</figcaption>
-              </figure>
-            ))}
-          </div>
+          <Stories
+            items={highlights.docs.map((h) => ({ id: h.id, thumb: img(h.media, 'thumb'), full: img(h.media, 'hero'), caption: h.caption, igId: h.source === 'instagram' ? h.instagramId : null, link: h.link }))}
+            t={{ close: u.stClose, prev: u.stPrev, next: u.stNext, openIg: u.stOpenIg, reel: u.stReel }} />
+          <div style={{ marginTop: 18 }}><Link className="btn btn-green" href={`/${l}/highlights`}>{u.stAll}</Link></div>
         </div></section>
       )}
 

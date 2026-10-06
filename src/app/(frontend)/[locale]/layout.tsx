@@ -45,6 +45,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
               <Link href={`/${locale}/resume`}>{u.navAbout}</Link>
               <Link href={`/${locale}#projects`}>{u.navProjects}</Link>
               <Link href={`/${locale}/gallery`}>{u.navGallery}</Link>
+              <Link href={`/${locale}/highlights`}>{u.stTitle}</Link>
               <Link href={`/${locale}/order`}>{u.navServices}</Link>
               <Link href={`/${locale}#contact`}>{u.navContact}</Link>
             </nav>
