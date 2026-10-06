@@ -68,6 +68,7 @@ export interface Config {
   blocks: {};
   collections: {
     projects: Project;
+    team: Team;
     experience: Experience;
     credentials: Credential;
     highlights: Highlight;
@@ -88,6 +89,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    team: TeamSelect<false> | TeamSelect<true>;
     experience: ExperienceSelect<false> | ExperienceSelect<true>;
     credentials: CredentialsSelect<false> | CredentialsSelect<true>;
     highlights: HighlightsSelect<false> | HighlightsSelect<true>;
@@ -265,6 +267,22 @@ export interface Media {
       filename?: string | null;
     };
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team".
+ */
+export interface Team {
+  id: number;
+  name: string;
+  position: string;
+  discipline: 'mechanical' | 'electrical' | 'design' | 'management';
+  photo: number | Media;
+  bio?: string | null;
+  published?: boolean | null;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -511,6 +529,10 @@ export interface PayloadLockedDocument {
         value: number | Project;
       } | null)
     | ({
+        relationTo: 'team';
+        value: number | Team;
+      } | null)
+    | ({
         relationTo: 'experience';
         value: number | Experience;
       } | null)
@@ -630,6 +652,21 @@ export interface ProjectsSelect<T extends boolean = true> {
   cover?: T;
   gallery?: T;
   videos?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team_select".
+ */
+export interface TeamSelect<T extends boolean = true> {
+  name?: T;
+  position?: T;
+  discipline?: T;
+  photo?: T;
+  bio?: T;
+  published?: T;
+  order?: T;
   updatedAt?: T;
   createdAt?: T;
 }

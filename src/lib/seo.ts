@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import type { Locale } from './i18n'
 
 export const SITE = process.env.NEXT_PUBLIC_SITE_URL || 'https://engfanara.com'
-export type PageKey = 'home' | 'resume' | 'order' | 'gallery' | 'projects'
-const PATH: Record<PageKey, string> = { home: '', resume: '/resume', order: '/order', gallery: '/gallery', projects: '/projects' }
+export type PageKey = 'home' | 'resume' | 'order' | 'gallery' | 'projects' | 'team'
+const PATH: Record<PageKey, string> = { home: '', resume: '/resume', order: '/order', gallery: '/gallery', projects: '/projects', team: '/team' }
 
 // Arabic copy targets Iraq first (main market); Persian for Iran; English for international clients.
 const COPY: Record<PageKey, Record<Locale, { title: string; description: string }>> = {
@@ -26,6 +26,11 @@ const COPY: Record<PageKey, Record<Locale, { title: string; description: string 
     ar: { title: 'مشاريع التأسيسات في العراق: النجف والمجمعات السكنية | فن آرا', description: 'مشاريع تأسيسات الماء والمجاري والكهرباء والميكانيك في العراق، منها مشروع الشمس السكني 1600 وحدة في النجف ومجمع سكني من 3500 وحدة، مع صور وفيديوهات من الموقع.' },
     fa: { title: 'پروژه‌های تأسیسات در عراق و ایران | دفتر مهندسی فن آرا', description: 'پروژه‌های تأسیسات آب و فاضلاب، برق و مکانیک در عراق و ایران؛ از جمله پروژه‌ی ۱۶۰۰ واحدی شمس نجف و مجتمع ۳۵۰۰ واحدی، با تصاویر و ویدیوی کارگاه.' },
     en: { title: 'MEP Projects in Iraq & Iran — Najaf, Housing Developments | Fanara', description: 'Water, drainage, electrical and mechanical projects in Iraq and Iran, including the 1,600-unit Shams project in Najaf and a 3,500-unit development, with site photos and videos.' },
+  },
+  team: {
+    ar: { title: 'فريق فن آرا: مهندسو ميكانيك وكهرباء لتنفيذ التأسيسات في العراق', description: 'تعرّف على فريق مكتب فن آرا الهندسي: مدراء ومشرفو تنفيذ الأقسام الميكانيكية والكهربائية لمشاريع التأسيسات الصحية والكهربائية والتكييف في العراق.' },
+    fa: { title: 'اعضای تیم فن آرا | مهندسان مکانیک و برق', description: 'آشنایی با تیم دفتر مهندسی فن آرا: مدیران و سرپرستان اجرای واحدهای مکانیک و برق در پروژه‌های تأسیسات عراق و ایران.' },
+    en: { title: 'The Fanara Team — Mechanical & Electrical Engineers | Fanara', description: 'Meet the Fanara Engineering team: managers and execution supervisors of the mechanical and electrical units on MEP projects in Iraq and Iran.' },
   },
   gallery: {
     ar: { title: 'معرض صور مشاريع التأسيسات في العراق وإيران | فن‌آرا', description: 'صور حقيقية من مواقع العمل: شبكات المجاري والماء، غرف المراجل، مجاري التكييف، اللوحات الكهربائية والمخططات التصميمية.' },

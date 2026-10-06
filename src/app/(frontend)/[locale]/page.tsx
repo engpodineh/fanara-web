@@ -4,6 +4,7 @@ import InstaBadge from '@/components/InstaBadge'
 import Stories from '@/components/Stories'
 import { CITY_PAGES } from '@/lib/cities-content'
 import Link from 'next/link'
+import TeamGrid from '@/components/TeamGrid'
 import { payload, img } from '@/lib/payload'
 import { isLocale, t, type Locale } from '@/lib/i18n'
 import { notFound } from 'next/navigation'
@@ -19,11 +20,12 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const { locale } = await params
   if (!isLocale(locale)) notFound()
   const l = locale as Locale, u = t(l), p = await payload()
-  const [profile, projects, services, highlights] = await Promise.all([
+  const [profile, projects, services, highlights, team] = await Promise.all([
     p.findGlobal({ slug: 'profile', locale: l }),
     p.find({ collection: 'projects', locale: l, where: { featured: { equals: true }, published: { equals: true } }, sort: ['-status', 'order'], limit: 3 }),
     p.find({ collection: 'services', locale: l, sort: 'order', limit: 12 }),
     p.find({ collection: 'highlights', locale: l, sort: ['source', '-createdAt'], limit: 16 }),
+    p.find({ collection: 'team', locale: l, where: { published: { equals: true } }, sort: 'order', limit: 4 }),
   ])
   const igPhoto = img(profile.portrait, 'thumb')
   return (
@@ -84,6 +86,17 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             ))}
           </div>
           <div style={{ marginTop: 18 }}><Link className="btn btn-green" href={`/${l}/projects`}>{u.pAll}</Link></div>
+        </div></section>
+      )}
+
+      {!!team.docs.length && (
+        <section id="team"><div className="wrap">
+          <div className="sec-head">
+            <div><span className="kicker">{u.tKicker}</span><h2>{u.tTitle}</h2></div>
+            <p className="lead">{u.tLead}</p>
+          </div>
+          <TeamGrid members={team.docs} disc={u.tDisc} />
+          <div style={{ marginTop: 18 }}><Link className="btn btn-green" href={`/${l}/team`}>{u.tAll}</Link></div>
         </div></section>
       )}
 
