@@ -21,7 +21,7 @@ export default async function Highlights({ params }: { params: Promise<{ locale:
   const { locale } = await params
   if (!isLocale(locale)) notFound()
   const l = locale as Locale, u = t(l)
-  const res = await (await payload()).find({ collection: 'highlights', locale: l, sort: ['-source', '-createdAt'], limit: 200 })
+  const res = await (await payload()).find({ collection: 'highlights', locale: l, sort: ['source', '-createdAt'], limit: 200 })
   return (
     <main className="page"><div className="wrap">
       <span className="kicker">{u.hKicker}</span>

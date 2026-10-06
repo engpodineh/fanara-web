@@ -23,7 +23,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     p.findGlobal({ slug: 'profile', locale: l }),
     p.find({ collection: 'projects', locale: l, where: { featured: { equals: true }, published: { equals: true } }, sort: 'order', limit: 3 }),
     p.find({ collection: 'services', locale: l, sort: 'order', limit: 12 }),
-    p.find({ collection: 'highlights', locale: l, sort: ['-source', '-createdAt'], limit: 16 }),
+    p.find({ collection: 'highlights', locale: l, sort: ['source', '-createdAt'], limit: 16 }),
   ])
   const igPhoto = img(profile.portrait, 'thumb')
   return (
