@@ -23,7 +23,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     p.findGlobal({ slug: 'profile', locale: l }),
     p.find({ collection: 'projects', locale: l, where: { featured: { equals: true }, published: { equals: true } }, sort: 'order', limit: 3 }),
     p.find({ collection: 'services', locale: l, sort: 'order', limit: 12 }),
-    p.find({ collection: 'highlights', locale: l, sort: '-createdAt', limit: 12 }),
+    p.find({ collection: 'highlights', locale: l, sort: ['-source', '-createdAt'], limit: 16 }),
   ])
   const igPhoto = img(profile.portrait, 'thumb')
   return (
@@ -111,7 +111,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             {profile.instagramOffice && <InstaBadge handle={profile.instagramOffice} photo={igPhoto} label={u.igLabel} cta={u.igCta} />}
           </div>
           <Stories
-            items={highlights.docs.map((h) => ({ id: h.id, thumb: img(h.media, 'thumb'), full: img(h.media, 'hero'), caption: h.caption, igId: h.source === 'instagram' ? h.instagramId : null, link: h.link }))}
+            items={highlights.docs.map((h) => ({ id: h.id, thumb: img(h.media, 'thumb'), full: img(h.media, 'hero'), caption: h.caption, igId: h.source === 'instagram' && h.instagramId && !h.instagramId.startsWith('story-') ? h.instagramId : null, link: h.link }))}
             t={{ close: u.stClose, prev: u.stPrev, next: u.stNext, openIg: u.stOpenIg, reel: u.stReel }} />
           <div style={{ marginTop: 18 }}><Link className="btn btn-green" href={`/${l}/highlights`}>{u.stAll}</Link></div>
         </div></section>

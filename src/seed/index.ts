@@ -51,7 +51,7 @@ await payload.updateGlobal({ slug: 'profile', locale: 'fa', data: {
   heroEyebrow: 'تأسیسات مکانیکی و برقی · طراحی و اجرا',
   heroTitle: 'از نقشه تا تحویل، با یک تیم مسئول',
   heroText: 'فن‌آرا طراحی و اجرای تأسیسات ساختمان را برای پروژه‌های مسکونی، صنعتی و هتلی در ایران و عراق انجام می‌دهد؛ زیر نظر مهندسی با بیش از ۱۵ سال تجربه‌ی کارگاهی.',
-  name: 'مهندس امید پودینه', role: 'مدیر بخش مکانیک، شرکت الضمان · کارشناس ارشد مهندسی مکانیک',
+  name: 'مهندس امید پودینه', role: 'آخرین جایگاه شغلی: مدیر بخش مکانیک، شرکت الضمان · کارشناس ارشد مهندسی مکانیک',
   summary: 'از ۲۰۰۷ در کارگاه‌های مسکونی، صنعتی، پتروشیمی و هتلی کار کرده‌ام؛ از سرپرستی اجرا تا مدیریت هم‌زمان واحدهای مکانیک و برق. نقشه‌های تأسیسات را خودم طراحی می‌کنم و اجرای همان نقشه‌ها را در کارگاه پیش می‌برم.',
   stats: [{ value: '15+', label: 'سال سابقه، از ۲۰۰۷' }, { value: '3,500', label: 'واحد مسکونی در پروژه‌ی فعلی' }, { value: '800', label: 'واحد؛ تأسیسات تحویل‌شده در ۹ ماه' }, { value: '3', label: 'زبان کاری: فارسی، عربی، انگلیسی' }],
   languages: [{ language: 'فارسی', level: 'زبان مادری' }, { language: 'عربی (عراقی)', level: 'مکالمه‌ی کاری در کارگاه' }, { language: 'انگلیسی', level: 'مکاتبات و مستندات فنی' }],
@@ -68,7 +68,7 @@ const [sid, lid, kid] = [ids(prof.stats), ids(prof.languages), ids(prof.skills)]
 await payload.updateGlobal({ slug: 'profile', locale: 'ar', data: {
   heroEyebrow: 'الأعمال الميكانيكية والكهربائية · تصميم وتنفيذ', heroTitle: 'من المخطط إلى التسليم، مع فريق مسؤول واحد',
   heroText: 'تقدّم فن‌آرا تصميم وتنفيذ أنظمة المباني للمشاريع السكنية والصناعية والفندقية في العراق وإيران، بإشراف مهندس يتمتع بخبرة ميدانية تتجاوز 15 عامًا.',
-  name: 'المهندس أميد پودينه', role: 'مدير القسم الميكانيكي، شركة الضمان · ماجستير هندسة ميكانيكية',
+  name: 'المهندس أميد پودينه', role: 'آخر منصب وظيفي: مدير القسم الميكانيكي، شركة الضمان · ماجستير هندسة ميكانيكية',
   summary: 'أعمل منذ 2007 في مواقع سكنية وصناعية وبتروكيماوية وفندقية؛ من الإشراف على التنفيذ إلى إدارة الوحدتين الميكانيكية والكهربائية معًا. أصمّم مخططات الأنظمة بنفسي وأتابع تنفيذها في الموقع.',
   stats: [['15+', 'سنة خبرة منذ 2007'], ['3,500', 'وحدة سكنية في المشروع الحالي'], ['800', 'وحدة؛ أعمال الأنظمة سُلّمت خلال 9 أشهر'], ['3', 'لغات عمل: الفارسية والعربية والإنجليزية']].map(([value, label], i) => ({ id: sid[i], value, label })),
   languages: [['الفارسية', 'اللغة الأم'], ['العربية (العراقية)', 'تواصل عملي في الموقع'], ['الإنجليزية', 'المراسلات والوثائق الفنية']].map(([language, level], i) => ({ id: lid[i], language, level })),
@@ -77,7 +77,7 @@ await payload.updateGlobal({ slug: 'profile', locale: 'ar', data: {
 await payload.updateGlobal({ slug: 'profile', locale: 'en', data: {
   heroEyebrow: 'Mechanical & Electrical · Design and Execution', heroTitle: 'From drawing to handover, one accountable team',
   heroText: 'Fanara designs and builds building services for residential, industrial and hospitality projects in Iran and Iraq, led by an engineer with over 15 years on site.',
-  name: 'Eng. Omid Podineh', role: 'Mechanical Manager, Al-Dhaman Co. · M.Sc. Mechanical Engineering',
+  name: 'Eng. Omid Podineh', role: 'Latest position: Mechanical Manager, Al-Dhaman Co. · M.Sc. Mechanical Engineering',
   summary: 'Since 2007 I have worked on residential, industrial, petrochemical and hotel sites — from execution supervision to running mechanical and electrical units together. I design the services drawings myself and take the same drawings through to installation.',
   stats: [['15+', 'Years on site, since 2007'], ['3,500', 'Housing units, current project'], ['800', 'Units — services delivered in 9 months'], ['3', 'Working languages: Persian, Arabic, English']].map(([value, label], i) => ({ id: sid[i], value, label })),
   languages: [['Persian', 'Native'], ['Arabic (Iraqi)', 'Working proficiency on site'], ['English', 'Technical correspondence and documents']].map(([language, level], i) => ({ id: lid[i], language, level })),

@@ -13,9 +13,9 @@ const COPY: Record<PageKey, Record<Locale, { title: string; description: string 
     en: { title: 'MEP, Plumbing, Electrical & HVAC Design and Installation in Iraq | Fanara Engineering', description: 'Fanara Engineering designs and installs MEP systems — HVAC, water and drainage, power and lighting — for residential, commercial and industrial projects in Iraq and Iran, led by Mechanical Engineer Omid Podineh (15+ years).' },
   },
   resume: {
-    ar: { title: 'المهندس أميد پودينه | مدير قسم الميكانيك ومهندس MEP في العراق', description: 'السيرة الذاتية للمهندس أميد پودينه: مدير الميكانيك في شركة الضمان، خبرة أكثر من 15 عامًا في تأسيسات المشاريع السكنية والصناعية والفندقية في العراق وإيران.' },
-    fa: { title: 'رزومه‌ی مهندس امید پودینه | مؤسس فن آرا، مهندس مکانیک و مدیر تأسیسات', description: 'رزومه‌ی مهندس امید پودینه: مدیر مکانیک شرکت الضمان در عراق، بیش از ۱۵ سال سابقه در تأسیسات پروژه‌های مسکونی، صنعتی، پتروشیمی و هتل.' },
-    en: { title: 'Omid Podineh | Mechanical Manager & MEP Engineer — Resume', description: 'Resume of Omid Podineh, Mechanical Manager at Al-Dhaman Co. in Iraq: 15+ years delivering MEP works on residential, industrial, petrochemical and hotel projects.' },
+    ar: { title: 'المهندس أميد پودينه | مهندس ميكانيك ومهندس MEP — مؤسس فن آرا', description: 'السيرة الذاتية للمهندس أميد پودينه، مؤسس مكتب فن آرا الهندسي (آخر منصب وظيفي: مدير القسم الميكانيكي في شركة الضمان)، خبرة أكثر من 15 عامًا في تأسيسات المشاريع السكنية والصناعية والفندقية في العراق وإيران.' },
+    fa: { title: 'رزومه‌ی مهندس امید پودینه | مؤسس فن آرا، مهندس مکانیک و مدیر تأسیسات', description: 'رزومه‌ی مهندس امید پودینه، مؤسس دفتر مهندسی فن آرا (آخرین جایگاه شغلی: مدیر بخش مکانیک شرکت الضمان در عراق)، بیش از ۱۵ سال سابقه در تأسیسات پروژه‌های مسکونی، صنعتی، پتروشیمی و هتل.' },
+    en: { title: 'Omid Podineh | Mechanical & MEP Engineer, Founder of Fanara — Resume', description: 'Resume of Omid Podineh, founder of Fanara Engineering (latest position: Mechanical Manager, Al-Dhaman Co., Iraq): 15+ years delivering MEP works on residential, industrial, petrochemical and hotel projects.' },
   },
   order: {
     ar: { title: 'طلب تصميم مخططات ميكانيك وكهرباء ومعماري | فن‌آرا', description: 'أرسل مخططات مشروعك واحصل على عرض سعر وجدول زمني لتصميم التأسيسات الميكانيكية والكهربائية والمخططات المعمارية والإنشائية من فريق فن‌آرا.' },
@@ -72,8 +72,7 @@ export function jsonLd(l: Locale, contact?: { phoneIraq?: string | null; whatsap
       {
         '@type': 'Person', '@id': `${SITE}/#omid`, name: 'Omid Podineh',
         alternateName: ['امید پودینه', 'أميد پودينه', 'Eng. Omid Podineh'],
-        jobTitle: 'Mechanical Manager', url: `${SITE}/${l}/resume`, image: `${SITE}/og.jpg`,
-        worksFor: { '@type': 'Organization', name: 'Al-Dhaman Co.' },
+        jobTitle: 'Mechanical & MEP Engineer', url: `${SITE}/${l}/resume`, image: `${SITE}/og.jpg`,
         knowsLanguage: ['fa', 'ar', 'en'],
         sameAs: ['https://www.instagram.com/pudineh.eng'],
       },
