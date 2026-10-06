@@ -19,6 +19,7 @@ import { Services } from './collections/Services'
 import { DesignOrders, OrderFiles } from './collections/DesignOrders'
 import { Standards, StandardFiles } from './collections/Standards'
 import { Profile } from './globals/Profile'
+import { AiSettings } from './globals/AiSettings'
 import { Feedback } from './collections/Feedback'
 import { HighlightComments } from './collections/HighlightComments'
 import { migrations } from './migrations'
@@ -38,7 +39,7 @@ export default buildConfig({
     fallback: true,
   },
   collections: [Projects, Experience, Credentials, Highlights, Services, DesignOrders, OrderFiles, Feedback, HighlightComments, Media, Standards, StandardFiles, Users],
-  globals: [Profile],
+  globals: [Profile, AiSettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   serverURL: process.env.NEXT_PUBLIC_SITE_URL || '',

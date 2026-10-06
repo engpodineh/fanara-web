@@ -8,6 +8,7 @@ import { payload } from '@/lib/payload'
 import { SERVICE_PAGES } from '@/lib/services-content'
 import { CITY_PAGES } from '@/lib/cities-content'
 import ExitFeedback from '@/components/ExitFeedback'
+import Assistant from '@/components/Assistant'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
@@ -26,6 +27,8 @@ export default async function LocaleLayout({ children, params }: { children: Rea
   const u = t(locale)
   const profile = await (await payload()).findGlobal({ slug: 'profile', locale }).catch(() => null)
   const ld = jsonLd(locale, (profile as any)?.contact ?? (profile as any))
+  const ai = await (await payload()).findGlobal({ slug: 'ai-settings', overrideAccess: true }).catch(() => null) as any
+  const aiOn = !!(ai?.enabled && ai?.apiKey)
   return (
     <html lang={locale} dir={dir(locale)}>
       <head>
@@ -59,6 +62,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
           </div>
         </header>
         {children}
+        {aiOn && <Assistant locale={locale} t={{ aiOpen: u.aiOpen, aiTitle: u.aiTitle, aiSub: u.aiSub, aiHello: u.aiHello, aiPlaceholder: u.aiPlaceholder, aiSend: u.aiSend, aiLimit: u.aiLimit, aiFail: u.aiFail, aiSuggest: u.aiSuggest }} />}
         <ExitFeedback locale={locale} u={{ fbTitle: u.fbTitle, fbPlaceholder: u.fbPlaceholder, fbSend: u.fbSend, fbLater: u.fbLater, fbThanks: u.fbThanks }} />
         <footer>
           <div className="wrap foot-svc" aria-label={u.svcNav}>

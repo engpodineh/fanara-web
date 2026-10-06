@@ -8,6 +8,7 @@ apt-get install -y sqlite3 fail2ban unattended-upgrades >/dev/null
 cat > /etc/nginx/conf.d/fanara-security.conf <<'NGX'
 map "$request_method:$request_uri" $fanara_limit_key {
   ~^POST:/api/(order-files|design-orders|feedback|highlight-comments|users/login|users/forgot-password)  $binary_remote_addr;
+  ~^POST:/assistant  $binary_remote_addr;
   default "";
 }
 limit_req_zone $fanara_limit_key zone=fanara_api:10m rate=10r/m;

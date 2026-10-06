@@ -111,9 +111,11 @@ export interface Config {
   fallbackLocale: ('false' | 'none' | 'null') | false | null | ('fa' | 'ar' | 'en') | ('fa' | 'ar' | 'en')[];
   globals: {
     profile: Profile;
+    'ai-settings': AiSetting;
   };
   globalsSelect: {
     profile: ProfileSelect<false> | ProfileSelect<true>;
+    'ai-settings': AiSettingsSelect<false> | AiSettingsSelect<true>;
   };
   locale: 'fa' | 'ar' | 'en';
   widgets: {
@@ -963,6 +965,27 @@ export interface Profile {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ai-settings".
+ */
+export interface AiSetting {
+  id: number;
+  enabled?: boolean | null;
+  /**
+   * از console.anthropic.com → API Keys بسازید و اینجا بچسبانید. فقط مدیر کل آن را می‌بیند.
+   */
+  apiKey?: string | null;
+  model?: ('claude-haiku-4-5' | 'claude-sonnet-5-5') | null;
+  perVisitorDaily?: number | null;
+  totalDaily?: number | null;
+  /**
+   * مثلاً تخفیف ویژه، ساعات پاسخ‌گویی، یا نکته‌ای که دستیار باید بداند.
+   */
+  extraInstructions?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "profile_select".
  */
 export interface ProfileSelect<T extends boolean = true> {
@@ -1001,6 +1024,21 @@ export interface ProfileSelect<T extends boolean = true> {
   email?: T;
   instagramOffice?: T;
   instagramPersonal?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ai-settings_select".
+ */
+export interface AiSettingsSelect<T extends boolean = true> {
+  enabled?: T;
+  apiKey?: T;
+  model?: T;
+  perVisitorDaily?: T;
+  totalDaily?: T;
+  extraInstructions?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
