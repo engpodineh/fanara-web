@@ -11,7 +11,8 @@
     "generate:types": "payload generate:types",
     "seed": "NODE_ENV=production payload run src/seed/index.ts",
     "gallery": "NODE_ENV=production payload run src/seed/gallery.ts",
-    "migrate": "NODE_ENV=production payload migrate"
+    "migrate": "NODE_ENV=production payload migrate",
+    "instagram": "NODE_ENV=production payload run src/seed/instagram.ts"
   },
   "dependencies": {
     "@payloadcms/db-sqlite": "3.90.2",

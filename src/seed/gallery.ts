@@ -62,7 +62,7 @@ for (const folder of Object.keys(F)) {
 }
 const stale = await payload.find({ collection: 'media', where: { sourceFile: { exists: true } }, limit: 1000, depth: 0 })
 let removed = 0
-for (const m of stale.docs) if (m.sourceFile && !keep.has(m.sourceFile)) { await payload.delete({ collection: 'media', id: m.id }); removed++ }
+for (const m of stale.docs) if (m.sourceFile && (m.sourceFile.split('/')[0] in F) && !keep.has(m.sourceFile)) { await payload.delete({ collection: 'media', id: m.id }); removed++ }
 console.log(`removed=${removed}`)
 // Instagram: one account everywhere (owner's request).
 await payload.updateGlobal({ slug: 'profile', data: { instagramOffice: 'pudineh.eng', instagramPersonal: 'pudineh.eng' } as any })

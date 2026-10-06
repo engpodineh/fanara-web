@@ -104,7 +104,12 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           </div>
           <div className="hl">
             {highlights.docs.map((h) => (
-              <figure key={h.id}><div className="ring"><img src={img(h.media, 'thumb')} alt="" /></div><figcaption>{h.caption}</figcaption></figure>
+              <figure key={h.id}>
+                {h.link
+                  ? <a href={h.link} target="_blank" rel="noopener" aria-label={h.caption ?? ''}><div className="ring"><img src={img(h.media, 'thumb')} alt="" loading="lazy" /></div></a>
+                  : <div className="ring"><img src={img(h.media, 'thumb')} alt="" loading="lazy" /></div>}
+                <figcaption>{h.caption}</figcaption>
+              </figure>
             ))}
           </div>
         </div></section>
