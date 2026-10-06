@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: 'Eng.Fanara · فن‌آرا',
   icons: { icon: '/logo-mark.png', apple: '/logo-mark.png' },
   verification: {
-    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+    google: process.env.GOOGLE_SITE_VERIFICATION || 'BJUrlYdfimmjJqge-4ncDVHi3GFrE1my4xse25cM0Xs',
     other: process.env.BING_SITE_VERIFICATION ? { 'msvalidate.01': process.env.BING_SITE_VERIFICATION } : undefined,
   },
   robots: { index: true, follow: true, 'max-image-preview': 'large' } as Metadata['robots'],
