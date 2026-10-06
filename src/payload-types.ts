@@ -213,6 +213,7 @@ export interface Project {
     | null;
   cover?: (number | null) | Media;
   gallery?: (number | Media)[] | null;
+  videos?: (number | Media)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -628,6 +629,7 @@ export interface ProjectsSelect<T extends boolean = true> {
   systems?: T;
   cover?: T;
   gallery?: T;
+  videos?: T;
   updatedAt?: T;
   createdAt?: T;
 }

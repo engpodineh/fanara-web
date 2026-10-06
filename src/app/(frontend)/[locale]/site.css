@@ -311,3 +311,15 @@ html[lang="en"] .ai-fab{font-family:var(--en)}
 .ai-form textarea{flex:1;resize:none;border:1px solid var(--rule);border-radius:10px;padding:9px 11px;font:inherit;font-size:14px;background:var(--bg);color:var(--ink);max-height:120px}
 @media (max-width:560px){.ai-fab-t{display:none}.ai-fab{padding:14px}}
 @media (prefers-reduced-motion:reduce){.ai-typing i{animation:none}}
+/* projects index + detail */
+.proj-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+.proj-list .proj{min-height:340px}
+.proj .h3,.h3{font-size:21px;line-height:1.4;margin:0 0 4px}
+.sub-h{margin:36px 0 14px}
+.proj-hero img{height:clamp(320px,48vw,520px)}
+.proj-hero h1{max-width:24ch}
+.proj-facts b{font-family:inherit;font-size:17px;line-height:1.5}
+.proj-facts{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.v-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,320px));gap:14px}
+.v-grid video{width:100%;aspect-ratio:9/16;object-fit:cover;background:#111;border-radius:10px}
+@media (max-width:860px){.proj-facts{grid-template-columns:1fr 1fr}.v-grid{grid-template-columns:1fr 1fr}}

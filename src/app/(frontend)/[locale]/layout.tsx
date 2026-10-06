@@ -46,7 +46,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
             <nav className="nav" aria-label="Main">
               <Link href={`/${locale}/services`}>{u.svcNav}</Link>
               <Link href={`/${locale}/resume`}>{u.navAbout}</Link>
-              <Link href={`/${locale}#projects`}>{u.navProjects}</Link>
+              <Link href={`/${locale}/projects`}>{u.navProjects}</Link>
               <Link href={`/${locale}/gallery`}>{u.navGallery}</Link>
               <Link href={`/${locale}/highlights`}>{u.stTitle}</Link>
               <Link href={`/${locale}/order`}>{u.navServices}</Link>

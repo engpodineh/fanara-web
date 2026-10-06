@@ -69,7 +69,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           </div>
           <div className="proj-grid">
             {projects.docs.map((pr, i) => (
-              <div key={pr.id} className={`proj${i === 0 ? ' big' : ''}`}>
+              <Link key={pr.id} href={`/${l}/projects/${pr.slug}`} className={`proj${i === 0 ? ' big' : ''}`}>
                 {img(pr.cover) && <img src={img(pr.cover)} alt="" />}
                 <div className="pc">
                   <span className={`tag ${pr.status === 'delivered' ? 'done' : 'live'}`}>{pr.status === 'delivered' ? u.delivered : u.inProgress}</span>
@@ -80,9 +80,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                     {pr.period && <span>{pr.period}</span>}
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
+          <div style={{ marginTop: 18 }}><Link className="btn btn-green" href={`/${l}/projects`}>{u.pAll}</Link></div>
         </div></section>
       )}
 

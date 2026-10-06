@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import type { Locale } from './i18n'
 
 export const SITE = process.env.NEXT_PUBLIC_SITE_URL || 'https://engfanara.com'
-export type PageKey = 'home' | 'resume' | 'order' | 'gallery'
-const PATH: Record<PageKey, string> = { home: '', resume: '/resume', order: '/order', gallery: '/gallery' }
+export type PageKey = 'home' | 'resume' | 'order' | 'gallery' | 'projects'
+const PATH: Record<PageKey, string> = { home: '', resume: '/resume', order: '/order', gallery: '/gallery', projects: '/projects' }
 
 // Arabic copy targets Iraq first (main market); Persian for Iran; English for international clients.
 const COPY: Record<PageKey, Record<Locale, { title: string; description: string }>> = {
@@ -21,6 +21,11 @@ const COPY: Record<PageKey, Record<Locale, { title: string; description: string 
     ar: { title: 'طلب تصميم مخططات ميكانيك وكهرباء ومعماري | فن‌آرا', description: 'أرسل مخططات مشروعك واحصل على عرض سعر وجدول زمني لتصميم التأسيسات الميكانيكية والكهربائية والمخططات المعمارية والإنشائية من فريق فن‌آرا.' },
     fa: { title: 'سفارش طراحی نقشه‌ی تأسیسات، برق، معماری و سازه | دفتر مهندسی فن آرا', description: 'نقشه‌های پروژه را بفرستید و پیش‌فاکتور و زمان‌بندی طراحی تأسیسات مکانیکی، برقی، معماری و سازه را از تیم فن‌آرا دریافت کنید.' },
     en: { title: 'Order MEP, Architectural & Structural Design | Fanara', description: 'Send your drawings and get a quote and schedule for mechanical, electrical, architectural and structural design from the Fanara team.' },
+  },
+  projects: {
+    ar: { title: 'مشاريع التأسيسات في العراق: النجف والمجمعات السكنية | فن آرا', description: 'مشاريع تأسيسات الماء والمجاري والكهرباء والميكانيك في العراق، منها مشروع الشمس السكني 1600 وحدة في النجف ومجمع سكني من 3500 وحدة، مع صور وفيديوهات من الموقع.' },
+    fa: { title: 'پروژه‌های تأسیسات در عراق و ایران | دفتر مهندسی فن آرا', description: 'پروژه‌های تأسیسات آب و فاضلاب، برق و مکانیک در عراق و ایران؛ از جمله پروژه‌ی ۱۶۰۰ واحدی شمس نجف و مجتمع ۳۵۰۰ واحدی، با تصاویر و ویدیوی کارگاه.' },
+    en: { title: 'MEP Projects in Iraq & Iran — Najaf, Housing Developments | Fanara', description: 'Water, drainage, electrical and mechanical projects in Iraq and Iran, including the 1,600-unit Shams project in Najaf and a 3,500-unit development, with site photos and videos.' },
   },
   gallery: {
     ar: { title: 'معرض صور مشاريع التأسيسات في العراق وإيران | فن‌آرا', description: 'صور حقيقية من مواقع العمل: شبكات المجاري والماء، غرف المراجل، مجاري التكييف، اللوحات الكهربائية والمخططات التصميمية.' },

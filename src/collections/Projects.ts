@@ -55,5 +55,6 @@ export const Projects: CollectionConfig = {
     },
     { name: 'cover', type: 'upload', relationTo: 'media', label: { fa: 'تصویر اصلی', en: 'Cover' } },
     { name: 'gallery', type: 'upload', relationTo: 'media', hasMany: true, label: { fa: 'گالری', en: 'Gallery' } },
+    { name: 'videos', type: 'upload', relationTo: 'media', hasMany: true, label: { fa: 'ویدیوها', en: 'Videos' }, filterOptions: { mimeType: { contains: 'video' } } },
   ],
 }
