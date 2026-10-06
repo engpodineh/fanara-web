@@ -112,7 +112,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           </div>
           <Stories
             items={highlights.docs.map((h) => ({ id: h.id, thumb: img(h.media, 'thumb'), full: img(h.media, 'hero'), caption: h.caption, igId: h.source === 'instagram' && h.instagramId && !h.instagramId.startsWith('story-') ? h.instagramId : null, link: h.link }))}
-            t={{ close: u.stClose, prev: u.stPrev, next: u.stNext, openIg: u.stOpenIg, reel: u.stReel }} />
+            t={{ close: u.stClose, prev: u.stPrev, next: u.stNext, openIg: u.stOpenIg, reel: u.stReel, cmTitle: u.cmTitle, cmName: u.cmName, cmMsg: u.cmMsg, cmSend: u.cmSend, cmEmpty: u.cmEmpty, cmNoLinks: u.cmNoLinks, cmFail: u.cmFail }} />
           <div style={{ marginTop: 18 }}><Link className="btn btn-green" href={`/${l}/highlights`}>{u.stAll}</Link></div>
         </div></section>
       )}

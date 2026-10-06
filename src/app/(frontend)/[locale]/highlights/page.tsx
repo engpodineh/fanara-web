@@ -29,7 +29,7 @@ export default async function Highlights({ params }: { params: Promise<{ locale:
       <p className="lead" style={{ marginBottom: 28 }}>{u.stLead}</p>
       <Stories layout="grid"
         items={res.docs.map((h) => ({ id: h.id, thumb: img(h.media, 'thumb'), full: img(h.media, 'hero'), caption: h.caption, igId: h.source === 'instagram' && h.instagramId && !h.instagramId.startsWith('story-') ? h.instagramId : null, link: h.link }))}
-        t={{ close: u.stClose, prev: u.stPrev, next: u.stNext, openIg: u.stOpenIg, reel: u.stReel }} />
+        t={{ close: u.stClose, prev: u.stPrev, next: u.stNext, openIg: u.stOpenIg, reel: u.stReel, cmTitle: u.cmTitle, cmName: u.cmName, cmMsg: u.cmMsg, cmSend: u.cmSend, cmEmpty: u.cmEmpty, cmNoLinks: u.cmNoLinks, cmFail: u.cmFail }} />
     </div></main>
   )
 }

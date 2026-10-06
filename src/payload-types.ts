@@ -75,6 +75,7 @@ export interface Config {
     'design-orders': DesignOrder;
     'order-files': OrderFile;
     feedback: Feedback;
+    'highlight-comments': HighlightComment;
     media: Media;
     standards: Standard;
     'standard-files': StandardFile;
@@ -94,6 +95,7 @@ export interface Config {
     'design-orders': DesignOrdersSelect<false> | DesignOrdersSelect<true>;
     'order-files': OrderFilesSelect<false> | OrderFilesSelect<true>;
     feedback: FeedbackSelect<false> | FeedbackSelect<true>;
+    'highlight-comments': HighlightCommentsSelect<false> | HighlightCommentsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     standards: StandardsSelect<false> | StandardsSelect<true>;
     'standard-files': StandardFilesSelect<false> | StandardFilesSelect<true>;
@@ -378,6 +380,8 @@ export interface OrderFile {
   focalY?: number | null;
 }
 /**
+ * Comments visitors left in the exit feedback box.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "feedback".
  */
@@ -386,6 +390,19 @@ export interface Feedback {
   message: string;
   locale?: string | null;
   page?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "highlight-comments".
+ */
+export interface HighlightComment {
+  id: number;
+  highlight: number | Highlight;
+  name: string;
+  message: string;
+  hidden?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -517,6 +534,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'feedback';
         value: number | Feedback;
+      } | null)
+    | ({
+        relationTo: 'highlight-comments';
+        value: number | HighlightComment;
       } | null)
     | ({
         relationTo: 'media';
@@ -720,6 +741,18 @@ export interface FeedbackSelect<T extends boolean = true> {
   message?: T;
   locale?: T;
   page?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "highlight-comments_select".
+ */
+export interface HighlightCommentsSelect<T extends boolean = true> {
+  highlight?: T;
+  name?: T;
+  message?: T;
+  hidden?: T;
   updatedAt?: T;
   createdAt?: T;
 }

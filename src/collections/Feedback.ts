@@ -5,7 +5,7 @@ import { anyone, isStaff, isAdmin } from '../access'
 export const Feedback: CollectionConfig = {
   slug: 'feedback',
   labels: { singular: { fa: 'نظر بازدیدکننده', en: 'Visitor feedback' }, plural: { fa: 'نظرات بازدیدکنندگان', en: 'Visitor feedback' } },
-  admin: { useAsTitle: 'message', defaultColumns: ['message', 'locale', 'page', 'createdAt'], group: { fa: 'دفتر مهندسی', en: 'Design office' } },
+  admin: { useAsTitle: 'message', defaultColumns: ['message', 'locale', 'page', 'createdAt'], group: { fa: 'نظرات و کامنت‌ها', en: 'Comments' }, description: { fa: 'نظراتی که بازدیدکنندگان هنگام خروج از سایت در جعبه‌ی نظرسنجی نوشته‌اند.', en: 'Comments visitors left in the exit feedback box.' } },
   access: { read: isStaff, create: anyone, update: isAdmin, delete: isAdmin },
   defaultSort: '-createdAt',
   fields: [
