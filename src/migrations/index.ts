@@ -7,6 +7,7 @@ import * as migration_20261006_100900_ai_settings from './20261006_100900_ai_set
 import * as migration_20261006_105552_team from './20261006_105552_team';
 import * as migration_20261006_110735_team_contact from './20261006_110735_team_contact';
 import * as migration_20261006_131500_shams_project from './20261006_131500_shams_project';
+import * as migration_20261006_143000_team_bashouke_mechanical from './20261006_143000_team_bashouke_mechanical';
 import * as migration_20261006_140000_team_members from './20261006_140000_team_members';
 
 export const migrations = [
@@ -59,5 +60,10 @@ export const migrations = [
     up: migration_20261006_140000_team_members.up,
     down: migration_20261006_140000_team_members.down,
     name: '20261006_140000_team_members'
+  },
+  {
+    up: migration_20261006_143000_team_bashouke_mechanical.up,
+    down: migration_20261006_143000_team_bashouke_mechanical.down,
+    name: '20261006_143000_team_bashouke_mechanical',
   },
 ];
