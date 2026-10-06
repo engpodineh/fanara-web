@@ -1,0 +1,30 @@
+{
+ "note": "Instagram ids that must never appear on the site (reels/stories the owner or Claude removed). Used by src/seed/instagram.ts and the daily sync task.",
+ "ids": [
+  "DeG7asvI0wB",
+  "DeCAhXFMn4R",
+  "Dd41-7IIyYm",
+  "Dd411srIVa-",
+  "Dd02j-mo4lf",
+  "DdrGZ8SoD-C",
+  "Ddo4ZX-oweD",
+  "Ddi3TPto6gC",
+  "DdYuAjZIrOb",
+  "DdGCG_foD_m",
+  "DdCAvGJoLpY",
+  "Dcyqp1tKG82",
+  "DcaLWy2orHJ",
+  "Db6h2ORoO8R",
+  "DdmKeQGIZbr",
+  "Dd4XPp6oebp",
+  "Dd1HppEIq6O",
+  "Dd1Gd9XK9nz",
+  "DcdR_e6qFWT",
+  "Dcfrh6aoiSC",
+  "DcVrgYbo_o7",
+  "Dct0G06IylX",
+  "DdyzrNRIVLG",
+  "DdtfGuGo_dv",
+  "DdteS4cIRe9"
+ ]
+}

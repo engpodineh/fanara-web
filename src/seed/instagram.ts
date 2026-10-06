@@ -12,6 +12,20 @@ const file = process.argv[2] || path.resolve(path.dirname(fileURLToPath(import.m
 const items: Item[] = JSON.parse(fs.readFileSync(file, 'utf8'))
 const payload = await getPayload({ config })
 
+// Never show excluded posts: skip them and remove any that were already imported.
+const exclFile = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../content/instagram-excluded.json')
+const excluded = new Set<string>(fs.existsSync(exclFile) ? JSON.parse(fs.readFileSync(exclFile, 'utf8')).ids : [])
+let removed = 0
+if (excluded.size) {
+  const keys = [...excluded].flatMap((id) => [id, `story-${id}`])
+  const old = await payload.find({ collection: 'highlights', where: { instagramId: { in: keys } }, limit: 500, depth: 0 })
+  for (const h of old.docs) {
+    await payload.delete({ collection: 'highlights', id: h.id })
+    if (h.media) await payload.delete({ collection: 'media', id: typeof h.media === 'object' ? (h.media as any).id : h.media }).catch(() => {})
+    removed++
+  }
+}
+
 const clean = (s: string) => s.replace(/#[^\s#]+/g, '').replace(/@[\w.]+/g, '').replace(/\s+/g, ' ').replace(/^[\s،,.؟?]+$/, '').trim()
 const short = (s: string, n = 70) => (s.length > n ? s.slice(0, n - 1).trimEnd() + '…' : s)
 const FALLBACK = { fa: 'از اینستاگرام', ar: 'من إنستغرام', en: 'From Instagram' }
@@ -19,6 +33,7 @@ const FALLBACK_STORY = { fa: 'استوری امروز', ar: 'قصة اليوم',
 
 let created = 0, skipped = 0, failed = 0
 for (const it of items) {
+  if (excluded.has(it.id)) continue
   const story = it.kind === 'story'
   const igKey = story ? `story-${it.id}` : it.id
   const exists = await payload.find({ collection: 'highlights', where: { instagramId: { equals: igKey } }, limit: 1, depth: 0 })
@@ -41,5 +56,5 @@ for (const it of items) {
     created++
   } catch (e) { console.log('FAIL', it.id, (e as Error).message); failed++ }
 }
-console.log(`INSTAGRAM OK created=${created} skipped=${skipped} failed=${failed}`)
+console.log(`INSTAGRAM OK created=${created} skipped=${skipped} failed=${failed} removed=${removed}`)
 process.exit(0)
