@@ -448,7 +448,7 @@ export interface Standard {
   edition?: string | null;
   year?: string | null;
   discipline: 'mechanical' | 'electrical' | 'fire' | 'architecture' | 'civil' | 'structural' | 'energy' | 'general';
-  country?: ('IR' | 'IQ' | 'US' | 'UK' | 'EU' | 'INT') | null;
+  country?: ('IR' | 'IQ' | 'OM' | 'US' | 'UK' | 'EU' | 'INT') | null;
   status: 'valid' | 'superseded' | 'verify';
   /**
    * عمومی‌پذیر = دستیار عمومی می‌تواند به آن ارجاع دهد. پیش‌فرض: خصوصی

@@ -29,7 +29,7 @@ export const Standards: CollectionConfig = {
         name: 'discipline', type: 'select', required: true, label: { fa: 'رشته', en: 'Discipline' },
         options: ['mechanical', 'electrical', 'fire', 'architecture', 'civil', 'structural', 'energy', 'general'].map((v) => ({ value: v, label: v })),
       },
-      { name: 'country', type: 'select', defaultValue: 'IR', options: ['IR', 'IQ', 'US', 'UK', 'EU', 'INT'].map((v) => ({ value: v, label: v })) },
+      { name: 'country', type: 'select', defaultValue: 'IR', options: ['IR', 'IQ', 'OM', 'US', 'UK', 'EU', 'INT'].map((v) => ({ value: v, label: v })) },
     ] },
     { type: 'row', fields: [
       {

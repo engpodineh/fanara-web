@@ -5,7 +5,7 @@ import { SERVICE_PAGES } from '@/lib/services-content'
 import { CITY_PAGES } from '@/lib/cities-content'
 
 // published project pages (kept here because the sitemap is static)
-const PROJECT_SLUGS = ['shams-najaf-1600-units', 'al-dhaman-3500-units', 'negin-residential-complex', 'sewer-network-precast-manholes']
+const PROJECT_SLUGS = ['shams-najaf-1600-units', 'oman-al-hail-1306-office-building', 'al-dhaman-3500-units', 'negin-residential-complex', 'sewer-network-precast-manholes']
 
 export const dynamic = 'force-static'
 export default function sitemap(): MetadataRoute.Sitemap {
