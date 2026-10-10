@@ -9,7 +9,6 @@ export default function TeamGrid({ members, disc, labels }: { members: Team[]; d
       {members.map((m) => {
         const ig = m.instagram?.replace(/^@/, '').trim()
         const links = [
-          m.phone && { href: `tel:${m.phone.replace(/[^\d+]/g, '')}`, t: m.phone },
           m.email && { href: `mailto:${m.email}`, t: 'Email' },
           m.linkedin && /^https:\/\/([a-z]+\.)?linkedin\.com\//.test(m.linkedin) && { href: m.linkedin, t: 'LinkedIn' },
         ].filter(Boolean) as { href: string; t: string }[]
@@ -21,12 +20,18 @@ export default function TeamGrid({ members, disc, labels }: { members: Team[]; d
               <span className={`tm-disc ${m.discipline}`}>{disc[m.discipline] ?? ''}</span>
               <b>{m.name}</b>
               <span className="tm-pos">{m.position}</span>
-              {(m.whatsapp || ig) && (
+              {(m.whatsapp || m.phone || ig) && (
                 <div className="tm-contact">
                   {m.whatsapp && (
                     <a className="tm-wa" href={wa(m.whatsapp)} target="_blank" rel="noopener nofollow" dir="ltr" aria-label={`WhatsApp ${m.whatsapp}`}>
                       <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
                       <span>{m.whatsapp}</span>
+                    </a>
+                  )}
+                  {m.phone && (
+                    <a className="tm-ph" href={`tel:${m.phone.replace(/[^\d+]/g, '')}`} dir="ltr" aria-label={`Phone ${m.phone}`}>
+                      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z" /></svg>
+                      <span>{m.phone}</span>
                     </a>
                   )}
                   {ig && (

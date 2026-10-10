@@ -359,5 +359,6 @@ html[dir="rtl"] .team-rot{padding:8px 8px 8px 18px}
 .tm-contact a span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .tm-contact .tm-wa svg{color:#25D366}
 .tm-contact .tm-ig svg{color:#E1306C}
+.tm-contact .tm-ph svg{color:var(--green)}
 .tm-contact a:hover{border-color:var(--green)}
 @media (max-width:520px){.tm-contact a{font-size:11px;padding:3px 7px;gap:4px;letter-spacing:-.01em}.tm-contact a svg{width:13px;height:13px}.tm-contact a span{overflow:visible;text-overflow:clip}}
