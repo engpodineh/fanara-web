@@ -377,3 +377,21 @@ html[dir="rtl"] .team-rot{padding:8px 8px 8px 18px}
 .dfy-shot:hover{transform:translateY(-3px)}
 .dfy-shot img{display:block;width:100%;height:auto}
 @media (max-width:860px){.dfy-grid{grid-template-columns:1fr}.dfy-shot{order:-1}}
+
+/* BIM & Revit posters */
+.bim-tags{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px}
+.bim-tags a{font-size:13.5px;font-weight:700;padding:5px 12px;border-radius:99px;background:var(--green-soft);color:var(--green-ink);text-decoration:none;direction:ltr;unicode-bidi:isolate}
+.bim-tags a:hover{background:var(--green);color:#fff}
+.bim-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.bim-poster{margin:0;background:var(--surface);border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.bim-poster img{display:block;width:100%;height:auto}
+.bim-poster figcaption{padding:10px 12px;font-size:13.5px;font-weight:700;line-height:1.6}
+@media (max-width:980px){.bim-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.home-bim{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:28px;padding:16px;border:1px solid var(--rule);border-radius:14px;background:var(--surface);text-decoration:none;color:var(--ink)}
+.home-bim .thumbs{display:flex;gap:8px}
+.home-bim .thumbs img{width:62px;height:110px;object-fit:cover;border-radius:8px;border:1px solid var(--rule)}
+.home-bim b{display:block;font-size:18px}
+.home-bim span{color:var(--muted);font-size:14px}
+.home-bim:hover{border-color:var(--green)}
+@media (min-width:861px) and (max-width:1320px){.nav{gap:14px}.nav a{font-size:13.5px}}
+@media (min-width:861px){.nav{flex-wrap:nowrap}.nav a{white-space:nowrap}}

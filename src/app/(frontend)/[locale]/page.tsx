@@ -6,6 +6,7 @@ import { CITY_PAGES } from '@/lib/cities-content'
 import Link from 'next/link'
 import TeamGrid from '@/components/TeamGrid'
 import TeamRotator from '@/components/TeamRotator'
+import { BIM_COPY, BIM_POSTERS } from '@/lib/bim-content'
 import { payload, img } from '@/lib/payload'
 import { isLocale, t, type Locale } from '@/lib/i18n'
 import { notFound } from 'next/navigation'
@@ -132,6 +133,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <Link className="btn btn-maroon" href={`/${l}/order`}>{u.ctaOrder2}</Link>
           <Link className="btn btn-ghost" href={`/${l}/services`}>{u.svcIndexTitle}</Link>
         </div>
+        <Link className="home-bim" href={`/${l}/bim`}>
+          <span className="thumbs">{BIM_POSTERS.map((p) => <img key={p.file} src={`/bim/${p.file}`} alt="" loading="lazy" />)}</span>
+          <span><b>{BIM_COPY[l].nav}</b><span>{BIM_COPY[l].homeLead}</span></span>
+        </Link>
         <div className="city-chips home-cities">
           {CITY_PAGES.map((c) => <Link key={c.slug} href={`/${l}/iraq/${c.slug}`}>📍 {c[l].name}</Link>)}
         </div>

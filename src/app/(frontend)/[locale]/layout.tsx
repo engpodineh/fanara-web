@@ -6,6 +6,7 @@ import { dir, isLocale, locales, t } from '@/lib/i18n'
 import { SITE, jsonLd } from '@/lib/seo'
 import { payload } from '@/lib/payload'
 import { SERVICE_PAGES } from '@/lib/services-content'
+import { BIM_COPY } from '@/lib/bim-content'
 import { CITY_PAGES } from '@/lib/cities-content'
 import ExitFeedback from '@/components/ExitFeedback'
 import Assistant from '@/components/Assistant'
@@ -69,6 +70,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
         <footer>
           <div className="wrap foot-svc" aria-label={u.svcNav}>
             {SERVICE_PAGES.map((s) => <Link key={s.slug} href={`/${locale}/services/${s.slug}`}>{s[locale].h1}</Link>)}
+            <Link href={`/${locale}/bim`}>{BIM_COPY[locale].title}</Link>
             {CITY_PAGES.map((c) => <Link key={c.slug} href={`/${locale}/iraq/${c.slug}`}>📍 {c[locale].name}</Link>)}
           </div>
           <div className="wrap"><span>{u.foot}</span><span className="en">engfanara.com</span></div>

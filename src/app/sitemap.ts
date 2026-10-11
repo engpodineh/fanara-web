@@ -10,7 +10,7 @@ const PROJECT_SLUGS = ['shams-najaf-1600-units', 'oman-al-hail-1306-office-build
 export const dynamic = 'force-static'
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
-  const svc = ['/highlights', '/services', ...SERVICE_PAGES.map((s) => `/services/${s.slug}`), ...CITY_PAGES.map((c) => `/iraq/${c.slug}`), ...PROJECT_SLUGS.map((s) => `/projects/${s}`)].flatMap((p) => locales.map((l) => ({
+  const svc = ['/highlights', '/services', '/bim', ...SERVICE_PAGES.map((s) => `/services/${s.slug}`), ...CITY_PAGES.map((c) => `/iraq/${c.slug}`), ...PROJECT_SLUGS.map((s) => `/projects/${s}`)].flatMap((p) => locales.map((l) => ({
     url: `${SITE}/${l}${p}`, lastModified: now, changeFrequency: 'monthly' as const, priority: l === 'ar' ? 0.9 : 0.7,
     alternates: { languages: { 'ar-IQ': `${SITE}/ar${p}`, 'fa-IR': `${SITE}/fa${p}`, en: `${SITE}/en${p}` } },
   })))
