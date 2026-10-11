@@ -1,6 +1,6 @@
 import { APIError, type CollectionConfig } from 'payload'
 import { anyone, isAdmin, adminField } from '../access'
-import { sendNotification, esc, SITE_URL } from '../lib/notify'
+import { sendNotification, esc, contactHtml, SITE_URL } from '../lib/notify'
 
 const has = (u: unknown, roles: string[]) => !!u && roles.includes((u as { role?: string }).role ?? '')
 
@@ -19,7 +19,7 @@ export const HighlightComments: CollectionConfig = {
   defaultSort: '-createdAt',
   hooks: {
     afterChange: [({ doc, operation, req }) => {
-      if (operation === 'create') void sendNotification(req.payload, 'comments', `💬 کامنت جدید از ${String(doc.name ?? '').slice(0, 40)}`, `<h3 style="margin:0">کامنت جدید روی هایلایت</h3><p><b>${esc(doc.name)}</b>:<br>${esc(doc.message).replace(/\n/g, '<br>')}</p><p><a href="${SITE_URL}/admin/collections/highlight-comments/${doc.id}">مشاهده / مخفی‌کردن در پنل مدیریت</a></p>`)
+      if (operation === 'create') void sendNotification(req.payload, 'comments', `💬 کامنت جدید از ${String(doc.name ?? '').slice(0, 40)}`, `<h3 style="margin:0">کامنت جدید روی هایلایت</h3>${contactHtml(doc.name, doc.contact)}<p>${esc(doc.message).replace(/\n/g, '<br>')}</p><p><a href="${SITE_URL}/admin/collections/highlight-comments/${doc.id}">مشاهده / مخفی‌کردن در پنل مدیریت</a></p>`)
       return doc
     }],
     beforeValidate: [({ data, operation, req }) => {
@@ -37,6 +37,11 @@ export const HighlightComments: CollectionConfig = {
     { name: 'highlight', type: 'relationship', relationTo: 'highlights', required: true, index: true, label: { fa: 'هایلایت', en: 'Highlight' } },
     { name: 'name', type: 'text', required: true, maxLength: 40, label: { fa: 'نام', en: 'Name' } },
     { name: 'message', type: 'textarea', required: true, maxLength: 500, label: { fa: 'کامنت', en: 'Comment' } },
+    {
+      name: 'contact', type: 'text', maxLength: 80, label: { fa: 'شماره / ایمیل (خصوصی)', en: 'Phone / email (private)' },
+      // Private: never returned to the public comments API, only to staff.
+      access: { read: ({ req }) => has(req.user, ['admin', 'editor']), update: adminField },
+    },
     { name: 'hidden', type: 'checkbox', defaultValue: false, index: true, access: { create: adminField, update: adminField }, label: { fa: 'مخفی (نمایش داده نشود)', en: 'Hidden' }, admin: { position: 'sidebar' } },
   ],
 }

@@ -420,6 +420,8 @@ export interface OrderFile {
 export interface Feedback {
   id: number;
   message: string;
+  name?: string | null;
+  contact?: string | null;
   locale?: string | null;
   page?: string | null;
   updatedAt: string;
@@ -434,6 +436,7 @@ export interface HighlightComment {
   highlight: number | Highlight;
   name: string;
   message: string;
+  contact?: string | null;
   hidden?: boolean | null;
   updatedAt: string;
   createdAt: string;
@@ -797,6 +800,8 @@ export interface OrderFilesSelect<T extends boolean = true> {
  */
 export interface FeedbackSelect<T extends boolean = true> {
   message?: T;
+  name?: T;
+  contact?: T;
   locale?: T;
   page?: T;
   updatedAt?: T;
@@ -810,6 +815,7 @@ export interface HighlightCommentsSelect<T extends boolean = true> {
   highlight?: T;
   name?: T;
   message?: T;
+  contact?: T;
   hidden?: T;
   updatedAt?: T;
   createdAt?: T;

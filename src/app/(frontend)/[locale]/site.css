@@ -395,3 +395,7 @@ html[dir="rtl"] .team-rot{padding:8px 8px 8px 18px}
 .home-bim:hover{border-color:var(--green)}
 @media (min-width:861px) and (max-width:1320px){.nav{gap:14px}.nav a{font-size:13.5px}}
 @media (min-width:861px){.nav{flex-wrap:nowrap}.nav a{white-space:nowrap}}
+
+.fb-box input:not(.fb-hp){width:100%;margin-top:8px;border:1px solid var(--rule);border-radius:8px;padding:9px 12px;font:inherit;background:var(--bg);color:var(--ink)}
+.fb-box input[dir="ltr"]::placeholder{direction:rtl;text-align:right}
+html[lang="en"] .fb-box input[dir="ltr"]::placeholder{direction:ltr;text-align:left}

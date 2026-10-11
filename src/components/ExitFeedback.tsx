@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 
-type Texts = { fbTitle: string; fbPlaceholder: string; fbSend: string; fbLater: string; fbThanks: string }
+type Texts = { fbTitle: string; fbPlaceholder: string; fbSend: string; fbLater: string; fbThanks: string; fbName: string; fbContact: string }
 const KEY = 'fanara-feedback-shown'
 const DAYS = 30
 
@@ -53,7 +53,7 @@ export default function ExitFeedback({ u, locale }: { u: Texts; locale: string }
     if (!message) return
     setState('sending')
     try {
-      const r = await fetch('/api/feedback', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message, locale, page: location.pathname }) })
+      const r = await fetch('/api/feedback', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message, name: String(f.get('name') || '').trim().slice(0, 60), contact: String(f.get('contact') || '').trim().slice(0, 80), locale, page: location.pathname }) })
       setState(r.ok ? 'done' : 'error')
       if (r.ok) setTimeout(() => setOpen(false), 1800)
     } catch { setState('error') }
@@ -67,6 +67,8 @@ export default function ExitFeedback({ u, locale }: { u: Texts; locale: string }
           <form onSubmit={send}>
             <p id="fb-title" className="fb-title">{u.fbTitle}</p>
             <textarea ref={ref} name="message" rows={4} maxLength={2000} required placeholder={u.fbPlaceholder} />
+            <input name="name" maxLength={60} autoComplete="name" placeholder={u.fbName} aria-label={u.fbName} />
+            <input name="contact" maxLength={80} autoComplete="tel" dir="ltr" placeholder={u.fbContact} aria-label={u.fbContact} />
             <input type="text" name="website" tabIndex={-1} autoComplete="off" className="fb-hp" aria-hidden="true" />
             <div className="fb-actions">
               <button type="button" className="btn fb-later" onClick={() => setOpen(false)}>{u.fbLater}</button>

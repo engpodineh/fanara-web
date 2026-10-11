@@ -66,7 +66,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
         </header>
         {children}
         {aiOn && <Assistant locale={locale} t={{ aiOpen: u.aiOpen, aiTitle: u.aiTitle, aiSub: u.aiSub, aiHello: u.aiHello, aiPlaceholder: u.aiPlaceholder, aiSend: u.aiSend, aiLimit: u.aiLimit, aiFail: u.aiFail, aiSuggest: u.aiSuggest }} />}
-        <ExitFeedback locale={locale} u={{ fbTitle: u.fbTitle, fbPlaceholder: u.fbPlaceholder, fbSend: u.fbSend, fbLater: u.fbLater, fbThanks: u.fbThanks }} />
+        <ExitFeedback locale={locale} u={{ fbTitle: u.fbTitle, fbPlaceholder: u.fbPlaceholder, fbSend: u.fbSend, fbLater: u.fbLater, fbThanks: u.fbThanks, fbName: u.fbName, fbContact: u.fbContact }} />
         <footer>
           <div className="wrap foot-svc" aria-label={u.svcNav}>
             {SERVICE_PAGES.map((s) => <Link key={s.slug} href={`/${locale}/services/${s.slug}`}>{s[locale].h1}</Link>)}

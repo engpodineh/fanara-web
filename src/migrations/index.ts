@@ -14,6 +14,7 @@ import * as migration_20261010_181500_team_contacts from './20261010_181500_team
 import * as migration_20261010_204500_team_heidari_contact from './20261010_204500_team_heidari_contact';
 import * as migration_20261011_173500_oman_design_videos from './20261011_173500_oman_design_videos';
 import * as migration_20261011_210508_notify_settings from './20261011_210508_notify_settings';
+import * as migration_20261011_214045_visitor_contact from './20261011_214045_visitor_contact';
 
 export const migrations = [
   {
@@ -94,6 +95,11 @@ export const migrations = [
   {
     up: migration_20261011_210508_notify_settings.up,
     down: migration_20261011_210508_notify_settings.down,
-    name: '20261011_210508_notify_settings'
+    name: '20261011_210508_notify_settings',
+  },
+  {
+    up: migration_20261011_214045_visitor_contact.up,
+    down: migration_20261011_214045_visitor_contact.down,
+    name: '20261011_214045_visitor_contact'
   },
 ];

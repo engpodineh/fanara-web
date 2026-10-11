@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 export type StoryItem = { id: string | number; thumb?: string; full?: string; caption?: string | null; igId?: string | null; link?: string | null }
-type Texts = { close: string; prev: string; next: string; openIg: string; reel: string; cmTitle: string; cmName: string; cmMsg: string; cmSend: string; cmEmpty: string; cmNoLinks: string; cmFail: string }
+type Texts = { close: string; prev: string; next: string; openIg: string; reel: string; cmTitle: string; cmName: string; cmMsg: string; cmSend: string; cmEmpty: string; cmNoLinks: string; cmFail: string; cmContact?: string }
 type Comment = { id: number; name: string; message: string; createdAt: string }
 
 // Instagram-style highlights: circles that open a full-screen viewer.
@@ -16,8 +16,9 @@ export default function Stories({ items, t, layout = 'strip' }: { items: StoryIt
   const [sheet, setSheet] = useState(false)
   const [cmState, setCmState] = useState<'idle' | 'sending' | 'error' | 'links'>('idle')
   const [name, setName] = useState('')
+  const [contact, setContact] = useState('')
 
-  useEffect(() => { try { setName(localStorage.getItem('fanara-cm-name') || '') } catch { /* storage blocked */ } }, [])
+  useEffect(() => { try { setName(localStorage.getItem('fanara-cm-name') || ''); setContact(localStorage.getItem('fanara-cm-contact') || '') } catch { /* storage blocked */ } }, [])
   // load visible comments for the open highlight
   useEffect(() => {
     setComments([]); setSheet(false); setCmState('idle')
@@ -38,11 +39,11 @@ export default function Stories({ items, t, layout = 'strip' }: { items: StoryIt
     if (/(https?:\/\/|www\.)/i.test(n + m)) { setCmState('links'); return }
     setCmState('sending')
     try {
-      const r = await fetch('/api/highlight-comments', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ highlight: cur.id, name: n, message: m }) })
+      const r = await fetch('/api/highlight-comments', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ highlight: cur.id, name: n, message: m, contact: String(f.get('contact') || '').trim().slice(0, 80) }) })
       if (!r.ok) throw new Error()
       const d = await r.json()
       setComments((c) => [d.doc, ...c]); setCmState('idle'); (e.target as HTMLFormElement).reset()
-      try { localStorage.setItem('fanara-cm-name', n); setName(n) } catch { /* ignore */ }
+      try { localStorage.setItem('fanara-cm-name', n); setName(n); const c = String(f.get('contact') || '').trim(); localStorage.setItem('fanara-cm-contact', c); setContact(c) } catch { /* ignore */ }
     } catch { setCmState('error') }
   }
 
@@ -125,6 +126,7 @@ export default function Stories({ items, t, layout = 'strip' }: { items: StoryIt
             <div className="st-sheet" role="region" aria-label={t.cmTitle}>
               <form onSubmit={sendComment} className="st-cm-form">
                 <input name="name" defaultValue={name} maxLength={40} required placeholder={t.cmName} />
+                <input name="contact" defaultValue={contact} maxLength={80} dir="ltr" placeholder={t.cmContact} aria-label={t.cmContact} />
                 <textarea name="message" maxLength={500} rows={2} required placeholder={t.cmMsg} />
                 <input type="text" name="website" tabIndex={-1} autoComplete="off" className="fb-hp" aria-hidden="true" />
                 <button type="submit" className="btn btn-maroon" disabled={cmState === 'sending'}>{t.cmSend}</button>
