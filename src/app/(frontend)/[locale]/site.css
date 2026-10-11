@@ -320,8 +320,8 @@ html[lang="en"] .ai-fab{font-family:var(--en)}
 .proj-hero h1{max-width:24ch}
 .proj-facts b{font-family:inherit;font-size:17px;line-height:1.5}
 .proj-facts{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
-.v-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,320px));gap:14px}
-.v-grid video{width:100%;aspect-ratio:9/16;object-fit:cover;background:#111;border-radius:10px}
+.v-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,340px));gap:14px;align-items:start}
+.v-grid video{width:100%;height:auto;max-height:72vh;object-fit:contain;background:#111;border-radius:10px}
 @media (max-width:860px){.proj-facts{grid-template-columns:1fr 1fr}.v-grid{grid-template-columns:1fr 1fr}}
 /* team */
 .team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
