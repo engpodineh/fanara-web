@@ -1,5 +1,6 @@
 import { APIError, type CollectionConfig } from 'payload'
 import { anyone, isAdmin, adminField } from '../access'
+import { sendNotification, esc, SITE_URL } from '../lib/notify'
 
 const has = (u: unknown, roles: string[]) => !!u && roles.includes((u as { role?: string }).role ?? '')
 
@@ -17,6 +18,10 @@ export const HighlightComments: CollectionConfig = {
   },
   defaultSort: '-createdAt',
   hooks: {
+    afterChange: [({ doc, operation, req }) => {
+      if (operation === 'create') void sendNotification(req.payload, 'comments', `💬 کامنت جدید از ${String(doc.name ?? '').slice(0, 40)}`, `<h3 style="margin:0">کامنت جدید روی هایلایت</h3><p><b>${esc(doc.name)}</b>:<br>${esc(doc.message).replace(/\n/g, '<br>')}</p><p><a href="${SITE_URL}/admin/collections/highlight-comments/${doc.id}">مشاهده / مخفی‌کردن در پنل مدیریت</a></p>`)
+      return doc
+    }],
     beforeValidate: [({ data, operation, req }) => {
       if (operation === 'create' && data && !req.user) {
         data.hidden = false

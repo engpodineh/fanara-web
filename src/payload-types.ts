@@ -114,10 +114,12 @@ export interface Config {
   globals: {
     profile: Profile;
     'ai-settings': AiSetting;
+    'notify-settings': NotifySetting;
   };
   globalsSelect: {
     profile: ProfileSelect<false> | ProfileSelect<true>;
     'ai-settings': AiSettingsSelect<false> | AiSettingsSelect<true>;
+    'notify-settings': NotifySettingsSelect<false> | NotifySettingsSelect<true>;
   };
   locale: 'fa' | 'ar' | 'en';
   widgets: {
@@ -1040,6 +1042,33 @@ export interface AiSetting {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "notify-settings".
+ */
+export interface NotifySetting {
+  id: number;
+  enabled?: boolean | null;
+  /**
+   * مثلاً fanarateb@gmail.com
+   */
+  smtpUser?: string | null;
+  /**
+   * رمز اصلی جیمیل نیست. از myaccount.google.com → Security → App passwords یک رمز ۱۶ حرفی بسازید.
+   */
+  smtpPass?: string | null;
+  /**
+   * خالی = همان جیمیل فرستنده. چند ایمیل را با ویرگول جدا کنید.
+   */
+  to?: string | null;
+  onOrders?: boolean | null;
+  onFeedback?: boolean | null;
+  onComments?: boolean | null;
+  sendTest?: boolean | null;
+  lastResult?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "profile_select".
  */
 export interface ProfileSelect<T extends boolean = true> {
@@ -1093,6 +1122,24 @@ export interface AiSettingsSelect<T extends boolean = true> {
   perVisitorDaily?: T;
   totalDaily?: T;
   extraInstructions?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "notify-settings_select".
+ */
+export interface NotifySettingsSelect<T extends boolean = true> {
+  enabled?: T;
+  smtpUser?: T;
+  smtpPass?: T;
+  to?: T;
+  onOrders?: T;
+  onFeedback?: T;
+  onComments?: T;
+  sendTest?: T;
+  lastResult?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

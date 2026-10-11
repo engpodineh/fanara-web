@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { sendNotification, orderEmail } from '../lib/notify'
 import { anyone, canHandleOrders, isAdmin } from '../access'
 
 export const OrderFiles: CollectionConfig = {
@@ -16,6 +17,12 @@ export const OrderFiles: CollectionConfig = {
 
 export const DesignOrders: CollectionConfig = {
   slug: 'design-orders',
+  hooks: {
+    afterChange: [({ doc, operation, req }) => {
+      if (operation === 'create') { const m = orderEmail(doc); void sendNotification(req.payload, 'orders', m.subject, m.html) }
+      return doc
+    }],
+  },
   labels: { singular: { fa: 'سفارش طراحی', en: 'Design order' }, plural: { fa: 'سفارش‌های طراحی', en: 'Design orders' } },
   admin: { useAsTitle: 'name', defaultColumns: ['name', 'projectType', 'status', 'createdAt'], group: { fa: 'دفتر مهندسی', en: 'Design office' } },
   access: { read: canHandleOrders, create: anyone, update: canHandleOrders, delete: isAdmin },
