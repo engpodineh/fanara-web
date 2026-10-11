@@ -102,6 +102,22 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         </div></section>
       )}
 
+      <section className="dfy" id="daftar-fanni-yar"><div className="wrap dfy-grid">
+        <div className="dfy-copy">
+          <span className="kicker">{u.dfyKicker}</span>
+          <h2>{u.dfyTitle}</h2>
+          <p className="lead">{u.dfyLead}</p>
+          <ul className="dfy-points">{u.dfyPoints.map((x: string) => <li key={x}>{x}</li>)}</ul>
+          <div className="ctas">
+            <a className="btn btn-gold" href="/dfy-demo" target="_blank" rel="noopener">{u.dfyCta}</a>
+          </div>
+          <p className="dfy-note">{u.dfyNote}</p>
+        </div>
+        <a className="dfy-shot" href="/dfy-demo" target="_blank" rel="noopener" aria-label={u.dfyCta}>
+          <img src="/dfy-demo/preview.jpg" alt={u.dfyTitle} loading="lazy" width={1280} height={800} />
+        </a>
+      </div></section>
+
       <section className="services" id="services"><div className="wrap">
         <div className="sec-head">
           <div><span className="kicker">{u.sKicker}</span><h2>{u.sTitle}</h2></div>
