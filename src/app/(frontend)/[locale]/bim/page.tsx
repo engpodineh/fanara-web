@@ -33,7 +33,7 @@ export default async function Bim({ params }: { params: Promise<{ locale: string
       <div className="bim-grid">
         {BIM_POSTERS.map((p) => (
           <figure key={p.file} className="bim-poster">
-            <a href={`/bim/${p.file}`} target="_blank" rel="noopener"><img src={`/bim/${p.file}`} alt={c.posters[p.key]} width={768} height={1376} loading="lazy" /></a>
+            <a href={`/bim/${p.file}`} target="_blank" rel="noopener"><img src={`/bim/${p.file}`} alt={c.posters[p.key]} width={1024} height={1536} loading="lazy" /></a>
             <figcaption>{c.posters[p.key]}</figcaption>
           </figure>
         ))}

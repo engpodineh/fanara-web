@@ -3,10 +3,10 @@ import type { Locale } from './i18n'
 export const BIM_TAGS = ['BIM_Iraq', 'Revit_Architecture', 'Revit_Structure', 'Revit_MEP', 'هندسة_معمارية', 'تصميم_هندسي', 'العراق_بغداد']
 
 export const BIM_POSTERS = [
-  { file: 'bim-integrated.jpg', key: 'bim' },
-  { file: 'revit-mep.jpg', key: 'mep' },
-  { file: 'revit-architecture.jpg', key: 'arch' },
-  { file: 'revit-structure.jpg', key: 'str' },
+  { file: 'bim-integrated-v2.jpg', key: 'bim' },
+  { file: 'revit-mep-v2.jpg', key: 'mep' },
+  { file: 'revit-architecture-v2.jpg', key: 'arch' },
+  { file: 'revit-structure-v2.jpg', key: 'str' },
 ] as const
 
 type Copy = { nav: string; kicker: string; title: string; lead: string; metaTitle: string; metaDesc: string; cta: string; posters: Record<'bim' | 'mep' | 'arch' | 'str', string>; tags: string; homeLead: string }
