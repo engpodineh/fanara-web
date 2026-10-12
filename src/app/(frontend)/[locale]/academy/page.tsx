@@ -2,7 +2,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { isLocale, type Locale } from '@/lib/i18n'
-import { ACADEMY, BOOKLETS, PREVIEW_PAGES } from '@/lib/academy-content'
+import { ACADEMY, BOOKLETS, PREVIEW_PAGES, WORK_ORDERS, WO_ITEMS, WO_COPY } from '@/lib/academy-content'
 import BookletPreview from '@/components/BookletPreview'
 
 export const dynamic = 'force-dynamic'
@@ -27,6 +27,17 @@ export default async function Academy({ params }: { params: Promise<{ locale: st
       <BookletPreview n={PREVIEW_PAGES}
         items={BOOKLETS.map((b) => ({ slug: b.slug, title: b.title, sub: l === 'fa' ? b.fa : l === 'en' ? b.en : '', pages: b.pages }))}
         t={{ preview: c.preview, pages: c.pages, close: c.close, prev: c.prev, next: c.next, locked: c.locked, soon: c.soon }} />
+      <section className="ac-folder">
+        <div className="ac-folder-head">
+          <span className="tag">📁 {WO_COPY[l].folder}</span>
+          <h2 className="h3">{WO_COPY[l].title}</h2>
+          <p>{WO_COPY[l].text}</p>
+          <ol className="ac-folder-list">{WO_ITEMS.map((x) => <li key={x}>{x}</li>)}</ol>
+        </div>
+        <BookletPreview n={PREVIEW_PAGES}
+          items={[{ slug: WORK_ORDERS.slug, title: WO_COPY.ar.title, sub: l === 'ar' ? WO_COPY.ar.sub : `${WO_COPY[l].title} · ${WO_COPY[l].sub}`, pages: WORK_ORDERS.pages }]}
+          t={{ preview: c.preview, pages: c.pages, close: c.close, prev: c.prev, next: c.next, locked: c.locked, soon: c.soon }} />
+      </section>
       <div className="ac-calc">
         <div>
           <span className="tag live">{c.soon}</span>

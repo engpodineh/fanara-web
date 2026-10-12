@@ -1,3 +1,4 @@
+import * as migration_20261012_200000_work_orders from './20261012_200000_work_orders';
 import * as migration_20261005_202918_initial from './20261005_202918_initial';
 import * as migration_20261005_205854_gallery_fields from './20261005_205854_gallery_fields';
 import * as migration_20261006_035609_feedback from './20261006_035609_feedback';
@@ -119,5 +120,10 @@ export const migrations = [
     up: migration_20261012_193500_concrete_technology_book.up,
     down: migration_20261012_193500_concrete_technology_book.down,
     name: '20261012_193500_concrete_technology_book',
+  },
+  {
+    up: migration_20261012_200000_work_orders.up,
+    down: migration_20261012_200000_work_orders.down,
+    name: '20261012_200000_work_orders',
   },
 ];

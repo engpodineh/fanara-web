@@ -10,6 +10,15 @@ export const BOOKLETS = [
 ] as const
 export const PREVIEW_PAGES = 4
 
+// "Folder": supervision work-order forms (8 forms, one combined preview)
+export const WORK_ORDERS = { slug: 'work-orders', pages: 23, count: 8 }
+export const WO_ITEMS = ['أعمال الهدم', 'الحفر والسند', 'الأسس', 'الهيكل الخرساني', 'الهيكل الحديدي', 'البناء بالطابوق والبلوك', 'التشطيبات', 'السلامة في الموقع']
+export const WO_COPY: Record<Locale, { folder: string; title: string; text: string; sub: string }> = {
+  ar: { folder: 'مجلد', title: 'نماذج أوامر العمل الإشرافية', text: 'ثمانية نماذج جاهزة يصدرها المهندس المشرف إلى المقاول المنفذ قبل كل مرحلة، مع تعليمات التنفيذ ونقاط التوقف والاستلام وتواقيع الأطراف.', sub: '8 نماذج' },
+  fa: { folder: 'پوشه', title: 'فرم‌های دستور کار نظارتی', text: 'هشت فرم آماده که مهندس ناظر پیش از هر مرحله به پیمانکار ابلاغ می‌کند: دستورالعمل اجرا، نقاط توقف و تحویل و امضای طرفین — به عربی عراقی.', sub: '۸ فرم' },
+  en: { folder: 'Folder', title: 'Supervision work-order forms', text: 'Eight ready forms the supervising engineer issues to the contractor before each stage: execution instructions, hold points and sign-offs — in Arabic for Iraqi sites.', sub: '8 forms' },
+}
+
 type C = { kicker: string; title: string; lead: string; preview: string; pages: string; close: string; prev: string; next: string; locked: string; calcTitle: string; calcText: string; calcPoints: string[]; soon: string; contact: string }
 export const ACADEMY: Record<Locale, C> = {
   ar: { kicker: 'أكاديمية فن آرا', title: 'كراسات تعليمية لطلبة الهندسة في العراق', lead: 'سلسلة كراسات عربية من إعداد م. أميد پودينه: تأسيسات صحية وكهربائية، تكييف، خرسانة مسلحة ومبانٍ طابوقية — مع أمثلة محلولة من واقع المواقع العراقية.', preview: 'معاينة', pages: 'صفحة', close: 'إغلاق', prev: 'السابق', next: 'التالي', locked: 'هذه معاينة للصفحات الأولى فقط. الكراس الكامل سيُتاح قريبًا.', calcTitle: 'حاسبة جدار طابوقي مسلح بتسليح العرقات (Excel)', calcText: 'حاسبة محمية تتحقق من مقاومة الجدار للأحمال الجانبية في الاتجاهين وتحدد أكبر تباعد لتسليح العرقات.', calcPoints: ['إدخال الأبعاد والحمل ونوع المونة', 'التحقق رأسيًا وأفقيًا حسب TMS 402', 'نتيجة واضحة: مقبول / غير مقبول'], soon: 'قريبًا', contact: 'للاستفسار عن الدورات والكراسات' },
