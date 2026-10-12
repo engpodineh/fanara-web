@@ -1,0 +1,17 @@
+import type { Locale } from './i18n'
+
+export const BOOKLETS = [
+  { slug: 'plumbing', pages: 17, title: 'أساسيات تصميم التأسيسات الصحية', fa: 'تأسیسات بهداشتی (آب و فاضلاب)', en: 'Plumbing design basics' },
+  { slug: 'electrical', pages: 13, title: 'أساسيات التأسيسات الكهربائية في المباني', fa: 'تأسیسات برقی ساختمان', en: 'Electrical installations' },
+  { slug: 'hvac', pages: 12, title: 'أساسيات التكييف والتهوية', fa: 'تهویه مطبوع و تهویه', en: 'HVAC basics' },
+  { slug: 'concrete', pages: 12, title: 'أساسيات تصميم الخرسانة المسلحة', fa: 'طراحی بتن مسلح (ACI 318)', en: 'Reinforced concrete (ACI 318)' },
+  { slug: 'masonry', pages: 11, title: 'المباني والجدران الطابوقية', fa: 'ساختمان‌ها و دیوارهای آجری', en: 'Masonry walls' },
+] as const
+export const PREVIEW_PAGES = 4
+
+type C = { kicker: string; title: string; lead: string; preview: string; pages: string; close: string; prev: string; next: string; locked: string; calcTitle: string; calcText: string; calcPoints: string[]; soon: string; contact: string }
+export const ACADEMY: Record<Locale, C> = {
+  ar: { kicker: 'أكاديمية فن آرا', title: 'كراسات تعليمية لطلبة الهندسة في العراق', lead: 'سلسلة كراسات عربية من إعداد م. أميد پودينه: تأسيسات صحية وكهربائية، تكييف، خرسانة مسلحة ومبانٍ طابوقية — مع أمثلة محلولة من واقع المواقع العراقية.', preview: 'معاينة', pages: 'صفحة', close: 'إغلاق', prev: 'السابق', next: 'التالي', locked: 'هذه معاينة للصفحات الأولى فقط. الكراس الكامل سيُتاح قريبًا.', calcTitle: 'حاسبة جدار طابوقي مسلح بتسليح العرقات (Excel)', calcText: 'حاسبة محمية تتحقق من مقاومة الجدار للأحمال الجانبية في الاتجاهين وتحدد أكبر تباعد لتسليح العرقات.', calcPoints: ['إدخال الأبعاد والحمل ونوع المونة', 'التحقق رأسيًا وأفقيًا حسب TMS 402', 'نتيجة واضحة: مقبول / غير مقبول'], soon: 'قريبًا', contact: 'للاستفسار عن الدورات والكراسات' },
+  fa: { kicker: 'آکادمی فن آرا', title: 'جزوه‌های آموزشی برای دانشجویان مهندسی عراق', lead: 'مجموعه جزوه‌های عربی تألیف مهندس امید پودینه: تأسیسات بهداشتی و برقی، تهویه مطبوع، بتن مسلح و ساختمان‌های آجری — با مثال‌های حل‌شده از کارگاه‌های عراق.', preview: 'پیش‌نمایش', pages: 'صفحه', close: 'بستن', prev: 'قبلی', next: 'بعدی', locked: 'این فقط پیش‌نمایش صفحات اول است. نسخه‌ی کامل به‌زودی منتشر می‌شود.', calcTitle: 'ماشین‌حساب دیوار آجری مسلح با میلگرد بستر (اکسل)', calcText: 'ماشین‌حساب قفل‌شده برای کنترل مقاومت دیوار در برابر بار جانبی در دو جهت و تعیین بیشترین فاصله‌ی میلگرد بستر.', calcPoints: ['ورود ابعاد، بار و نوع ملات', 'کنترل قائم و افقی طبق TMS 402', 'نتیجه‌ی روشن: قابل قبول / غیرقابل قبول'], soon: 'به‌زودی', contact: 'برای پرسش درباره‌ی دوره‌ها و جزوه‌ها' },
+  en: { kicker: 'Fanara Academy', title: 'Study booklets for engineering students in Iraq', lead: 'Arabic booklets by Eng. Omid Podineh: plumbing and electrical installations, HVAC, reinforced concrete and masonry — with worked examples from Iraqi sites.', preview: 'Preview', pages: 'pages', close: 'Close', prev: 'Previous', next: 'Next', locked: 'Preview of the first pages only. The full booklet is coming soon.', calcTitle: 'Bed-joint reinforced masonry wall calculator (Excel)', calcText: 'A protected calculator that checks a wall against lateral load in both directions and finds the maximum bed-joint reinforcement spacing.', calcPoints: ['Enter dimensions, load and mortar type', 'Vertical and horizontal checks per TMS 402', 'Clear result: OK / not OK'], soon: 'Coming soon', contact: 'Ask about courses and booklets' },
+}

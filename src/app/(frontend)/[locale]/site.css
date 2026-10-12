@@ -399,3 +399,24 @@ html[dir="rtl"] .team-rot{padding:8px 8px 8px 18px}
 .fb-box input:not(.fb-hp){width:100%;margin-top:8px;border:1px solid var(--rule);border-radius:8px;padding:9px 12px;font:inherit;background:var(--bg);color:var(--ink)}
 .fb-box input[dir="ltr"]::placeholder{direction:rtl;text-align:right}
 html[lang="en"] .fb-box input[dir="ltr"]::placeholder{direction:ltr;text-align:left}
+/* academy (preview only) */
+.ac-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px}
+.ac-card{all:unset;cursor:pointer;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--rule);border-radius:12px;overflow:hidden;transition:transform .2s,border-color .2s}
+.ac-card:hover,.ac-card:focus-visible{transform:translateY(-3px);border-color:var(--green)}
+.ac-card img{width:100%;aspect-ratio:210/297;object-fit:cover;display:block;-webkit-user-drag:none;user-select:none}
+.ac-meta{display:flex;flex-direction:column;gap:3px;padding:12px 14px 14px}
+.ac-meta b{font-size:15px;line-height:1.6;color:var(--ink)}
+.ac-meta span{font-size:13px;color:var(--muted)}
+.ac-meta .ac-pages u{color:var(--green);text-decoration:none;font-weight:700}
+.ac-view{position:fixed;inset:0;z-index:80;background:rgba(10,12,14,.82);display:flex;align-items:center;justify-content:center;padding:16px}
+.ac-box{background:var(--surface);border-radius:14px;width:min(760px,100%);max-height:96vh;display:flex;flex-direction:column;overflow:hidden}
+.ac-bar{display:flex;align-items:center;gap:12px;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--rule)}
+.ac-bar b{font-size:15px}
+.ac-page{flex:1;overflow:auto;background:#e9eae6;display:flex;justify-content:center;user-select:none}
+.ac-page img{max-width:100%;height:auto;display:block;pointer-events:none;-webkit-user-drag:none}
+.ac-lock{padding:60px 24px;text-align:center}
+.ac-lock b{font-size:22px}
+.ac-nav{display:flex;justify-content:space-between;gap:10px;padding:10px 14px;border-top:1px solid var(--rule)}
+.ac-calc{margin-top:30px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;padding:20px 22px;border:1px solid var(--rule);border-radius:14px;background:var(--surface)}
+.ac-calc ul{margin:8px 0 0;padding-inline-start:20px;color:var(--muted)}
+@media print{.ac-grid,.ac-view{display:none!important}}
