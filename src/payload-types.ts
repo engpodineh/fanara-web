@@ -80,6 +80,7 @@ export interface Config {
     media: Media;
     standards: Standard;
     'standard-files': StandardFile;
+    'study-materials': StudyMaterial;
     users: User;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -101,6 +102,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     standards: StandardsSelect<false> | StandardsSelect<true>;
     'standard-files': StandardFilesSelect<false> | StandardFilesSelect<true>;
+    'study-materials': StudyMaterialsSelect<false> | StudyMaterialsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -488,6 +490,30 @@ export interface StandardFile {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "study-materials".
+ */
+export interface StudyMaterial {
+  id: number;
+  title: string;
+  kind?: ('booklet' | 'calculator') | null;
+  language?: ('ar' | 'fa' | 'en') | null;
+  order?: number | null;
+  published?: boolean | null;
+  notes?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -589,6 +615,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'standard-files';
         value: number | StandardFile;
+      } | null)
+    | ({
+        relationTo: 'study-materials';
+        value: number | StudyMaterial;
       } | null)
     | ({
         relationTo: 'users';
@@ -901,6 +931,29 @@ export interface StandardsSelect<T extends boolean = true> {
  * via the `definition` "standard-files_select".
  */
 export interface StandardFilesSelect<T extends boolean = true> {
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "study-materials_select".
+ */
+export interface StudyMaterialsSelect<T extends boolean = true> {
+  title?: T;
+  kind?: T;
+  language?: T;
+  order?: T;
+  published?: T;
+  notes?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;

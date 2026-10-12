@@ -24,6 +24,7 @@ import { AiSettings } from './globals/AiSettings'
 import { Feedback } from './collections/Feedback'
 import { HighlightComments } from './collections/HighlightComments'
 import { Team } from './collections/Team'
+import { StudyMaterials } from './collections/StudyMaterials'
 import { migrations } from './migrations'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -40,7 +41,7 @@ export default buildConfig({
     defaultLocale: 'fa',
     fallback: true,
   },
-  collections: [Projects, Team, Experience, Credentials, Highlights, Services, DesignOrders, OrderFiles, Feedback, HighlightComments, Media, Standards, StandardFiles, Users],
+  collections: [Projects, Team, Experience, Credentials, Highlights, Services, DesignOrders, OrderFiles, Feedback, HighlightComments, Media, Standards, StandardFiles, StudyMaterials, Users],
   globals: [Profile, AiSettings, NotifySettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

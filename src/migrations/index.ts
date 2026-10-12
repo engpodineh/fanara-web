@@ -14,7 +14,9 @@ import * as migration_20261010_181500_team_contacts from './20261010_181500_team
 import * as migration_20261010_204500_team_heidari_contact from './20261010_204500_team_heidari_contact';
 import * as migration_20261011_173500_oman_design_videos from './20261011_173500_oman_design_videos';
 import * as migration_20261011_210508_notify_settings from './20261011_210508_notify_settings';
+import * as migration_20261012_190000_study_materials_import from './20261012_190000_study_materials_import';
 import * as migration_20261011_214045_visitor_contact from './20261011_214045_visitor_contact';
+import * as migration_20261012_154245_study_materials from './20261012_154245_study_materials';
 
 export const migrations = [
   {
@@ -100,6 +102,16 @@ export const migrations = [
   {
     up: migration_20261011_214045_visitor_contact.up,
     down: migration_20261011_214045_visitor_contact.down,
-    name: '20261011_214045_visitor_contact'
+    name: '20261011_214045_visitor_contact',
+  },
+  {
+    up: migration_20261012_154245_study_materials.up,
+    down: migration_20261012_154245_study_materials.down,
+    name: '20261012_154245_study_materials'
+  },
+  {
+    up: migration_20261012_190000_study_materials_import.up,
+    down: migration_20261012_190000_study_materials_import.down,
+    name: '20261012_190000_study_materials_import',
   },
 ];
