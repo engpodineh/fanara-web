@@ -1,6 +1,7 @@
 import type { Locale } from './i18n'
 
 export const BOOKLETS = [
+  { slug: 'concrete-technology', pages: 190, title: 'تكنولوجيا تصميم الخرسانة', fa: 'تکنولوژی و طرح اختلاط بتن (کتاب ۱ از ۱۲)', en: 'Concrete technology & mix design (book 1 of 12)' },
   { slug: 'plumbing', pages: 17, title: 'أساسيات تصميم التأسيسات الصحية', fa: 'تأسیسات بهداشتی (آب و فاضلاب)', en: 'Plumbing design basics' },
   { slug: 'electrical', pages: 13, title: 'أساسيات التأسيسات الكهربائية في المباني', fa: 'تأسیسات برقی ساختمان', en: 'Electrical installations' },
   { slug: 'hvac', pages: 12, title: 'أساسيات التكييف والتهوية', fa: 'تهویه مطبوع و تهویه', en: 'HVAC basics' },
