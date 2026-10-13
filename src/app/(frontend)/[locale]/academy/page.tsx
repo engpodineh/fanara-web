@@ -7,12 +7,12 @@ import BookletPreview from '@/components/BookletPreview'
 
 export const dynamic = 'force-dynamic'
 
-// Not launched yet: viewable by link, not indexed, not in the menu or sitemap.
+// Public (menu + sitemap + indexed). Files stay private: only watermarked preview pages are served, no downloads.
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params
   if (!isLocale(locale)) return {}
   const c = ACADEMY[locale]
-  return { title: `${c.kicker} — ${c.title}`, description: c.lead, robots: { index: false, follow: false } }
+  return { title: `${c.kicker} — ${c.title}`, description: c.lead, alternates: { canonical: `/${locale}/academy`, languages: { 'ar-IQ': '/ar/academy', 'fa-IR': '/fa/academy', en: '/en/academy', 'x-default': '/ar/academy' } } }
 }
 
 export default async function Academy({ params }: { params: Promise<{ locale: string }> }) {

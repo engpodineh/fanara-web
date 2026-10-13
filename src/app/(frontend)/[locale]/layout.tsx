@@ -49,6 +49,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
               <Link href={`/${locale}/resume`}>{u.navAbout}</Link>
               <Link href={`/${locale}/projects`}>{u.navProjects}</Link>
               <Link href={`/${locale}/team`}>{u.navTeam}</Link>
+              <Link href={`/${locale}/academy`}>{u.navAcademy}</Link>
               <a href="/dfy-demo" target="_blank" rel="noopener">{u.dfyNav}</a>
               <Link href={`/${locale}/gallery`}>{u.navGallery}</Link>
               <Link href={`/${locale}/highlights`}>{u.stTitle}</Link>
@@ -71,6 +72,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
           <div className="wrap foot-svc" aria-label={u.svcNav}>
             {SERVICE_PAGES.map((s) => <Link key={s.slug} href={`/${locale}/services/${s.slug}`}>{s[locale].h1}</Link>)}
             <Link href={`/${locale}/bim`}>{BIM_COPY[locale].title}</Link>
+            <Link href={`/${locale}/academy`}>📚 {u.navAcademy}</Link>
             {CITY_PAGES.map((c) => <Link key={c.slug} href={`/${locale}/iraq/${c.slug}`}>📍 {c[locale].name}</Link>)}
           </div>
           <div className="wrap"><span>{u.foot}</span><span className="en">engfanara.com</span></div>

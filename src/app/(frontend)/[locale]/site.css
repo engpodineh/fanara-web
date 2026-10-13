@@ -427,3 +427,5 @@ html[lang="en"] .fb-box input[dir="ltr"]::placeholder{direction:ltr;text-align:l
 .ac-folder-list{columns:2;gap:18px;margin:0;padding-inline-start:20px;font-size:.95rem}
 .ac-folder-list li{margin-bottom:4px}
 @media (max-width:760px){.ac-folder{grid-template-columns:1fr;padding:18px}.ac-folder-list{columns:1}}
+/* Mid-width desktops: menu moves to its own centered row so it never overflows */
+@media (min-width:861px) and (max-width:1440px){.top .wrap{flex-wrap:wrap;row-gap:4px}.langs{margin-inline-start:auto}.nav{order:3;flex:1 0 100%;justify-content:center;gap:18px;margin:0;padding-bottom:2px}}
