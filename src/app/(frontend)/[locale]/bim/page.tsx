@@ -41,7 +41,7 @@ export default async function Bim({ params }: { params: Promise<{ locale: string
       </div>
       <div className="ctas" style={{ marginTop: 28 }}>
         <Link className="btn btn-gold" href={`/${l}/order`}>{c.cta}</Link>
-        <Link className="btn btn-ghost" href={`/${l}/services/mep-design`}>{{ ar: 'تصميم التأسيسات', fa: 'طراحی تأسیسات', en: 'MEP design', tr: 'MEP tasarımı' }[l]}</Link>
+        <Link className="btn btn-line" href={`/${l}/services/mep-design`}>{{ ar: 'تصميم التأسيسات', fa: 'طراحی تأسیسات', en: 'MEP design', tr: 'MEP tasarımı' }[l]}</Link>
       </div>
     </div></main>
   )

@@ -111,7 +111,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             <div><span className="kicker">{u.tKicker}</span><h2>{u.tTitle}</h2></div>
             <p className="lead">{u.tLead}</p>
           </div>
-          <TeamGrid members={team.docs.slice(0, 4)} disc={u.tDisc} />
+          <TeamGrid members={team.docs.slice(0, 4)} disc={u.tDisc} labels={{ resume: '', profile: u.tProfile }} base={`/${l}/team`} />
           <div style={{ marginTop: 18 }}><Link className="btn btn-green" href={`/${l}/team`}>{u.tAll}</Link></div>
         </div></section>
       )}

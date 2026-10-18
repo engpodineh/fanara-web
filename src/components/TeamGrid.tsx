@@ -3,7 +3,7 @@ import type { Team } from '@/payload-types'
 
 const wa = (n: string) => `https://wa.me/${n.replace(/\D/g, '')}`
 
-export default function TeamGrid({ members, disc, labels }: { members: Team[]; disc: Record<string, string>; labels?: { resume: string } }) {
+export default function TeamGrid({ members, disc, labels, base }: { members: Team[]; disc: Record<string, string>; labels?: { resume: string; profile?: string }; base?: string }) {
   return (
     <div className="team-grid">
       {members.map((m) => {
@@ -13,12 +13,16 @@ export default function TeamGrid({ members, disc, labels }: { members: Team[]; d
           m.linkedin && /^https:\/\/([a-z]+\.)?linkedin\.com\//.test(m.linkedin) && { href: m.linkedin, t: 'LinkedIn' },
         ].filter(Boolean) as { href: string; t: string }[]
         const cv = (m.resume ?? '').split('\n').map((x) => x.trim()).filter(Boolean)
+        const href = base && m.slug ? `${base}/${m.slug}` : null
+        const docsN = (m.documents ?? []).length
         return (
           <figure key={m.id} className="tm" id={`m${m.id}`}>
-            {img(m.photo) && <img src={img(m.photo)} alt={`${m.name} — ${m.position}`} loading="lazy" />}
+            {img(m.photo) && (href
+              ? <a href={href} aria-label={m.name}><img src={img(m.photo)} alt={`${m.name} — ${m.position}`} loading="lazy" /></a>
+              : <img src={img(m.photo)} alt={`${m.name} — ${m.position}`} loading="lazy" />)}
             <figcaption>
               <span className={`tm-disc ${m.discipline}`}>{disc[m.discipline] ?? ''}</span>
-              <b>{m.name}</b>
+              <b>{href ? <a className="tm-name-link" href={href}>{m.name}</a> : m.name}</b>
               <span className="tm-pos">{m.position}</span>
               {(m.whatsapp || m.phone || ig) && (
                 <div className="tm-contact">
@@ -43,9 +47,10 @@ export default function TeamGrid({ members, disc, labels }: { members: Team[]; d
                 </div>
               )}
               {m.bio && <p className="tm-bio">{m.bio}</p>}
-              {!!cv.length && labels && (
+              {!!cv.length && labels?.resume && (
                 <details className="tm-cv"><summary>{labels.resume}</summary><ul>{cv.map((x, k) => <li key={k}>{x}</li>)}</ul></details>
               )}
+              {href && <a className="tm-more" href={href}>{labels?.profile ?? '→'}{docsN ? ` (${docsN})` : ''} →</a>}
               {!!links.length && <div className="tm-links">{links.map((x) => <a key={x.href} href={x.href} target="_blank" rel="noopener nofollow" dir="ltr">{x.t}</a>)}</div>}
             </figcaption>
           </figure>

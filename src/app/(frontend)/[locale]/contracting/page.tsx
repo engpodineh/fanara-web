@@ -95,7 +95,7 @@ export default async function Contracting({ params }: { params: Promise<{ locale
             <Link className="btn btn-green" href={`/${l}/resume`}>{c.founderCta}</Link>
           </div>
         </div>
-        <TeamGrid members={team.docs} disc={u.tDisc} labels={{ resume: u.tResume }} />
+        <TeamGrid members={team.docs} disc={u.tDisc} labels={{ resume: u.tResume, profile: u.tProfile }} base={`/${l}/team`} />
       </div></section>
 
       <section id="markets"><div className="wrap">

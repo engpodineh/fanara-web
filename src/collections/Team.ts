@@ -36,6 +36,29 @@ export const Team: CollectionConfig = {
         ] },
       ],
     },
+    {
+      name: 'documents', type: 'array', label: { fa: 'پرونده: رزومه، نامه و مدارک', en: 'Profile documents' },
+      admin: { description: 'فایل‌هایی که در صفحه‌ی اختصاصی این نفر برای مشاهده و دانلود نمایش داده می‌شوند (PDF یا تصویر).' },
+      fields: [
+        { type: 'row', fields: [
+          { name: 'title', type: 'text', required: true, localized: true, label: { fa: 'عنوان', en: 'Title' } },
+          { name: 'kind', type: 'select', required: true, defaultValue: 'resume', label: { fa: 'نوع', en: 'Kind' }, options: [
+            { value: 'resume', label: { fa: 'رزومه', en: 'Résumé' } },
+            { value: 'cover-letter', label: { fa: 'نامه', en: 'Cover letter' } },
+            { value: 'portfolio', label: { fa: 'نمونه‌کار', en: 'Portfolio' } },
+            { value: 'certificate', label: { fa: 'مدرک / گواهی', en: 'Certificate' } },
+            { value: 'poster', label: { fa: 'پوستر / معرفی', en: 'Poster' } },
+            { value: 'other', label: { fa: 'سایر', en: 'Other' } },
+          ] },
+          { name: 'lang', type: 'text', label: { fa: 'زبان فایل', en: 'File language' }, admin: { description: 'EN / TR / FA / AR' } },
+        ] },
+        { type: 'row', fields: [
+          { name: 'file', type: 'upload', relationTo: 'media', required: true, label: { fa: 'فایل', en: 'File' } },
+          { name: 'preview', type: 'upload', relationTo: 'media', label: { fa: 'تصویر پیش‌نمایش (برای PDF)', en: 'Preview image (for PDFs)' } },
+        ] },
+      ],
+    },
+    { name: 'slug', type: 'text', unique: true, index: true, label: { fa: 'آدرس صفحه‌ی اختصاصی', en: 'Profile page slug' }, admin: { position: 'sidebar', description: 'مثلاً behzad-goljaei — اگر پر باشد، کارت این نفر به صفحه‌ی اختصاصی‌اش لینک می‌شود.' } },
     { name: 'published', type: 'checkbox', defaultValue: true, label: { fa: 'نمایش در سایت', en: 'Published' }, admin: { position: 'sidebar' } },
     { name: 'order', type: 'number', defaultValue: 100, label: { fa: 'ترتیب', en: 'Order' }, admin: { position: 'sidebar' } },
   ],

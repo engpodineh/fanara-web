@@ -295,6 +295,26 @@ export interface Team {
   email?: string | null;
   instagram?: string | null;
   linkedin?: string | null;
+  /**
+   * فایل‌هایی که در صفحه‌ی اختصاصی این نفر برای مشاهده و دانلود نمایش داده می‌شوند (PDF یا تصویر).
+   */
+  documents?:
+    | {
+        title: string;
+        kind: 'resume' | 'cover-letter' | 'portfolio' | 'certificate' | 'poster' | 'other';
+        /**
+         * EN / TR / FA / AR
+         */
+        lang?: string | null;
+        file: number | Media;
+        preview?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * مثلاً behzad-goljaei — اگر پر باشد، کارت این نفر به صفحه‌ی اختصاصی‌اش لینک می‌شود.
+   */
+  slug?: string | null;
   published?: boolean | null;
   order?: number | null;
   updatedAt: string;
@@ -774,6 +794,17 @@ export interface TeamSelect<T extends boolean = true> {
   email?: T;
   instagram?: T;
   linkedin?: T;
+  documents?:
+    | T
+    | {
+        title?: T;
+        kind?: T;
+        lang?: T;
+        file?: T;
+        preview?: T;
+        id?: T;
+      };
+  slug?: T;
   published?: T;
   order?: T;
   updatedAt?: T;
