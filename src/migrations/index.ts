@@ -1,3 +1,4 @@
+import * as migration_20261018_233000_goljaei_clean_docs from './20261018_233000_goljaei_clean_docs';
 import * as migration_20261018_232000_goljaei_education from './20261018_232000_goljaei_education';
 import * as migration_20261018_231000_team_profile_documents from './20261018_231000_team_profile_documents';
 import * as migration_20261005_202918_initial from './20261005_202918_initial';
@@ -167,5 +168,10 @@ export const migrations = [
     up: migration_20261018_232000_goljaei_education.up,
     down: migration_20261018_232000_goljaei_education.down,
     name: '20261018_232000_goljaei_education',
+  },
+  {
+    up: migration_20261018_233000_goljaei_clean_docs.up,
+    down: migration_20261018_233000_goljaei_clean_docs.down,
+    name: '20261018_233000_goljaei_clean_docs',
   },
 ];
