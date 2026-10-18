@@ -1,11 +1,11 @@
 // Builds the assistant's knowledge from live site content (cached for 10 minutes).
 import { payload } from './payload'
 import { SERVICE_PAGES } from './services-content'
-import { CITY_PAGES } from './cities-content'
+import { CITY_PAGES, cityPath } from './cities-content'
 import type { Locale } from './i18n'
 
 const cache = new Map<string, { at: number; text: string }>()
-const LANG = { fa: 'Persian', ar: 'Arabic (use clear Iraqi-friendly Modern Standard Arabic)', en: 'English' }
+const LANG = { fa: 'Persian', ar: 'Arabic (use clear Iraqi-friendly Modern Standard Arabic)', en: 'English', tr: 'Turkish (Türkçe)' }
 
 export async function knowledge(l: Locale): Promise<string> {
   const hit = cache.get(l)
@@ -26,11 +26,11 @@ export async function knowledge(l: Locale): Promise<string> {
   lines.push(`Contact: WhatsApp ${pr.whatsapp ?? '-'} · Iraq phone ${pr.phoneIraq ?? '-'} · Email ${pr.email ?? '-'} · Instagram @${pr.instagramPersonal ?? 'pudineh.eng'}`)
   lines.push('# Services (CMS)\n' + services.docs.map((s: any) => `- ${s.title}: ${s.description ?? ''}`).join('\n'))
   lines.push('# Service pages on the site\n' + SERVICE_PAGES.map((s) => `- ${s[l].h1} — /${l}/services/${s.slug}\n  ${s[l].intro}\n  Includes: ${s[l].points.join('; ')}`).join('\n'))
-  lines.push('# Cities served in Iraq\n' + CITY_PAGES.map((c) => `- ${c[l].name} — /${l}/iraq/${c.slug}: ${c[l].intro}`).join('\n'))
+  lines.push('# Cities / markets served (Iraq first, then Türkiye and Armenia)\n' + CITY_PAGES.map((c) => `- ${c[l].name} (${c.country}) — /${l}${cityPath(c)}: ${c[l].intro}`).join('\n'))
   lines.push('# Projects\n' + projects.docs.map((x: any) => `- ${x.title} (${x.status === 'delivered' ? 'delivered' : 'in progress'})${x.showClientName && x.client ? `, client: ${x.client}` : ''}${x.location ? `, ${x.location}` : ''}: ${x.summary ?? ''}`).join('\n'))
   lines.push('# Experience (resume)\n' + exp.docs.map((e: any) => `- ${e.title} — ${e.company}${e.location ? ', ' + e.location : ''} (${String(e.start ?? '').slice(0, 4)}–${e.current ? 'present' : String(e.end ?? '').slice(0, 4)}): ${(e.bullets ?? []).map((b: any) => b.text).join(' ')}`).join('\n'))
   if (standards.docs.length) lines.push('# Public engineering standards in the library (titles only)\n' + standards.docs.map((s: any) => `- ${s.title}${s.number ? ' ' + s.number : ''}${s.publisher ? ' (' + s.publisher + ')' : ''}${s.notes ? ': ' + s.notes : ''}`).join('\n'))
-  lines.push(`# Site pages\nHome /${l} · Services /${l}/services · Order a design (upload drawings, get a quote) /${l}/order · Resume /${l}/resume · Gallery /${l}/gallery · Stories & reels /${l}/highlights`)
+  lines.push(`# Site pages\nHome /${l} · Services /${l}/services · Contracting (we take finishing, MEP, structure and site-management packages as main contractor or subcontractor in Iraq, Türkiye and Armenia — request a quote) /${l}/contracting · Order a design (upload drawings, get a quote) /${l}/order · Resume /${l}/resume · Gallery /${l}/gallery · Stories & reels /${l}/highlights`)
   const text = `Reply language: ${LANG[l]} unless the visitor writes in another language — then reply in theirs.\n\n` + lines.join('\n\n')
   cache.set(l, { at: Date.now(), text })
   return text

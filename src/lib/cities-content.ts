@@ -1,10 +1,13 @@
 // City landing pages for Iraq SEO. Each city gets its own angle (real local conditions), not duplicated text.
 import type { Locale } from './i18n'
+import { CITIES_TR } from './tr/cities'
+import { MORE_CITIES } from './cities-more'
 
 type Block = { name: string; title: string; h1: string; description: string; intro: string; needs: string[]; faq: [string, string][] }
-export type CityPage = { slug: string } & Record<Locale, Block>
+export type Country = 'iraq' | 'turkiye' | 'armenia'
+export type CityPage = { slug: string; country: Country } & Record<Locale, Block>
 
-export const CITY_PAGES: CityPage[] = [
+const BASE: ({ slug: string } & Omit<Record<Locale, Block>, 'tr'>)[] = [
   {
     slug: 'basra',
     ar: {
@@ -127,4 +130,15 @@ export const CITY_PAGES: CityPage[] = [
   },
 ]
 
-export const cityBySlug = (s: string) => CITY_PAGES.find((c) => c.slug === s)
+/** All city landing pages; Iraq first (main market), then Türkiye and Armenia. */
+export const CITY_PAGES: CityPage[] = [
+  ...BASE.map((c) => ({ ...c, country: 'iraq' as const, tr: CITIES_TR[c.slug] })),
+  ...MORE_CITIES,
+]
+export const cityBySlug = (s: string, country?: Country) => CITY_PAGES.find((c) => c.slug === s && (!country || c.country === country))
+export const cityPath = (c: Pick<CityPage, 'slug' | 'country'>) => `/${c.country}/${c.slug}`
+export const COUNTRY_NAME: Record<Country, Record<Locale, string>> = {
+  iraq: { ar: 'العراق', fa: 'عراق', en: 'Iraq', tr: 'Irak' },
+  turkiye: { ar: 'تركيا', fa: 'ترکیه', en: 'Türkiye', tr: 'Türkiye' },
+  armenia: { ar: 'أرمينيا', fa: 'ارمنستان', en: 'Armenia', tr: 'Ermenistan' },
+}

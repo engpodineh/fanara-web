@@ -16,6 +16,7 @@ import { Experience } from './collections/Experience'
 import { Credentials } from './collections/Credentials'
 import { Highlights } from './collections/Highlights'
 import { Services } from './collections/Services'
+import { ContractRequests } from './collections/ContractRequests'
 import { DesignOrders, OrderFiles } from './collections/DesignOrders'
 import { Standards, StandardFiles } from './collections/Standards'
 import { Profile } from './globals/Profile'
@@ -37,11 +38,12 @@ export default buildConfig({
       { code: 'fa', label: 'فارسی', rtl: true },
       { code: 'ar', label: 'العربية', rtl: true },
       { code: 'en', label: 'English' },
+      { code: 'tr', label: 'Türkçe', fallbackLocale: 'en' },
     ],
     defaultLocale: 'fa',
     fallback: true,
   },
-  collections: [Projects, Team, Experience, Credentials, Highlights, Services, DesignOrders, OrderFiles, Feedback, HighlightComments, Media, Standards, StandardFiles, StudyMaterials, Users],
+  collections: [Projects, Team, Experience, Credentials, Highlights, Services, DesignOrders, ContractRequests, OrderFiles, Feedback, HighlightComments, Media, Standards, StandardFiles, StudyMaterials, Users],
   globals: [Profile, AiSettings, NotifySettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

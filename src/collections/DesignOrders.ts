@@ -10,7 +10,7 @@ export const OrderFiles: CollectionConfig = {
   access: { read: canHandleOrders, create: anyone, update: canHandleOrders, delete: isAdmin },
   upload: {
     staticDir: 'private/order-files',
-    mimeTypes: ['application/pdf', 'image/*', 'application/acad', 'image/vnd.dwg', 'application/octet-stream', 'application/zip'],
+    mimeTypes: ['application/pdf', 'image/*', 'application/acad', 'image/vnd.dwg', 'application/octet-stream', 'application/zip', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'],
   },
   fields: [],
 }

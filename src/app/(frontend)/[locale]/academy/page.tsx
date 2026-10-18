@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { isLocale, type Locale } from '@/lib/i18n'
 import { ACADEMY, BOOKLETS, PREVIEW_PAGES, WORK_ORDERS, WO_ITEMS, WO_COPY } from '@/lib/academy-content'
 import BookletPreview from '@/components/BookletPreview'
+import { hreflang } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
 
@@ -12,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params
   if (!isLocale(locale)) return {}
   const c = ACADEMY[locale]
-  return { title: `${c.kicker} — ${c.title}`, description: c.lead, alternates: { canonical: `/${locale}/academy`, languages: { 'ar-IQ': '/ar/academy', 'fa-IR': '/fa/academy', en: '/en/academy', 'x-default': '/ar/academy' } } }
+  return { title: `${c.kicker} — ${c.title}`, description: c.lead, alternates: { canonical: `/${locale}/academy`, languages: hreflang('/academy') } }
 }
 
 export default async function Academy({ params }: { params: Promise<{ locale: string }> }) {
@@ -25,7 +26,7 @@ export default async function Academy({ params }: { params: Promise<{ locale: st
       <h1>{c.title}</h1>
       <p className="lead" style={{ marginBottom: 26 }}>{c.lead}</p>
       <BookletPreview n={PREVIEW_PAGES}
-        items={BOOKLETS.map((b) => ({ slug: b.slug, title: b.title, sub: l === 'fa' ? b.fa : l === 'en' ? b.en : '', pages: b.pages }))}
+        items={BOOKLETS.map((b) => ({ slug: b.slug, title: b.title, sub: l === 'fa' ? b.fa : l === 'en' || l === 'tr' ? b.en : '', pages: b.pages }))}
         t={{ preview: c.preview, pages: c.pages, close: c.close, prev: c.prev, next: c.next, locked: c.locked, soon: c.soon }} />
       <section className="ac-folder">
         <div className="ac-folder-head">

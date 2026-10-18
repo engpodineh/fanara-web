@@ -3,11 +3,10 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { isLocale, t, locales, type Locale } from '@/lib/i18n'
 import { SERVICE_PAGES, serviceBySlug } from '@/lib/services-content'
-import { SITE } from '@/lib/seo'
+import { SITE, hreflang, OG_LOCALE } from '@/lib/seo'
 import { payload } from '@/lib/payload'
 
 export const dynamic = 'force-dynamic'
-const OG_LOCALE: Record<Locale, string> = { fa: 'fa_IR', ar: 'ar_IQ', en: 'en_US' }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
   const { locale, slug } = await params
@@ -16,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const c = sp[locale], path = `/services/${slug}`
   return {
     title: c.title, description: c.description,
-    alternates: { canonical: `/${locale}${path}`, languages: { 'ar-IQ': `/ar${path}`, 'fa-IR': `/fa${path}`, en: `/en${path}`, 'x-default': `/ar${path}` } },
+    alternates: { canonical: `/${locale}${path}`, languages: hreflang(path) },
     openGraph: { type: 'website', title: c.title, description: c.description, url: `/${locale}${path}`, locale: OG_LOCALE[locale], images: [{ url: '/og.jpg', width: 1200, height: 630 }] },
   }
 }

@@ -74,6 +74,7 @@ export interface Config {
     highlights: Highlight;
     services: Service;
     'design-orders': DesignOrder;
+    'contract-requests': ContractRequest;
     'order-files': OrderFile;
     feedback: Feedback;
     'highlight-comments': HighlightComment;
@@ -96,6 +97,7 @@ export interface Config {
     highlights: HighlightsSelect<false> | HighlightsSelect<true>;
     services: ServicesSelect<false> | ServicesSelect<true>;
     'design-orders': DesignOrdersSelect<false> | DesignOrdersSelect<true>;
+    'contract-requests': ContractRequestsSelect<false> | ContractRequestsSelect<true>;
     'order-files': OrderFilesSelect<false> | OrderFilesSelect<true>;
     feedback: FeedbackSelect<false> | FeedbackSelect<true>;
     'highlight-comments': HighlightCommentsSelect<false> | HighlightCommentsSelect<true>;
@@ -112,7 +114,8 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  fallbackLocale: ('false' | 'none' | 'null') | false | null | ('fa' | 'ar' | 'en') | ('fa' | 'ar' | 'en')[];
+  fallbackLocale:
+    ('false' | 'none' | 'null') | false | null | ('fa' | 'ar' | 'en' | 'tr') | ('fa' | 'ar' | 'en' | 'tr')[];
   globals: {
     profile: Profile;
     'ai-settings': AiSetting;
@@ -123,7 +126,7 @@ export interface Config {
     'ai-settings': AiSettingsSelect<false> | AiSettingsSelect<true>;
     'notify-settings': NotifySettingsSelect<false> | NotifySettingsSelect<true>;
   };
-  locale: 'fa' | 'ar' | 'en';
+  locale: 'fa' | 'ar' | 'en' | 'tr';
   widgets: {
     collections: CollectionsWidget;
   };
@@ -414,6 +417,58 @@ export interface OrderFile {
   focalY?: number | null;
 }
 /**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contract-requests".
+ */
+export interface ContractRequest {
+  id: number;
+  name: string;
+  company?: string | null;
+  role?: ('employer' | 'main-contractor' | 'developer' | 'consultant' | 'other') | null;
+  phone: string;
+  email?: string | null;
+  country?: string | null;
+  city?: string | null;
+  scopes?:
+    | (
+        | 'plaster'
+        | 'tiling'
+        | 'stone'
+        | 'painting'
+        | 'ceilings'
+        | 'doors-windows'
+        | 'waterproofing'
+        | 'facade'
+        | 'plumbing'
+        | 'electrical'
+        | 'hvac'
+        | 'plant-room'
+        | 'fire'
+        | 'low-current'
+        | 'networks'
+        | 'pools'
+        | 'concrete'
+        | 'steel'
+        | 'masonry'
+        | 'site-management'
+        | 'technical-office'
+        | 'design-bim'
+      )[]
+    | null;
+  contractType?: ('unit-price' | 'lump-sum' | 'labour' | 'supply-install' | 'management') | null;
+  projectType?: string | null;
+  area?: number | null;
+  units?: string | null;
+  start?: string | null;
+  files?: (number | OrderFile)[] | null;
+  notes?: string | null;
+  lang?: string | null;
+  status?: ('new' | 'review' | 'site-visit' | 'quoted' | 'won' | 'closed') | null;
+  internalNotes?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * Comments visitors left in the exit feedback box.
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -591,6 +646,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'design-orders';
         value: number | DesignOrder;
+      } | null)
+    | ({
+        relationTo: 'contract-requests';
+        value: number | ContractRequest;
       } | null)
     | ({
         relationTo: 'order-files';
@@ -803,6 +862,32 @@ export interface DesignOrdersSelect<T extends boolean = true> {
   notes?: T;
   status?: T;
   quoteAmount?: T;
+  internalNotes?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contract-requests_select".
+ */
+export interface ContractRequestsSelect<T extends boolean = true> {
+  name?: T;
+  company?: T;
+  role?: T;
+  phone?: T;
+  email?: T;
+  country?: T;
+  city?: T;
+  scopes?: T;
+  contractType?: T;
+  projectType?: T;
+  area?: T;
+  units?: T;
+  start?: T;
+  files?: T;
+  notes?: T;
+  lang?: T;
+  status?: T;
   internalNotes?: T;
   updatedAt?: T;
   createdAt?: T;

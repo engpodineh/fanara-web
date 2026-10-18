@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return isLocale(locale) ? pageMeta(locale, 'resume') : {}
 }
 const fmt = (d?: string | null, l: Locale = 'en') =>
-  d ? new Intl.DateTimeFormat(l === 'en' ? 'en-GB' : l === 'ar' ? 'ar-IQ' : 'fa-IR-u-ca-gregory', { month: 'short', year: 'numeric' }).format(new Date(d)) : ''
+  d ? new Intl.DateTimeFormat(l === 'en' ? 'en-GB' : l === 'tr' ? 'tr-TR' : l === 'ar' ? 'ar-IQ' : 'fa-IR-u-ca-gregory', { month: 'short', year: 'numeric' }).format(new Date(d)) : ''
 
 export default async function Resume({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params

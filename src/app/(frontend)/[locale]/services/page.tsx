@@ -3,7 +3,8 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { isLocale, t, type Locale } from '@/lib/i18n'
 import { SERVICE_PAGES } from '@/lib/services-content'
-import { CITY_PAGES } from '@/lib/cities-content'
+import { CITY_PAGES, cityPath } from '@/lib/cities-content'
+import { hreflang } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
 
@@ -12,9 +13,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   if (!isLocale(locale)) return {}
   const u = t(locale)
   return {
-    title: `${u.svcIndexTitle} | ${locale === 'ar' ? 'فن آرا' : locale === 'fa' ? 'دفتر مهندسی فن آرا' : 'Fanara Engineering'}`,
+    title: `${u.svcIndexTitle} | ${locale === 'ar' ? 'فن آرا' : locale === 'fa' ? 'دفتر مهندسی فن آرا' : locale === 'tr' ? 'Fanara Mühendislik' : 'Fanara Engineering'}`,
     description: u.svcIndexLead,
-    alternates: { canonical: `/${locale}/services`, languages: { 'ar-IQ': '/ar/services', 'fa-IR': '/fa/services', en: '/en/services', 'x-default': '/ar/services' } },
+    alternates: { canonical: `/${locale}/services`, languages: hreflang('/services') },
   }
 }
 
@@ -38,7 +39,7 @@ export default async function Services({ params }: { params: Promise<{ locale: s
         ))}
       </div>
       <div className="city-chips">
-        {CITY_PAGES.map((c) => <Link key={c.slug} href={`/${l}/iraq/${c.slug}`}>📍 {c[l].name}</Link>)}
+        {CITY_PAGES.map((c) => <Link key={c.slug} href={`/${l}${cityPath(c)}`}>📍 {c[l].name}</Link>)}
       </div>
     </div></main>
   )

@@ -32,6 +32,12 @@ export function orderEmail(doc: any) {
   return { subject: `🔔 سفارش طراحی جدید — ${String(doc.name ?? '').slice(0, 40)}`, html }
 }
 
+export function contractEmail(doc: any) {
+  const scopes = Array.isArray(doc.scopes) ? doc.scopes.join('، ') : ''
+  const html = `<h2 style="margin:0 0 8px">درخواست پیمانکاری جدید</h2><table>${row('نام', doc.name)}${row('شرکت', doc.company)}${row('سمت', doc.role)}${row('تلفن / واتساپ', doc.phone)}${row('ایمیل', doc.email)}${row('کشور', doc.country)}${row('شهر', doc.city)}${row('محدوده‌ی کار', scopes)}${row('نوع قرارداد', doc.contractType)}${row('نوع پروژه', doc.projectType)}${row('متراژ', doc.area)}${row('واحد / طبقه', doc.units)}${row('زمان شروع', doc.start)}${row('زبان فرم', doc.lang)}${row('تعداد فایل', Array.isArray(doc.files) ? doc.files.length : 0)}</table>${doc.notes ? `<p><b>توضیحات:</b><br>${esc(doc.notes).replace(/\n/g, '<br>')}</p>` : ''}${contactHtml(doc.name, doc.phone)}<p><a href="${SITE_URL}/admin/collections/contract-requests/${doc.id}" style="background:#285A35;color:#fff;padding:8px 16px;border-radius:6px;text-decoration:none">مشاهده در پنل مدیریت</a></p>`
+  return { subject: `🏗️ درخواست پیمانکاری جدید — ${String(doc.name ?? '').slice(0, 40)}${doc.country ? ' · ' + String(doc.country).slice(0, 20) : ''}`, html }
+}
+
 /** A visitor's contact (phone/WhatsApp or email) as clickable links for the alert email. */
 export function contactHtml(name: unknown, contact: unknown) {
   const c = String(contact ?? '').trim()

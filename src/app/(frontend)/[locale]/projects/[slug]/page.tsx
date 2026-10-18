@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { payload, img } from '@/lib/payload'
 import { isLocale, t, type Locale } from '@/lib/i18n'
-import { SITE } from '@/lib/seo'
+import { SITE, hreflang } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
 
@@ -19,11 +19,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const pr = await load(locale, slug)
   if (!pr) return {}
   const path = `/projects/${pr.slug}`
-  const title = `${pr.title} | ${{ fa: 'دفتر مهندسی فن آرا', ar: 'مكتب فن آرا الهندسي', en: 'Fanara Engineering' }[locale]}`
+  const title = `${pr.title} | ${{ fa: 'دفتر مهندسی فن آرا', ar: 'مكتب فن آرا الهندسي', en: 'Fanara Engineering', tr: 'Fanara Mühendislik' }[locale]}`
   const cover = img(pr.cover, 'hero')
   return {
     title, description: pr.summary ?? undefined,
-    alternates: { canonical: `/${locale}${path}`, languages: { 'ar-IQ': `/ar${path}`, 'fa-IR': `/fa${path}`, en: `/en${path}`, 'x-default': `/ar${path}` } },
+    alternates: { canonical: `/${locale}${path}`, languages: hreflang(path) },
     openGraph: { type: 'article', url: `/${locale}${path}`, title, description: pr.summary ?? undefined, images: cover ? [{ url: cover }] : ['/og.jpg'] },
   }
 }
@@ -42,7 +42,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ locale
     '@context': 'https://schema.org', '@type': 'CreativeWork', name: pr.title, description: pr.summary ?? undefined,
     url: `${SITE}/${l}/projects/${pr.slug}`, image: img(pr.cover, 'hero') ? `${SITE}${img(pr.cover, 'hero')}` : undefined,
     locationCreated: pr.location ? { '@type': 'Place', name: pr.location } : undefined,
-    creator: { '@type': 'Person', name: { fa: 'مهندس امید پودینه', ar: 'المهندس أميد پودينه', en: 'Omid Podineh' }[l] },
+    creator: { '@type': 'Person', name: { fa: 'مهندس امید پودینه', ar: 'المهندس أميد پودينه', en: 'Omid Podineh', tr: 'Omid Podineh' }[l] },
   }
   return (
     <main>

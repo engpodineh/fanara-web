@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server'
 
-const LANGS = ['ar', 'fa', 'en']
+const LANGS = ['ar', 'fa', 'en', 'tr']
 const COOKIE = 'lang'
 
 // "/" → first visit shows the language picker; later visits go straight to the remembered language.
@@ -26,4 +26,4 @@ export function middleware(req: NextRequest) {
   }
   return res
 }
-export const config = { matcher: ['/', '/ar/:path*', '/fa/:path*', '/en/:path*'] }
+export const config = { matcher: ['/', '/ar/:path*', '/fa/:path*', '/en/:path*', '/tr/:path*'] }

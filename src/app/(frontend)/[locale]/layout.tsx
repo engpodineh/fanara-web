@@ -7,7 +7,8 @@ import { SITE, jsonLd } from '@/lib/seo'
 import { payload } from '@/lib/payload'
 import { SERVICE_PAGES } from '@/lib/services-content'
 import { BIM_COPY } from '@/lib/bim-content'
-import { CITY_PAGES } from '@/lib/cities-content'
+import { CONTRACTING } from '@/lib/contracting-content'
+import { CITY_PAGES, cityPath } from '@/lib/cities-content'
 import ExitFeedback from '@/components/ExitFeedback'
 import Assistant from '@/components/Assistant'
 
@@ -46,6 +47,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
             </Link>
             <nav className="nav" aria-label="Main">
               <Link href={`/${locale}/services`}>{u.svcNav}</Link>
+              <Link href={`/${locale}/contracting`}>{CONTRACTING[locale].nav}</Link>
               <Link href={`/${locale}/resume`}>{u.navAbout}</Link>
               <Link href={`/${locale}/projects`}>{u.navProjects}</Link>
               <Link href={`/${locale}/team`}>{u.navTeam}</Link>
@@ -59,7 +61,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
             <div className="langs" role="group" aria-label="Language">
               {locales.map((l) => (
                 <Link key={l} href={`/${l}`} aria-current={l === locale} style={{ padding: '6px 11px', textDecoration: 'none', fontSize: 13, background: l === locale ? 'var(--gold)' : undefined, color: l === locale ? 'var(--char-2)' : 'var(--muted)' }}>
-                  {l === 'fa' ? 'فا' : l === 'ar' ? 'ع' : 'EN'}
+                  {l === 'fa' ? 'فا' : l === 'ar' ? 'ع' : l === 'tr' ? 'TR' : 'EN'}
                 </Link>
               ))}
             </div>
@@ -72,8 +74,9 @@ export default async function LocaleLayout({ children, params }: { children: Rea
           <div className="wrap foot-svc" aria-label={u.svcNav}>
             {SERVICE_PAGES.map((s) => <Link key={s.slug} href={`/${locale}/services/${s.slug}`}>{s[locale].h1}</Link>)}
             <Link href={`/${locale}/bim`}>{BIM_COPY[locale].title}</Link>
+            <Link href={`/${locale}/contracting`}>🏗️ {CONTRACTING[locale].title}</Link>
             <Link href={`/${locale}/academy`}>📚 {u.navAcademy}</Link>
-            {CITY_PAGES.map((c) => <Link key={c.slug} href={`/${locale}/iraq/${c.slug}`}>📍 {c[locale].name}</Link>)}
+            {CITY_PAGES.map((c) => <Link key={c.slug} href={`/${locale}${cityPath(c)}`}>📍 {c[locale].name}</Link>)}
           </div>
           <div className="wrap"><span>{u.foot}</span><span className="en">engfanara.com</span></div>
         </footer>

@@ -7,7 +7,7 @@ apt-get install -y sqlite3 fail2ban unattended-upgrades >/dev/null
 # nginx: security headers, hide version, rate-limit login + public upload/order endpoints (http-level, survives certbot edits)
 cat > /etc/nginx/conf.d/fanara-security.conf <<'NGX'
 map "$request_method:$request_uri" $fanara_limit_key {
-  ~^POST:/api/(order-files|design-orders|feedback|highlight-comments|users/login|users/forgot-password)  $binary_remote_addr;
+  ~^POST:/api/(order-files|design-orders|contract-requests|feedback|highlight-comments|users/login|users/forgot-password)  $binary_remote_addr;
   ~^POST:/assistant  $binary_remote_addr;
   ~^POST:/dfy-demo/ai  $binary_remote_addr;
   default "";

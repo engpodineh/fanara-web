@@ -1,6 +1,4 @@
-import * as migration_20261018_210000_team_civil_phone_format from './20261018_210000_team_civil_phone_format';
-import * as migration_20261018_200000_team_civil_goljaei_parvaei from './20261018_200000_team_civil_goljaei_parvaei';
-import * as migration_20261012_200000_work_orders from './20261012_200000_work_orders';
+import * as migration_20261018_223000_turkish_content from './20261018_223000_turkish_content';
 import * as migration_20261005_202918_initial from './20261005_202918_initial';
 import * as migration_20261005_205854_gallery_fields from './20261005_205854_gallery_fields';
 import * as migration_20261006_035609_feedback from './20261006_035609_feedback';
@@ -17,10 +15,14 @@ import * as migration_20261010_181500_team_contacts from './20261010_181500_team
 import * as migration_20261010_204500_team_heidari_contact from './20261010_204500_team_heidari_contact';
 import * as migration_20261011_173500_oman_design_videos from './20261011_173500_oman_design_videos';
 import * as migration_20261011_210508_notify_settings from './20261011_210508_notify_settings';
-import * as migration_20261012_193500_concrete_technology_book from './20261012_193500_concrete_technology_book';
-import * as migration_20261012_190000_study_materials_import from './20261012_190000_study_materials_import';
 import * as migration_20261011_214045_visitor_contact from './20261011_214045_visitor_contact';
 import * as migration_20261012_154245_study_materials from './20261012_154245_study_materials';
+import * as migration_20261012_190000_study_materials_import from './20261012_190000_study_materials_import';
+import * as migration_20261012_193500_concrete_technology_book from './20261012_193500_concrete_technology_book';
+import * as migration_20261012_200000_work_orders from './20261012_200000_work_orders';
+import * as migration_20261018_220000_contracting_turkish from './20261018_220000_contracting_turkish';
+import * as migration_20261018_200000_team_civil_goljaei_parvaei from './20261018_200000_team_civil_goljaei_parvaei';
+import * as migration_20261018_210000_team_civil_phone_format from './20261018_210000_team_civil_phone_format';
 
 export const migrations = [
   {
@@ -111,7 +113,7 @@ export const migrations = [
   {
     up: migration_20261012_154245_study_materials.up,
     down: migration_20261012_154245_study_materials.down,
-    name: '20261012_154245_study_materials'
+    name: '20261012_154245_study_materials',
   },
   {
     up: migration_20261012_190000_study_materials_import.up,
@@ -129,6 +131,11 @@ export const migrations = [
     name: '20261012_200000_work_orders',
   },
   {
+    up: migration_20261018_220000_contracting_turkish.up,
+    down: migration_20261018_220000_contracting_turkish.down,
+    name: '20261018_220000_contracting_turkish',
+  },
+  {
     up: migration_20261018_200000_team_civil_goljaei_parvaei.up,
     down: migration_20261018_200000_team_civil_goljaei_parvaei.down,
     name: '20261018_200000_team_civil_goljaei_parvaei',
@@ -136,6 +143,11 @@ export const migrations = [
   {
     up: migration_20261018_210000_team_civil_phone_format.up,
     down: migration_20261018_210000_team_civil_phone_format.down,
-    name: '20261018_210000_team_civil_phone_format',
+    name: '20261018_210000_team_civil_phone_format'
+  },
+  {
+    up: migration_20261018_223000_turkish_content.up,
+    down: migration_20261018_223000_turkish_content.down,
+    name: '20261018_223000_turkish_content',
   },
 ];

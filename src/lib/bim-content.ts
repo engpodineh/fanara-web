@@ -35,4 +35,12 @@ export const BIM_COPY: Record<Locale, Copy> = {
     cta: 'Request a quote', tags: 'Hashtags', homeLead: 'Revit Architecture, Structure and MEP; clash detection and take-off.',
     posters: { bim: 'Integrated BIM', mep: 'Revit MEP design', arch: 'Revit Architecture design', str: 'Revit Structure design' },
   },
+  tr: {
+    nav: 'BIM ve Revit', kicker: 'BIM · Revit', title: 'Irak ve Türkiye’de BIM ve Revit tasarım hizmetleri',
+    lead: 'Bütünleşik Yapı Bilgi Modellemesi (BIM): Revit mimari, statik ve MEP modelleme, çakışma kontrolü (clash detection), metraj ve uygulama projeleri — Bağdat, Basra, Necef, Kerbela, Erbil ve tüm Irak ile Türkiye’deki projeler için.',
+    metaTitle: 'BIM ve Revit Hizmetleri — Mimari, Statik, MEP | Fanara Mühendislik',
+    metaDesc: 'Irak ve Türkiye’de bütünleşik BIM ile Revit mimari, statik ve MEP tasarımı: 3B modelleme, çakışma kontrolü, metraj ve uygulama projeleri.',
+    cta: 'Teklif isteyin', tags: 'Etiketler', homeLead: 'Revit mimari, statik ve MEP; çakışma kontrolü ve metraj.',
+    posters: { bim: 'Bütünleşik BIM', mep: 'Revit MEP tasarımı', arch: 'Revit mimari tasarım', str: 'Revit statik tasarım' },
+  },
 }

@@ -1,11 +1,12 @@
 // Service landing pages — written for search in Iraq first (Arabic, incl. Iraqi everyday terms),
 // then Iran (Persian) and international clients (English).
 import type { Locale } from './i18n'
+import { SERVICES_TR } from './tr/services'
 
 type Block = { title: string; h1: string; description: string; intro: string; points: string[]; faq: [string, string][] }
 export type ServicePage = { slug: string; icon: string } & Record<Locale, Block>
 
-export const SERVICE_PAGES: ServicePage[] = [
+const BASE: Omit<ServicePage, 'tr'>[] = [
   {
     slug: 'mep-design', icon: '⚙️',
     ar: {
@@ -223,5 +224,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     },
   },
 ]
+
+export const SERVICE_PAGES: ServicePage[] = BASE.map((s) => ({ ...s, tr: SERVICES_TR[s.slug] }))
 
 export const serviceBySlug = (s: string) => SERVICE_PAGES.find((p) => p.slug === s)

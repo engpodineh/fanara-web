@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { payload, img } from '@/lib/payload'
 import { isLocale, t, type Locale } from '@/lib/i18n'
 import Stories from '@/components/Stories'
+import { hreflang } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
 
@@ -11,9 +12,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   if (!isLocale(locale)) return {}
   const u = t(locale)
   return {
-    title: `${u.stTitle} | ${locale === 'en' ? 'Fanara Engineering' : locale === 'ar' ? 'فن آرا' : 'دفتر مهندسی فن آرا'}`,
+    title: `${u.stTitle} | ${locale === 'en' ? 'Fanara Engineering' : locale === 'tr' ? 'Fanara Mühendislik' : locale === 'ar' ? 'فن آرا' : 'دفتر مهندسی فن آرا'}`,
     description: u.stLead,
-    alternates: { canonical: `/${locale}/highlights`, languages: { 'ar-IQ': '/ar/highlights', 'fa-IR': '/fa/highlights', en: '/en/highlights', 'x-default': '/ar/highlights' } },
+    alternates: { canonical: `/${locale}/highlights`, languages: hreflang('/highlights') },
   }
 }
 

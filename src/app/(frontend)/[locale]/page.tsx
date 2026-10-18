@@ -2,8 +2,9 @@ import type { Metadata } from 'next'
 import { pageMeta } from '@/lib/seo'
 import InstaBadge from '@/components/InstaBadge'
 import Stories from '@/components/Stories'
-import { CITY_PAGES } from '@/lib/cities-content'
+import { CITY_PAGES, cityPath } from '@/lib/cities-content'
 import Link from 'next/link'
+import { CONTRACTING, SCOPE_GROUPS } from '@/lib/contracting-content'
 import TeamGrid from '@/components/TeamGrid'
 import TeamRotator from '@/components/TeamRotator'
 import { BIM_COPY, BIM_POSTERS } from '@/lib/bim-content'
@@ -65,6 +66,18 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           </div>
         </div>
       </section>
+
+      <section className="home-ct"><div className="wrap home-ct-in">
+        <div>
+          <span className="kicker">{CONTRACTING[l].kicker}</span>
+          <h2>{CONTRACTING[l].title}</h2>
+          <p className="lead">{CONTRACTING[l].lead}</p>
+        </div>
+        <div className="home-ct-side">
+          <ul>{SCOPE_GROUPS.map((g) => <li key={g}>{CONTRACTING[l].groups[g]}</li>)}</ul>
+          <Link className="btn btn-maroon" href={`/${l}/contracting`}>{CONTRACTING[l].nav} →</Link>
+        </div>
+      </div></section>
 
       {!!projects.docs.length && (
         <section id="projects"><div className="wrap">
@@ -138,7 +151,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <span><b>{BIM_COPY[l].nav}</b><span>{BIM_COPY[l].homeLead}</span></span>
         </Link>
         <div className="city-chips home-cities">
-          {CITY_PAGES.map((c) => <Link key={c.slug} href={`/${l}/iraq/${c.slug}`}>📍 {c[l].name}</Link>)}
+          {CITY_PAGES.map((c) => <Link key={c.slug} href={`/${l}${cityPath(c)}`}>📍 {c[l].name}</Link>)}
         </div>
       </div></section>
 

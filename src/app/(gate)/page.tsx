@@ -5,19 +5,20 @@ const LANGS = [
   { code: 'ar', name: 'العربية', hint: 'العراق والدول العربية', dir: 'rtl' },
   { code: 'fa', name: 'فارسی', hint: 'ایران', dir: 'rtl' },
   { code: 'en', name: 'English', hint: 'International', dir: 'ltr' },
+  { code: 'tr', name: 'Türkçe', hint: 'Türkiye', dir: 'ltr' },
 ] as const
 
 // First visit: ask for the language. The choice is remembered (cookie set by middleware on /{lang}).
 export default async function Gate() {
   const al = ((await headers()).get('accept-language') || '').toLowerCase()
-  const guess = al.split(',').map((s) => s.trim().slice(0, 2)).find((s) => ['ar', 'fa', 'en'].includes(s)) || 'ar'
+  const guess = al.split(',').map((s) => s.trim().slice(0, 2)).find((s) => ['ar', 'fa', 'en', 'tr'].includes(s)) || 'ar'
   return (
     <main className="gate">
       <style>{CSS}</style>
       <div className="g-card">
         <img className="g-logo" src="/logo-mark.png" alt="" width={84} height={84} />
         <p className="g-brand" dir="ltr"><b><span>Eng.</span>Fanara</b></p>
-        <p className="g-q">اختر اللغة · زبان را انتخاب کنید · Choose your language</p>
+        <p className="g-q">اختر اللغة · زبان را انتخاب کنید · Choose your language · Dil seçin</p>
         <div className="g-list">
           {LANGS.map((l) => (
             <a key={l.code} href={`/${l.code}`} dir={l.dir} className={l.code === guess ? 'on' : undefined} lang={l.code}>

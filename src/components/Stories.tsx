@@ -136,7 +136,7 @@ export default function Stories({ items, t, layout = 'strip' }: { items: StoryIt
               <ul className="st-cm-list">
                 {comments.length === 0 && <li className="st-cm-empty">{t.cmEmpty}</li>}
                 {comments.map((c) => (
-                  <li key={c.id}><b>{c.name}</b><span>{c.message}</span><time dateTime={c.createdAt}>{new Date(c.createdAt).toLocaleDateString(document.documentElement.lang === 'fa' ? 'fa-IR' : document.documentElement.lang === 'ar' ? 'ar-IQ' : 'en-GB')}</time></li>
+                  <li key={c.id}><b>{c.name}</b><span>{c.message}</span><time dateTime={c.createdAt}>{new Date(c.createdAt).toLocaleDateString(document.documentElement.lang === 'fa' ? 'fa-IR' : document.documentElement.lang === 'ar' ? 'ar-IQ' : document.documentElement.lang === 'tr' ? 'tr-TR' : 'en-GB')}</time></li>
                 ))}
               </ul>
             </div>

@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { isLocale, type Locale } from '@/lib/i18n'
 import { BIM_COPY, BIM_POSTERS, BIM_TAGS } from '@/lib/bim-content'
+import { hreflang } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
 
@@ -13,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: c.metaTitle, description: c.metaDesc,
     keywords: ['BIM Iraq', 'Revit Architecture', 'Revit Structure', 'Revit MEP', 'هندسة معمارية', 'تصميم هندسي', 'بغداد', 'BIM العراق', 'رويت'],
-    alternates: { canonical: `/${locale}/bim`, languages: { 'ar-IQ': '/ar/bim', 'fa-IR': '/fa/bim', en: '/en/bim', 'x-default': '/ar/bim' } },
+    alternates: { canonical: `/${locale}/bim`, languages: hreflang('/bim') },
     openGraph: { type: 'website', url: `/${locale}/bim`, title: c.metaTitle, description: c.metaDesc, images: [{ url: '/bim/bim-revit-services.jpg', width: 768, height: 1376 }] },
   }
 }
@@ -40,7 +41,7 @@ export default async function Bim({ params }: { params: Promise<{ locale: string
       </div>
       <div className="ctas" style={{ marginTop: 28 }}>
         <Link className="btn btn-gold" href={`/${l}/order`}>{c.cta}</Link>
-        <Link className="btn btn-ghost" href={`/${l}/services/mep-design`}>{{ ar: 'تصميم التأسيسات', fa: 'طراحی تأسیسات', en: 'MEP design' }[l]}</Link>
+        <Link className="btn btn-ghost" href={`/${l}/services/mep-design`}>{{ ar: 'تصميم التأسيسات', fa: 'طراحی تأسیسات', en: 'MEP design', tr: 'MEP tasarımı' }[l]}</Link>
       </div>
     </div></main>
   )
