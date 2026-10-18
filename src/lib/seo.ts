@@ -28,9 +28,9 @@ const COPY: Record<PageKey, Record<Locale, { title: string; description: string 
     en: { title: 'MEP Projects in Iraq & Iran — Najaf, Housing Developments | Fanara', description: 'Water, drainage, electrical and mechanical projects in Iraq and Iran, including the 1,600-unit Shams project in Najaf and a 3,500-unit development, with site photos and videos.' },
   },
   team: {
-    ar: { title: 'فريق فن آرا: مهندسو ميكانيك وكهرباء لتنفيذ التأسيسات في العراق', description: 'تعرّف على فريق مكتب فن آرا الهندسي: مدراء ومشرفو تنفيذ الأقسام الميكانيكية والكهربائية لمشاريع التأسيسات الصحية والكهربائية والتكييف في العراق.' },
-    fa: { title: 'اعضای تیم فن آرا | مهندسان مکانیک و برق', description: 'آشنایی با تیم دفتر مهندسی فن آرا: مدیران و سرپرستان اجرای واحدهای مکانیک و برق در پروژه‌های تأسیسات عراق و ایران.' },
-    en: { title: 'The Fanara Team — Mechanical & Electrical Engineers | Fanara', description: 'Meet the Fanara Engineering team: managers and execution supervisors of the mechanical and electrical units on MEP projects in Iraq and Iran.' },
+    ar: { title: 'فريق فن آرا: مهندسو مدني وميكانيك وكهرباء لتنفيذ المشاريع في العراق', description: 'تعرّف على فريق مكتب فن آرا الهندسي: مدراء مواقع ومشرفو تنفيذ الأقسام المدنية والميكانيكية والكهربائية لمشاريع البناء والتأسيسات في العراق.' },
+    fa: { title: 'اعضای تیم فن آرا | مهندسان عمران، مکانیک و برق', description: 'آشنایی با تیم دفتر مهندسی فن آرا: سرپرستان پروژه و مدیران اجرای واحدهای عمران، مکانیک و برق در پروژه‌های عراق و ایران.' },
+    en: { title: 'The Fanara Team — Civil, Mechanical & Electrical Engineers | Fanara', description: 'Meet the Fanara Engineering team: project superintendents and execution supervisors of the civil, mechanical and electrical units on projects in Iraq and Iran.' },
   },
   gallery: {
     ar: { title: 'معرض صور مشاريع التأسيسات في العراق وإيران | فن‌آرا', description: 'صور حقيقية من مواقع العمل: شبكات المجاري والماء، غرف المراجل، مجاري التكييف، اللوحات الكهربائية والمخططات التصميمية.' },
