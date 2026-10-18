@@ -1,3 +1,4 @@
+import * as migration_20261018_210000_team_civil_phone_format from './20261018_210000_team_civil_phone_format';
 import * as migration_20261018_200000_team_civil_goljaei_parvaei from './20261018_200000_team_civil_goljaei_parvaei';
 import * as migration_20261012_200000_work_orders from './20261012_200000_work_orders';
 import * as migration_20261005_202918_initial from './20261005_202918_initial';
@@ -131,5 +132,10 @@ export const migrations = [
     up: migration_20261018_200000_team_civil_goljaei_parvaei.up,
     down: migration_20261018_200000_team_civil_goljaei_parvaei.down,
     name: '20261018_200000_team_civil_goljaei_parvaei',
+  },
+  {
+    up: migration_20261018_210000_team_civil_phone_format.up,
+    down: migration_20261018_210000_team_civil_phone_format.down,
+    name: '20261018_210000_team_civil_phone_format',
   },
 ];
