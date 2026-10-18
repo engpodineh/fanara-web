@@ -15,6 +15,7 @@ export const Team: CollectionConfig = {
       options: [
         { value: 'mechanical', label: { fa: 'مکانیک', en: 'Mechanical' } },
         { value: 'electrical', label: { fa: 'برق', en: 'Electrical' } },
+        { value: 'civil', label: { fa: 'عمران', en: 'Civil' } },
         { value: 'design', label: { fa: 'طراحی', en: 'Design' } },
         { value: 'management', label: { fa: 'مدیریت', en: 'Management' } },
       ],

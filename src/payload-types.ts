@@ -280,7 +280,7 @@ export interface Team {
   id: number;
   name: string;
   position: string;
-  discipline: 'mechanical' | 'electrical' | 'design' | 'management';
+  discipline: 'mechanical' | 'electrical' | 'civil' | 'design' | 'management';
   photo: number | Media;
   bio?: string | null;
   resume?: string | null;
