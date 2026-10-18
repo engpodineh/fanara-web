@@ -100,7 +100,7 @@ const neginP = await make('projects', { slug: 'negin-residential-complex', publi
   title: L('مجتمع اقامتی نگین، چابهار', 'مجمع نگين السكني، تشابهار', 'Negin Residential Complex, Chabahar'),
   summary: L('سرپرستی کارگاه؛ تأسیسات مکانیکی، برقی و نازک‌کاری تا افتتاح.', 'إدارة الموقع؛ الأعمال الميكانيكية والكهربائية والتشطيبات حتى الافتتاح.', 'Site supervision of mechanical, electrical and finishing works through to opening.'),
   client: L('نگین مکران (NMPC)', 'نگين مكران (NMPC)', 'Negin Makran (NMPC)'), location: L('چابهار، ایران', 'تشابهار، إيران', 'Chabahar, Iran'),
-  role: L('سرپرست کارگاه (تأسیسات و نازک‌کاری)', 'مشرف الموقع (الأنظمة والتشطيبات)', 'Site Supervisor (MEP & finishing)'),
+  role: L('سرپرست اجرا (تأسیسات برق و مکانیک)', 'مشرف التنفيذ (الأعمال الكهربائية والميكانيكية)', 'Execution Supervisor (Electrical & Mechanical)'),
 })
 const aldP = await make('projects', { slug: 'al-dhaman-3500-units', published: true, featured: true, order: 2, status: 'in-progress', category: 'execution', period: '2026 –', showClientName: false, cover: aldhaman, systems: ['plumbing', 'drainage', 'electrical-power', 'infrastructure'] }, {
   title: L('مجتمع مسکونی ۳۵۰۰ واحدی، عراق', 'مجمع سكني من 3500 وحدة، العراق', '3,500-unit residential development, Iraq'),
@@ -121,7 +121,7 @@ const exp: [string, string | null, L3, L3, L3, L3[], number?][] = [
     L('تحویل تأسیسات ۸۰۰ واحد مسکونی در ۹ ماه.', 'تسليم أنظمة 800 وحدة سكنية خلال 9 أشهر.', 'Delivered building services for 800 housing units in 9 months.'),
     L('نظارت بر نقشه‌ها، برآورد هزینه و کیفیت نصب؛ هماهنگی برنامه‌ی اجرای رشته‌ها.', 'الإشراف على المخططات وتقدير الكلف وجودة التركيب؛ وتنسيق جداول التنفيذ بين التخصصات.', 'Oversees drawings, cost estimates and installation quality; aligns schedules across trades.'),
   ]],
-  ['2023-06-01', '2025-08-01', L('سرپرست کارگاه (تأسیسات و نازک‌کاری)', 'مشرف الموقع (الأنظمة والتشطيبات)', 'Site Supervisor (MEP & Finishing)'), L('مجتمع اقامتی نگین · کارفرما: NMPC', 'مجمع نگين السكني · صاحب العمل: NMPC', 'Negin Residential Complex · Client: NMPC'), L('چابهار، ایران', 'تشابهار، إيران', 'Chabahar, Iran'), [
+  ['2023-06-01', '2025-08-01', L('سرپرست اجرا (تأسیسات برق و مکانیک)', 'مشرف التنفيذ (الأعمال الكهربائية والميكانيكية)', 'Execution Supervisor (Electrical & Mechanical)'), L('مجتمع اقامتی نگین · کارفرما: NMPC', 'مجمع نگين السكني · صاحب العمل: NMPC', 'Negin Residential Complex · Client: NMPC'), L('چابهار، ایران', 'تشابهار، إيران', 'Chabahar, Iran'), [
     L('سرپرستی اجرای تأسیسات مکانیکی، برقی و نازک‌کاری تا تحویل و افتتاح.', 'الإشراف على تنفيذ الأعمال الميكانيكية والكهربائية والتشطيبات حتى التسليم والافتتاح.', 'Supervised mechanical, electrical and finishing works through to handover and opening.'),
     L('مدیریت ماشین‌آلات، نیروی کارگاه و گزارش روزانه‌ی اجرا.', 'إدارة الآليات والقوى العاملة والتقارير اليومية.', 'Managed machinery, site workforce and daily execution reports.'),
   ]],
